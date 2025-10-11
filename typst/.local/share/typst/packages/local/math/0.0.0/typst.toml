@@ -1,0 +1,5 @@
+[package]
+name = "math"
+version = "0.0.0"
+entrypoint = "math.typ"
+description = "Math package"

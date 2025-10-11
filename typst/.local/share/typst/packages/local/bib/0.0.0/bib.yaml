@@ -1,0 +1,171 @@
+
+chatgpt:
+  type: Web
+  title: ChatGPT
+  url: https://chatgpt.com/
+  updated: 2025-08-30T14:12:32
+
+elements-of-information-theory:
+  type: Book
+  title: Elements of information theory
+  author:
+    - M. Cover Thomas
+    - A. Thomas Joy
+  publisher: Wiley-Interscience
+  date: 2006
+  misc:
+    - |
+      世界的に有名な情報理論の教科書です。
+      https://joisino.hatenablog.com/entry/2024/03/27/181258
+  updated: 2025-08-23T09:01:23
+
+iso-3534-1:
+  type: Web
+  title: "ISO 3534-1:2006(en) Statistics — Vocabulary and symbols — Part 1: General statistical terms and terms used in probability"
+  url: https://www.iso.org/obp/ui/#iso:std:iso:3534:-1:en
+  updated: 2025-08-23T08:59:11
+
+iso-80000-2:
+  type: Web
+  title: "ISO 80000-2:2009 - Quantities and units — Part 2"
+  url: https://webusers.imj-prg.fr/~jean-yves.ducloux/Typographie/ISO80000-2.pdf
+  misc:
+    - https://cdn.standards.iteh.ai/samples/64973/329519100abd447ea0d49747258d1094/ISO-80000-2-2019.pdf
+  updated: 2025-08-23T09:23:10
+
+pattern-recognition-and-machine-learning:
+  type: Book
+  title: Pattern Recognition and Machine Learning
+  author: Christopher M. Bishop
+  updated: 2025-06-28T21:06:03
+
+wikipedia:
+  type: Web
+  title: Wikipedia
+  url: https://en.wikipedia.org/wiki/Main_Page
+  updated: 2025-06-28T21:19:54
+
+解析入門I:
+  type: Book
+  title: 解析入門 I
+  author:
+    - 杉浦 光夫
+  publisher: 東京大学出版会
+  date: 2003
+  # series: 基礎数学2
+  note: 東京大学理学部数学科卒業
+  updated: 2025-07-26T11:56:29
+
+解析入門上:
+  type: Book
+  title: 解析入門 上
+  author:
+    - 松坂 和夫
+  publisher: 岩波書店
+  date: 2018
+  # series: 数学入門シリーズ4
+  note: 東京大学理学部数学科卒業
+  updated: 2025-09-12T14:42:42
+
+解析入門中:
+  type: Book
+  title: 解析入門 中
+  author:
+    - 松坂 和夫
+  publisher: 岩波書店
+  date: 2018
+  # series: 数学入門シリーズ5
+  note: 東京大学理学部数学科卒業
+  updated: 2025-09-12T14:41:56
+
+現代集合論入門:
+  type: Book
+  title: 現代集合論入門（増補版）
+  author:
+    - 竹内外史
+  publisher: 日本評論社
+  date: 2016
+  updated: 2025-07-19T07:01:49
+
+集合論:
+  type: Book
+  title: 集合論 独立性証明への案内
+  author:
+    - ケネス・キューネン
+  publisher: 日本評論社
+  date: 2019
+  updated: 2025-07-19T07:01:10
+
+数学A:
+  type: Book
+  title: 数学A
+  publisher: 数研出版
+  date: 2006
+  updated: 2025-06-28T22:26:54
+
+数学B:
+  type: Book
+  title: 数学B
+  publisher: 数研出版
+  date: 2007
+  updated: 2025-06-28T22:27:21
+
+数学C:
+  type: Book
+  title: 数学C
+  publisher: 数研出版
+  date: 2007
+  updated: 2025-06-28T21:18:43
+
+数学の基礎:
+  type: Book
+  title: 数学の基礎 集合・数・位相
+  author:
+    - 齋藤 正彦
+  publisher: 東京大学出版会
+  date: 2014
+  # series: 基礎数学14
+  note: 東京大学理学部数学科卒業
+  updated: 2025-07-19T06:59:26
+
+数理解析学概論:
+  type: Book
+  title: 数理解析学概論
+  author:
+    - 北田 均
+  publisher: 現代数学社
+  date: 2018
+  updated: 2025-07-19T07:00:04
+
+線型代数入門:
+  type: Book
+  title: 線型代数入門
+  author:
+    - 齋藤 正彦
+  publisher: 東京大学出版会
+  date: 2002
+  # series: 基礎数学1
+  note: 東京大学理学部数学科卒業
+  updated: 2025-07-26T11:57:02
+
+統計学入門:
+  type: Book
+  title: 統計学入門
+  author:
+    - 松原 望
+    - 縄田 和満
+    - 中井 検裕
+  publisher: 東京大学出版会
+  date: 2020
+  # series: 基礎統計学I
+  updated: 2025-06-28T21:18:56
+
+キューネン数学基礎論講義:
+  type: Book
+  title: キューネン数学基礎論講義
+  author:
+    - ケネス・キューネン
+  publisher: 日本評論社
+  date: 2016
+  updated: 2025-07-19T07:00:40
+
