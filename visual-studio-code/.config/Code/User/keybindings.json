@@ -1,0 +1,204 @@
+[
+  // #region editor.action.commentLine
+  //
+  // - Notes
+  //   - 下記エディターではデフォルト設定で Ctrl+/ でコメントを切り替えている
+  //     - Eclipse
+  //     - Jupyter notebook
+  //     - Visual Studio Code
+  // {
+  //   "key": "ctrl+[Slash]",
+  //   "command": "editor.action.commentLine",
+  //   "when": "inputFocus && vim.mode == 'Normal'"
+  // },
+  // #endregion
+
+  // extension.vim_escape
+  {
+    // - Refs
+    //   - \href{https://stackoverflow.com/questions/48369303/use-in-visual-studio-code-vim-extension-caps-instead-of-esc}{Use in Visual Studio Code (Vim extension) CAPS instead of ESC}
+    "key": "capslock",
+    "command": "extension.vim_escape",
+    "when": "editorTextFocus && vim.active && !inDebugRepl"
+  },
+
+  // markdown.showPreviewToSide
+  {
+    // - Notes
+    //   - The origin of `P'
+    //     - Preview
+    // - Refs
+    //   - \href{https://stackoverflow.com/questions/34125174/can-vscode-display-a-markdown-syntax-preview-pane}{Can VSCode display a Markdown syntax preview pane?}
+    "key": "ctrl+p",
+    // "command": "markdown.showPreviewToSide",  // Default
+    "command": "markdown-preview-enhanced.openPreviewToTheSide",  // Extension
+    "when": "inputFocus"
+  },
+
+  // outline.collapse
+  {
+    // - Notes
+    //   - The origin of `C'
+    //     - Collapse
+    "key": "ctrl+c",
+    "command": "outline.collapse",
+    "when": "outlineFocused"
+  },
+
+  // outline.expand
+  // {
+  //   "key": "enter",
+  //   "command": "outline.expand",
+  //   "when": "outlineFocused"
+  // },
+
+  // outline.focus
+  {
+    // - Notes
+    //   - The origin of `O'
+    //     - Outline
+    // - Refs
+    //   - \href{https://stackoverflow.com/questions/57222659/create-a-shortcut-to-toggle-the-outline-view-in-vscode}{Create a shortcut to toggle the Outline view in VSCode}
+    "key": "ctrl+o",
+    // "key": "shift+o",
+    "command": "outline.focus",
+    // "command": "workbench.action.focusRightGroup",
+    "when": "vim.mode == 'Normal'"
+    // "when": "editorTextFocus"
+    // "when": "outline.active"
+  },
+
+  // selectNextSuggestion
+  {
+    // - Refs
+    //   - \href{https://qiita.com/carnelia0702/items/fc736cfc61daa282f789}{Ctrl+SpaceでVSCodeのIntelliSenseの候補を選択する}
+    "key": "tab",
+    "command": "selectNextSuggestion",
+    "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+  },
+
+  // #region workbench.action.closeActiveEditor
+  // {
+    // - Refs
+    //   - \href{https://code.visualstudio.com/docs/getstarted/keybindings#_editorwindow-management}{Editor/Window Management}
+    // "key": "q",
+    // "command": "workbench.action.closeActiveEditor",
+    // "when": "inputFocus && vim.mode == 'Normal'"
+    // "when": "editorTextFocus && vim.mode == 'Normal'"
+  // },
+  // #endregion
+
+  // workbench.action.closeSidebar
+  {
+    // - Notes
+    //   - The origin of `C'
+    //     - Close
+    "key": "ctrl+c",
+    "command": "workbench.action.closeSidebar",
+    "when": "editorFocus"
+  },
+
+  // workbench.action.files.save
+  {
+    "key": "enter",
+    "command": "workbench.action.files.save",
+    "when": "inputFocus && vim.mode == 'Normal'"
+  },
+
+  // workbench.action.focusActiveEditorGroup
+  {
+    // - Notes
+    //   - The origin of `E'
+    //     - Editor
+    "key": "ctrl+e",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "!editorFocus"
+  },
+
+  // workbench.action.moveEditorToLeft(Right)Group
+  {
+    "key": "ctrl+alt+left",
+    "command": "workbench.action.moveEditorToLeftGroup"
+  },
+  {
+    "key": "ctrl+alt+right",
+    "command": "workbench.action.moveEditorToRightGroup"
+  },
+
+  // workbench.action.navigateEditorGroups
+  {
+    // - Notes
+    //   - The origin of "m"
+    //     - Move
+    // - Refs
+    //   - \href{https://stackoverflow.com/questions/36328029/is-there-a-hotkey-to-switch-between-split-window-panes}{Is there a hotkey to switch between split window panes?}
+    // "key": "^",
+    // "key": "m",
+    "key": "ctrl+m",
+    "command": "workbench.action.navigateEditorGroups",
+    "when": "editorTextFocus && vim.mode == 'Normal'"
+  },
+
+  // workbench.action.terminal.focus
+  {
+    // - Notes
+    //   - The origin of "T"
+    //     - Terminal
+    // - Refs
+    //   - \href{https://superuser.com/questions/1270103/how-to-switch-the-cursor-between-terminal-and-code-in-vscode}{How to switch the cursor between terminal and code in VSCode?}
+    //   - \href{https://stackoverflow.com/questions/42796887/switch-focus-between-editor-and-integrated-terminal}{Switch focus between editor and integrated terminal}
+    "key": "ctrl+t",
+    "command": "workbench.action.terminal.focus",
+    "when": "inputFocus && vim.mode == 'Normal'"
+  },
+
+  // workbench.files.action.collapseExplorerFolders
+  {
+    // - Notes
+    //   - The origin of "C"
+    //     - Collapse
+    "key": "ctrl+c",
+    "command": "workbench.files.action.collapseExplorerFolders",
+    "when": "filesExplorerFocus"
+  },
+
+  // workbench.view.explorer
+  {
+    // - Notes
+    // - The origin of `E'
+    //   - file Explorer
+    // - Refs
+    //   - \href{https://code.visualstudio.com/docs/getstarted/keybindings#_display}{Display}
+    "key": "ctrl+e",
+    "command": "workbench.view.explorer",
+    "when": "editorFocus"
+    // "when": "vim.mode == 'Normal'"
+  },
+
+  // markdown: surround with left single quote
+  {
+    // - Refs
+    //   - \href{https://stackoverflow.com/questions/42363030/visual-studio-code-surround-with}{Visual Studio Code Surround With}
+    //   - \href{https://code.visualstudio.com/docs/getstarted/keybindings#_running-multiple-commands}{Running multiple commands}
+    //   - \href{https://code.visualstudio.com/docs/editor/userdefinedsnippets#_variables}{Variables}
+    // "key": "[Backquote]",
+    // "key": "ctrl+c",
+    "key": "`",
+    "command": "runCommands",
+    "when": "editorLangId == markdown && editorTextFocus && vim.mode == 'Normal'",
+    "args": {
+      "commands": [
+        {
+          "command": "editor.action.addSelectionToNextFindMatch"
+        },
+        {
+          "command": "editor.action.insertSnippet",
+          "args": {
+            "snippet": "`${TM_SELECTED_TEXT}`"
+          //   "snippet": "`${TM_CURRENT_WORD}`"
+          }
+        }
+      ]
+    }
+  },
+]

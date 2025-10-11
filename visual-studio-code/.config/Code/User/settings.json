@@ -1,0 +1,232 @@
+
+// - Notes
+//   - \href{https://code.visualstudio.com/docs/getstarted/settings#_default-settings}{Default settings}
+
+{
+  // #region editor
+  // "[editor]": {
+  //   "fontSize": 12,
+  // },
+
+  // - Refs
+  //   - \href{https://stackoverflow.com/questions/41082702/how-to-center-the-editor-window-back-on-the-cursor-in-vscode}{How to center the editor window back on the cursor in VSCode?}
+  "editor.cursorSurroundingLines": 100,
+
+  // #region folding
+  // - Refs
+  //   - \href{https://qiita.com/Yarakashi_Kikohshi/items/1a275f2046b002e398b3}{LaTeX Workshop をもう少し使いこなす}
+  "editor.folding": true,
+  "editor.showFoldingControls": "always",
+  // #endregion
+
+  "editor.fontSize": 16,
+  // "editor.fontSize": 17,
+
+  // - Notes
+  //   - エディターウィンドウの右に表示されるコード全体が見れる小窓を自動非表示にするため
+  "editor.minimap.autohide": true,
+  // "editor.minimap.enabled": false,
+
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "on",
+    "strings": "on"
+  },
+  "editor.renderWhitespace": "trailing",
+  "editor.suggestSelection": "recentlyUsed",
+
+  // - Notes
+  //   - vscodeで例えば，\verb|start_time| という文字列が存在するファイルを編集しようとしている．
+  //     今，\verb|time| という文字列に対して，その先頭に \verb|start_| と追記したいとする．
+  //     \verb|time| という文字列の先頭にカーソルを合わせ，\verb|sta| とタイプすると，
+  //     補完候補として \verb|start_time| が表示される．
+  //     そのとき補完候補内の \verb|start_time| を選択すると，結果的に \verb|start_timetime| という文字列になってしまう．
+  //     これを回避するための設定が \verb|"replace"|．
+  // - Refs
+  //   - \href{https://code.visualstudio.com/docs/reference/default-settings}{Default settings reference}
+  "editor.suggest.insertMode": "replace",
+
+  // #region tab
+  // - Refs
+  //   - \href{https://code.visualstudio.com/docs/editor/codebasics#_indentation}{Indentation}
+  //   - \href{https://stackoverflow.com/questions/29972396/how-can-i-customize-the-tab-to-space-conversion-factor-in-vs-code}{How can I customize the tab-to-space conversion factor in VS Code?}
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  // #endregion
+
+  // #endregion
+
+  // #region files
+  //
+  // - Refs
+  //   - \href{https://www.w3schools.io/editor/vscode-hide-files-folder/}{VScode - Hide Files}
+  "files.exclude": {
+    // "**/.*": true,
+    // "**/.devcontainer": false,
+    "**/.git": true,
+    "**/.gitignore": true,
+    "**/.pytest_cached": true,
+    "**/.python-version": true,
+    "**/__pycache__": true,
+    "**/uv.lock": true,
+    "**/.venv": true,
+  },
+
+  // #endregion files
+
+  // #region vim
+  // "[vim]" : {
+  //   "foldfix": true,
+  // },
+
+  // - Notes
+  //   - 折りたたみ上をカーソル移動しても開かないようにするための設定
+  // - Refs
+  //   - \href{https://stackoverflow.com/questions/50888475/code-folds-are-automatically-opened-when-cursor-moves-over-them-in-vs-code-vim}{Code folds are automatically opened when cursor moves over them in VS Code Vim. How can I prevent this?}
+  "vim.foldfix": true,
+
+  // #region vim.insertModeKeyBindings
+  //
+  // - Refs
+  //   - \href{https://github.com/VSCodeVim/Vim?tab=readme-ov-file#quick-example}{VSCodeVim / Vim}
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
+    },
+    // Test
+    // {
+      // "before": ["<CapsLock>"],
+      // "after": ["<Esc>", "<CapsLock>"]
+      // "after": ["<Esc>", "<CapsLock>", "<CapsLock>"]
+    // }
+  ],
+  // #endregion vim.insertModeKeyBindings
+
+  // #region vim.normalModeKeyBindings
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["<space>"],
+      "after": ["z", "a"]
+    }
+  ],
+  // #endregion vim.normalModeKeyBindings
+
+  // - Notes
+  //   - vimの設定ファイルを読み込む
+  // - Refs
+  //   - \href{https://qiita.com/kino-ma/items/735148fe58dc14898903}{VSCodeでvimrcの設定を読み込みたい}
+  // "vim.vimrc.enable": true,
+  // "vim.vimrc.path": "$HOME/Dropbox/configuration-files/vim/output-files/configuration-files/init.vim",
+
+  // #endregion
+
+  // #region workbench
+  //
+  // - Refs
+  //   - \href{https://stackoverflow.com/questions/10166903/changing-the-color-of-the-whitespace-indicator-in-visual-studio}{Changing the color of the whitespace indicator in Visual Studio?}
+//   "[workbench]": {
+//     "colorCustomizations.editorWhitespace.foreground": "#ff0000"
+//   },
+  "workbench.colorCustomizations": {
+    "editorWhitespace.foreground": "#ff0000"
+  },
+  // #endregion
+
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+  },
+
+  "[d2]": {
+    "editor.tabSize": 2,
+  },
+
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+  },
+
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+  },
+
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    // "editor.tabSize": 2,
+  },
+
+  "[markdown]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    // - Refs
+    //   - \href{https://www.deepanseeralan.com/tech/enable-quick-suggestions-for-markdown-in-vscode/}{Enable quick suggestions for Markdown in VS Code}
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": true,
+      "strings": true
+    },
+    // - Refs
+    //   - \href{https://stackoverflow.com/questions/47872641/vscode-autocomplete-intellisense-for-strings}{VSCode autocomplete/intellisense for strings}
+    "editor.wordBasedSuggestions": "currentDocument",
+  },
+
+  // "[markdown-preview-enhanced]": {
+    // "codeBlockTheme": "atom-dark.css",
+    // "codeBlockTheme": "okaidia.css",
+    // "previewTheme": "atom-dark.css",
+    // "previewTheme": "monokai.css",
+    // "previewTheme": "one-dark.css",
+  // },
+  "markdown-preview-enhanced.codeBlockTheme": "atom-dark.css",
+  "markdown-preview-enhanced.previewTheme": "atom-dark.css",
+
+  "[notebook]": {
+    // - Refs
+    //   - \href{https://stackoverflow.com/questions/65747615/how-to-format-jupyter-notebook-in-vscode}{How to Format Jupyter notebook in VSCode？}
+    "formatOnSave.enabled": true,
+  },
+
+  "[python]": {
+    // - Refs
+    //   - \href{https://stackoverflow.com/questions/54656661/collapse-or-folding-import-statements-in-vscode-for-java-code}{collapse or folding "import" statements in vscode (for java code)}
+    "editor.foldingImportsByDefault": true,
+    // - Refs
+    //   - \href{https://code.visualstudio.com/docs/editor/codebasics#_how-do-i-turn-on-word-wrap}{How do I turn on word wrap?}
+    //   - \href{https://stackoverflow.com/questions/29968499/how-can-i-have-multiple-vertical-rulers-in-vs-code}{How can I have multiple vertical rulers in VS Code?}
+    "editor.rulers": [80],
+    // - Refs
+    //   - \href{https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter}{Black Formatter}
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true,
+    // - Refs
+    //   - \href{https://github.com/microsoft/pylance-release?tab=readme-ov-file#settings-and-customization}{python.analysis.autoImportCompletions}
+    // "python.analysis.autoImportCompletions": true,
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": true,
+      "strings": true
+    },
+    "editor.wordBasedSuggestions": "currentDocument",
+  },
+
+  // #region typst
+  "[typst]": {
+    // "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+  },
+  // #endregion
+
+  // yaml
+  "[yaml]": {
+    "editor.folding": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    // "editor.tabSize": 2,
+    "editor.wordBasedSuggestions": "currentDocument",
+  },
+}

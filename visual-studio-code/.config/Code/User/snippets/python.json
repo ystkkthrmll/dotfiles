@@ -1,0 +1,18 @@
+{
+  "template_main": {
+    "prefix": "template_main",
+    "body": [
+      "\"\"\"",
+      "* Purpose: $1",
+      "\"\"\"",
+      "",
+      "def main() -> ${2:None}:",
+      "    ${3:pass}",
+      "",
+      "if __name__ == '__main__':",
+      "    main()",
+      "",
+    ],
+    "description": "template main"
+  }
+}
