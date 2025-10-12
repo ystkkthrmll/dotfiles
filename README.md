@@ -73,7 +73,7 @@ dotfiles
   - [GNOME Files - Wikipedia](https://en.wikipedia.org/wiki/GNOME_Files)
   - [GNOME/Files](https://wiki.archlinux.org/title/GNOME/Files)
 - Notes
-  - `Ctrl` + `D| add to sidebar
+  - `Ctrl` + `D` add to sidebar
     - [Create a link to a folder on the left panel of Nautilus file manager?](https://askubuntu.com/questions/83118/create-a-link-to-a-folder-on-the-left-panel-of-nautilus-file-manager)
   - Remove folders from the places sidebar
     - [Remove folders from the places sidebar](https://wiki.archlinux.org/index.php/GNOME/Files#Remove_folders_from_the_places_sidebar)
