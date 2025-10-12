@@ -128,15 +128,24 @@ hash -d functional-analysis=~analysis/functional-analysis/srcs
 
 # #endregion analysis
 
+# #region applied-math
+hash -d applied-math=~math/applied-math
+
+hash -d math-data-science=~applied-math/data-science/srcs
+hash -d information-theory=~applied-math/information-theory
+hash -d probability-theory=~applied-math/probability-and-statistics/probability-theory/srcs
+hash -d statistics=~applied-math/probability-and-statistics/statistics/srcs
+
+
+
+# #endregion applied-math
+
 # #region foundations
 hash -d set-theory=~math/foundations/set-theory/srcs
 hash -d topological-space=~math/foundations/topological-space/srcs
 # #endregion foundations
 
 
-hash -d information-theory=~math/information-theory
-hash -d probability-theory=~math/probability-and-statistics/probability-theory/srcs
-hash -d statistics=~math/probability-and-statistics/statistics/srcs
 
 
 

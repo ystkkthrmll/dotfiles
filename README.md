@@ -10,6 +10,10 @@
 
 - Purpose: Configuration
 
+## To-do list
+
+- [ ] `evince` なら `.pdf` のみ補完．のようにコマンドごとに補完する拡張子を指定したい
+
 ## Usage
 
 ```bash
@@ -81,12 +85,17 @@ dotfiles
 ### Visual Studio Code
 
 - File location:
-  - Linux: `$HOME/.config/Code/User/keybindings.json`
-  - Windows: `%UserProfile%\AppData\Roaming\Code\User\keybindings.json`
+  - `keybindings.json`
+    - Linux: `$HOME/.config/Code/User/keybindings.json`
+    - Windows: `%UserProfile%\AppData\Roaming\Code\User\keybindings.json`
+  - `settings.json`
+    - Linux: `$HOME/.config/Code/User/settings.json`
+    - Windows: `%APPDATA%\Code\User\settings.json`
 
 #### References
 
 - [How to Reset your Keyboard Shortcuts in Visual Studio Code](https://bobbyhadz.com/blog/reset-keyboard-shortcuts-in-vscode)
+- [User and workspace settings](https://code.visualstudio.com/docs/configure/settings#_user-settingsjson-location)
 
 ## 個人用/仕事用 config-files について
 
