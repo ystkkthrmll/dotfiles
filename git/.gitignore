@@ -1,0 +1,45 @@
+# - Purpose: Git で管理しないファイルの指定
+# - Notes
+#   - `.gitignore` ファイルの書き方は @version-control-with-git[page: 60]
+#   - 各拡張子のメモ
+#     - `.bib`: LaTeX参考文献ファイル
+#     - `.csv`: CSV (Comma-separated values)
+#     - `.html`: HTML (HyperText Markup Language)
+#     - `.jpg`: image file
+#     - `.log`: log file
+#     - `.pdf`: PDF (Portable Document Format)
+#     - `.png`: image file
+#     - `.pyc`: This is the compiled bytecode.
+#       If you import a module, python will build a \verb|*.pyc| file that contains the bytecode
+#       to make importing it again later easier (and faster).
+#       \href{https://stackoverflow.com/questions/8822335/what-do-the-python-file-extensions-pyc-pyd-pyo-stand-for}{What do the python file extensions, .pyc .pyd .pyo stand for?}
+#     - `.svg`: SVG (Scalable Vector Graphics)
+#     - `.xlsx`: Excel
+#     - `.zip`: 圧縮ファイル
+#   - 特定のファイル名
+#     - `uv.lock`: Python uv で自動生成されるファイル
+#     - `.ipynb_checkpoints`: Jupyter notebook で自動生成されるフォルダー
+#     - `.python-version`: Python uv で自動生成されるファイル
+#     - `__init__.py`: Pythonで自動生成されるファイル
+#     - `output-files`: mydocstrip.texで出力されるファイルの出力先
+
+# Filename extensions
+*.bib
+# *.csv  # CSVで管理するデータがあるため
+# *.html  # Djangoテンプレートファイルなどで編集する可能性があるため
+*.jpg
+*.log
+*.pdf
+*.png
+*.pyc
+*.svg
+*.xlsx
+*.zip
+
+# File
+uv.lock
+.ipynb_checkpoints
+.python-version
+__init__.py
+
+output-files

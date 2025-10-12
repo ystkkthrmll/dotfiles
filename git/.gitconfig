@@ -1,0 +1,44 @@
+[user]
+    [includeIf "gitdir:~/Dropbox/dotfiles/"]
+        path = ~/.gitconfig.personal
+
+    [includeIf "gitdir:~/my-docs/"]
+        path = ~/.gitconfig.personal
+
+    [includeIf "gitdir:~/projects/"]
+        path = ~/.gitconfig.work
+
+[alias]
+    # - Refs
+    #   - \href{https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases}{2.7 Git Basics - Git Aliases}
+    br = branch
+    ci = commit
+    co = checkout
+    st = status
+
+[color "status"]
+    # - Refs
+    #   - \href{https://unix.stackexchange.com/questions/44266/how-to-colorize-output-of-git}{How to colorize output of git?}
+    added = cyan
+    changed = green bold
+    untracked = red bold
+
+[commit]
+    # - Refs
+    #   - \href{https://gist.github.com/lisawolderiksen/a7b99d94c92c6671181611be1641c733#template-file}{Using Git Commit Message Templates to Write Better Commit Messages}
+    template = ~/Dropbox/dotfiles/git/.gitmessage
+
+[core]
+    # - Refs
+    #   - `$ git config --global core.excludesfile ~/.gitignore_global`
+    #     - \href{https://git-scm.com/docs/gitignore#_description#:~:text=Patterns%20which%20a%20user%20wants%20Git%20to%20ignore%20in%20all%20situations}{Git - gitignore Documentation}
+    #     - \href{https://help.github.com/en/github/using-git/ignoring-files#create-a-global-gitignore0}{参照先}
+    #   - `$ git config --global core.editor nvim`
+    #     - cf. "Pro Git"
+    excludesfile = ~/Dropbox/dotfiles/git/.gitignore
+    editor = nvim
+
+[credential]
+    # - Refs
+    #   - `$ git config --global credential.helper store`
+    helper = store

@@ -21,6 +21,8 @@ $ bash setup.sh
 ```
 dotfiles
 ├── README.md
+├── git
+│   ├── .gitconfig
 ├── pandoc
 │   ├── defaults
 │   │   ├── common.yaml
@@ -48,13 +50,14 @@ dotfiles
 
 - [How to Reset your Keyboard Shortcuts in Visual Studio Code](https://bobbyhadz.com/blog/reset-keyboard-shortcuts-in-vscode)
 
-## 自宅用/会社用 config-files について
+## 個人用/仕事用 config-files について
 
 ### Naming
 
 候補
 
 - メイン・サブ
+  - どちらが main かがわかりづらいため不採用
   - main の対義語がサブか怪しい
 - プライベート・仕事
   - 仕事でも個人的にしか使用しないため適切ではない
@@ -62,6 +65,12 @@ dotfiles
   - 対応関係を覚えておく必要がある
 - 自宅・会社
   - これを採用する
+- [@chatcpt, prompt: 「会社用」と「プライベート用」の `.gitconfig` を使い分けるとき，拡張子は `.work`, `.private` が一般的？ それとも，もっと一般的な拡張子がある？]
+  - 会社用：`.gitconfig.work`
+  - プライベート用：`.gitconfig.personal`
+
+> [!NOTE]
+> Conclusion: work/personal
 
 ### English
 
@@ -78,9 +87,6 @@ dotfiles
     - \href{https://shinuwakaeng.com/kihontango-company-office}{【1分でわかる】company/officeの違い【会社を意味する単語】}
     - \href{https://english.sanachan.com/how-native-uses/company-office-enterprise-firm}{会社「company / office / enterprise / firm」の違い}
     - \href{https://nakabayashikumiko.com/job-office-work-company/}{job, office, work, company の違い【間違い多発】}
-
-> [!NOTE]
-> Conclusion: home/office
 
 ## Implementation
 
