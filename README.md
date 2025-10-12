@@ -23,6 +23,7 @@ dotfiles
 ├── README.md
 ├── git
 │   ├── .gitconfig
+├── gnome-files
 ├── pandoc
 │   ├── defaults
 │   │   ├── common.yaml
@@ -35,10 +36,47 @@ dotfiles
 │   ├── common
 │   ├── math
 └── visual-stadio-code
+    ├── extensions.sh
     ├── snippets
     ├── keybindings.json
     └── settings.json
 ```
+
+### Git
+
+- About `.gitconfig`
+  - Git's configuration files are all simple text files in the style of `.ini` files.
+    They record various choices and settings used by many Git commands
+    @version-control-with-git[page: 28].
+  - `~/.gitconfig`
+    User-specific configuration settings manipulated with the `--global` option
+    \mycite[page=28]{version-control-with-git}.
+  - `~/.gitconfig` or `~/.config/git/config` file:
+    Values specific personally to you, the user.
+    You can make Git read and write to this file specifically by passing the `--global` option,
+    and this affects \emph{all} of the repositories you work with on your system
+    \urlref{https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup}{1.6 Getting Started - First-Time Git Setup}.
+- About `.gitignore`
+  - You can also create a global \verb|.gitignore| file,
+    which is a list of rules for ignoring files in _every_ Git repository on your computer.
+    For example, you might create the file at \verb|~/.gitignore_global| and add some rules to it
+    \urlref{https://help.github.com/en/github/using-git/ignoring-files#create-a-global-gitignore}{Create a global .gitignore}.
+  - `.gitignore_global` とは，
+    Git で管理する全てのフォルダに適用される `.gitignore` のようなファイルです．
+    このファイルを作成して，常に無視したいファイルを追記することで Git の管理下から除外できます%
+    \urlref{https://qiita.com/pira/items/dd67077c5b414c8eb59d#gitignore_global%E3%81%A8%E3%81%AF}{gitignoreglobalを作成する on OSX}．
+
+### GNOME files
+
+- The origin of "gnome files"
+  - [Files – Apps for GNOME](https://apps.gnome.org/en/Nautilus/)
+  - [GNOME Files - Wikipedia](https://en.wikipedia.org/wiki/GNOME_Files)
+  - [GNOME/Files](https://wiki.archlinux.org/title/GNOME/Files)
+- Notes
+  - `Ctrl` + `D| add to sidebar
+    - [Create a link to a folder on the left panel of Nautilus file manager?](https://askubuntu.com/questions/83118/create-a-link-to-a-folder-on-the-left-panel-of-nautilus-file-manager)
+  - Remove folders from the places sidebar
+    - [Remove folders from the places sidebar](https://wiki.archlinux.org/index.php/GNOME/Files#Remove_folders_from_the_places_sidebar)
 
 ### Visual Studio Code
 

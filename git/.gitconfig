@@ -8,6 +8,9 @@
     [includeIf "gitdir:~/projects/"]
         path = ~/.gitconfig.work
 
+    [includeIf "gitdir:~/Dropbox/config-files/"]
+        path = ~/.gitconfig.personal
+
 [alias]
     # - Refs
     #   - \href{https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases}{2.7 Git Basics - Git Aliases}
