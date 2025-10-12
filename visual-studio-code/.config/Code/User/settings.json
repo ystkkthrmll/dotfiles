@@ -75,6 +75,13 @@
 
   // #endregion files
 
+  // #region github
+  "github.copilot.enable": {
+    "quarto": false,
+    "*": false
+  },
+  // #endregion github
+
   // #region vim
   // "[vim]" : {
   //   "foldfix": true,
