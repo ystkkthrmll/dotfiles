@@ -110,22 +110,6 @@ dotfiles
 > [!NOTE]
 > Conclusion: work/personal
 
-### English
-
-- 自宅
-  - home/house
-    - \href{https://eikaiwa.dmm.com/uknow/questions/87456/}{自宅って英語でなんて言うの？}
-    - \mycite[keyword=自宅]{weblio}
-    - \href{https://nativecamp.net/blog/20210712english}{HomeとHouseの違いは？ 各々に使う前置詞の違いや英語表現とは}
-    - \href{https://bookclub.japantimes.co.jp/news/n22474.html}{Ｑ５１： house と home はどちらも｢家」ですが、どう違いますか？}
-- 会社
-  - company/corporation/office/firm
-    - \href{https://eikaiwa.dmm.com/uknow/questions/36366/}{会社って英語でなんて言うの？}
-  - office
-    - \href{https://shinuwakaeng.com/kihontango-company-office}{【1分でわかる】company/officeの違い【会社を意味する単語】}
-    - \href{https://english.sanachan.com/how-native-uses/company-office-enterprise-firm}{会社「company / office / enterprise / firm」の違い}
-    - \href{https://nakabayashikumiko.com/job-office-work-company/}{job, office, work, company の違い【間違い多発】}
-
 ## Implementation
 
 - \verb|latex|

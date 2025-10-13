@@ -1,0 +1,11 @@
+config-files ~/Dropbox/config-files
+dotfiles ~/Dropbox/dotfiles
+$HOME ~
+projects ~/projects
+computer ~/my-docs/computer
+Documents ~/Documents
+english ~/my-docs/english
+misc ~/my-docs/misc
+job ~/my-docs/job
+math ~/my-docs/math
+physics ~/my-docs/physics
