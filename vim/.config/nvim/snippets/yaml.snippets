@@ -1,0 +1,164 @@
+
+# \section{To-do list}^^A [[[
+snippet task "to-do-list task" b
+- task: ${1}
+  deadline: ${2:YYYY-MM-DDTHH:MM:SS}
+  status: ${3:not started}
+  misc:
+  - ${4}
+  updated: 
+${0}
+endsnippet
+# ^^A ]]] End of section `To-do list'.
+#
+# \section{English}^^A [[[
+snippet english "english" b
+- english: ${1}
+  japanese:
+  - ${2}
+  references:
+  - url: ${3}
+    title: ${4}
+    updated: ${5}
+  notes:
+  - 
+  updated: ${0}
+endsnippet
+# ^^A ]]] End of section `English'.
+#
+# \section{BGM}^^A [[[
+# \begin{myitemize}
+# \1 \yamlinline{weekday}
+#   \2 If true, display weekday in the clock, in addition to time.
+#   \bashinline{gsettings describe org.gnome.desktop.interface clock-show-weekday}
+# \1 \yamlinline{time}, \yamlinline{start}, \yamlinline{end}
+#   \2 \href{https://eikaiwa.dmm.com/uknow/questions/68436/}{開始時間って英語でなんて言うの？}
+#   \2 \href{https://eikaiwa.dmm.com/uknow/questions/70888/}{終了時間って英語でなんて言うの？}
+#   \2 \mycite[keyword=開始時間]{weblio}
+# \1 \yamlinline{history}
+#   \2 youtube
+# \end{myitemize}
+#
+snippet bgm
+radio:
+- title: foo
+  official website: https://...
+  weekday: Sunday
+  time:
+    start: 17:00
+    end: 17:55
+  youtube: https://www.youtube.com/results?search_query=foo
+  history:
+  - date: 2022-01-02
+    status: completed
+  - date: 2022-01-09
+    status: in progress
+    notes: ...
+  - date: 2022-01-23
+    status: not started
+endsnippet
+# ^^A ]]] End of section `BGM'.
+#
+# \section{Data}^^A [[[
+# \begin{myitemize}
+# \1 \yamlinline{count(s)}
+#   \2 \man[keyword={-l, -m, -w, ...}]{wc}
+# \end{myitemize}
+#
+# \subsection{Videos}[updated=2022-02-17T21:08:34]^^A [[[
+# \begin{myitemize}
+# \1 \yamlinline{***}
+# \end{myitemize}
+#
+snippet videos
+provided videos:
+- date: 
+  notes:
+  - 
+  miscellaneous:
+    foo: 
+  videos:
+  - filename: 
+    original data:
+      location: 
+      modification time: 
+      file size: 
+      duration: 
+      backup:
+        dgx: 
+        onedrive: 
+    annotation files:
+      use: 
+      number of images: 
+      number of classes:
+        0: 
+        1: 
+        2: 
+      backup:
+        dgx: 
+        onedrive: 
+      notes:
+      - 
+    notes:
+    - 
+    miscellaneous:
+      video for inference:
+      - start: 
+        end: 
+        playback speed: 
+        backup:
+          dgx: 
+          onedrive: 
+        notes:
+        - 
+    updated: 
+endsnippet
+# ^^A ]]] End of subsection `Videos'.
+#
+# \subsection{Models and evaluation}[updated=]^^A [[[
+# \begin{myitemize}
+# \1 \yamlinline{***}
+# \end{myitemize}
+#
+snippet models-and-evaluation
+- model number: 
+  purpose: 
+  yolo cfg:
+    version: v4
+    net:
+      angle: 
+      blur: 
+      cutmix: 
+      exposure: 
+      flip: 
+      gaussian_noise: 
+      hue: 
+      mosaic: 
+      mixup: 
+      saturation: 
+  train:
+    number of images: 
+    number of classes:
+      0: 
+      1: 
+      2: 
+  evaluate:
+  - number of images: 
+    number of classes:
+      0: 
+      1: 
+      2: 
+    confidence threshold: 
+    iou threshold: 
+    ap:
+      0: 
+      1: 
+      2: 
+    precision: 
+    recall: 
+    f1-score: 
+    map: 
+endsnippet
+# ^^A ]]] End of subsection `Models and evaluation'.
+#
+# ^^A ]]] End of section `Data'.

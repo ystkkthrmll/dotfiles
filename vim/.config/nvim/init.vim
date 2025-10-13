@@ -189,7 +189,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
-let g:UltiSnipsSnippetDirectories = [$HOME.'/Dropbox/config-files/vim/output-files/snippets']
+let g:UltiSnipsSnippetDirectories = [$HOME.'/.config/nvim/snippets']
 
 " ^^A ]]] End of subsection `Snippets'.
 "
@@ -455,6 +455,307 @@ autocmd VimEnter *.* :normal 10za
 
 
 
+" \section{Comparison of plugins for Neovim}^^A [[[
+"
+" \subsection{Plugin manager}^^A [[[
+"
+" \begin{concealableitemize}^^A [[[
+" \1 The origin of `plugin manager'
+"   \2 A minimalist Vim plugin manager
+"   \urlref{https://github.com/junegunn/vim-plug}{junegunn/vim-plug}
+"   \2 Dark powered Vim/Neovim plugin manager \vimhelp{dein.txt}
+" \end{concealableitemize}^^A ]]]
+"
+" \begin{myitemize}
+" \1 \href{https://qiita.com/nil2/items/ddcf23f1163d0abd805b}{Vimのプラグインマネージャの種類と選び方}
+" \1 \href{https://www.slant.co/topics/1224/~best-plugin-managers-for-vim}{What are the best plugin managers for vim?}
+" \1 
+" \end{myitemize}
+"
+" \subsubsection{junegunn/vim-plug}^^A [[[
+" \begin{myitemize}
+" \1 \href{https://github.com/junegunn/vim-plug}{junegunn/vim-plug}
+" \1 Installation \urlref{https://github.com/junegunn/vim-plug#unix-linux}{Unix, Linux}
+"   \2 \verb|sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \|
+"   \verb|https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'|
+"   \2 Reload \verb|.vimrc| and \verb|:PlugInstall| to install plugins.
+" \end{myitemize}
+" ^^A ]]] End of subsubsection `junegunn/vim-plug'.
+"
+" \subsubsection{Shougo/dein.vim}^^A [[[
+" \begin{myitemize}
+" \1 Dark powered Vim/Neovim plugin manager \vimhelp{dein.txt}
+" \1 一人で開発しているのか，deoplete，deoppetなどの開発が非常に遅い
+" \1 OSをインストールし直す毎にエラーやpluginが上手く機能しない事態に陥る
+" \1 
+" \end{myitemize}
+" ^^A ]]] End of subsubsection `Shougo/dein.vim'.
+"
+" \subsubsection{Conclusion}^^A [[[
+" \begin{myitemize}
+" \1 junegunn/vim-plug
+"   \2 記述が簡単
+"   \2 初期設定の速度が速い
+"   \2 Shougo/dein.vimは記述が複雑
+" \end{myitemize}
+" ^^A ]]] End of subsubsection `Conclusion'.
+"
+" ^^A ]]] End of subsection `Plugin manager'.
+"
+" \subsection{File explorer}^^A [[[
+"
+" \begin{concealableitemize}^^A [[[
+" \1 The origin of `file explorer'
+"   \2 A powerful file explorer implemented in Vim script
+"   \urlref{https://github.com/Shougo/vimfiler.vim#vimfiler}{vimfiler.vim}
+"   \2 The NERDTree is a file system explorer for the Vim editor
+"   \urlref{https://github.com/preservim/nerdtree#introduction}{nerdtree}.
+" \end{concealableitemize}^^A ]]]
+"
+" \subsubsection{関連pluginについて比較・言及されている記事}^^A [[[
+" \begin{myitemize}
+" \1 \href{https://vim.blue/compare-filer-plugins/}{どれが良い？Vimのファイラ系プラグインを比較してみた}
+" \1 
+" \end{myitemize}
+" ^^A ]]] End of subsubsection `***'.
+"
+" \subsubsection{preservim/nerdtree}^^A [[[
+" \begin{myitemize}
+" \1 Homepage: \href{https://github.com/preservim/nerdtree}{preservim/nerdtree}
+"   \2 
+" \1 \verb|mo|でpdfなどを開ける
+"   \2 \href{https://vi.stackexchange.com/questions/19657/execute-a-file-from-nerdtree}{mo}
+" \1 nerdtreeのbookmarkは\verb|~/.NERDTreeBookmarks|に保存されている
+" \1 
+" \end{myitemize}
+" ^^A ]]] End of subsubsection `preservim/nerdtree'.
+"
+" \subsubsection{Shougo/vimfiler.vim}^^A [[[
+" \begin{myitemize}
+" \1 Homepage: \href{https://github.com/Shougo/vimfiler.vim}{Shougo/vimfiler.vim}
+"   \2 実際に使ってみたが，bookmarkがunite.vimを経由して使うので面倒
+"   \2 vimfilerで\verb|x|でシステムの関連付けを実行
+"     \3 例えば，\verb|.pdf|で\verb|x|を実行すると\verb|evince|が起動してpdfが見れる
+"     \urlref{http://i05nagai.github.io/memorandum/vim/vimfiler.html}{vimfiler}
+"   \2 vimfilerでファイルのbookmark
+"     \3 \url{http://i05nagai.github.io/memorandum/vim/vimfiler.html}
+"     \3 \url{http://baqamore.hatenablog.com/entry/2015/06/24/213320}
+"       \4 \verb|~/.cache/unite/bookmark/default|にbookmarkが保存されている
+" \end{myitemize}
+"
+" vimfilerはunite.vimを必要とする\urlref{https://github.com/Shougo/vimfiler.vim}{vimfiler.vim}．
+" 現時点ではvimfilerはdenite.nvimには対応していないので，unite.vimを使うことにする
+" （cf. \url{https://github.com/Shougo/vimfiler.vim/issues/379}）．
+" 対応し次第，denite.nvimに移行するつもり．
+"
+" \verb|vimfiler_enable_auto_cd|について調べよ．同じくunitでlcdについて調べよ．
+"
+" \begin{myitemize}
+" \1 \viminline{let g:vimfiler_as_default_explorer = 1}
+"   \2 If this variable is true, Vim use vimfiler as file manager instead of netrw (cf. vimfiler.txt, VARIABLES).
+" \1 \viminline{:VimFiler -force-quit -winwidth=30 ...}
+"   \2 \href{http://lsifrontend.blog100.fc2.com/blog-entry-343.html}{vimfilerのoption}
+"   \2 \verb|-force-quit|
+"     \3 Exit the vimfiler buffer after firing an action. \verb|:h vimfiler-options-force-quit|
+"   \2 \verb|-winwidth|
+"     \3 Specifies the width of a vimfiler buffer.
+"   \2 \verb|-simple|
+"     \3 Enable vimfiler simple mode.
+"   \2 \verb|-split|
+"     \3 Split vimfiler buffer.
+" \1 \viminline{let g:vimfiler_edit_action = ...}
+"   \2 \href{http://lsifrontend.blog100.fc2.com/blog-entry-343.html}{vimfiler edit action}
+" \1 \viminline{let g:vimfiler_ignore_pattern = ...}
+"   \2 Specify the regexp pattern string or list to ignore candidates of the source.
+"   \2 \href{http://qiita.com/termoshtt/items/3cf7596a1c81c0a4c160}{vimfiler ignore pattern}
+"   \2 \href{https://github.com/Shougo/vimfiler.vim/issues/120}{vimfiler ignore pattern}
+"   \2 \vimhelp{vimfiler}にあるように\verb|['^\.pdf']|としてもダメだった
+" \1 \viminline{vimfiler#do_switch_action}
+"   \2 \href{http://baqamore.hatenablog.com/entry/2016/02/13/062555}{ref}
+" \1 \viminline{vimfiler#set_execute_file()}
+"   \2 \href{http://i05nagai.github.io/memorandum/vim/vimfiler.html}{ref}
+" \end{myitemize}
+"
+"    \begin{macrocode}
+" [[plugins]]
+" repo = 'Shougo/vimfiler'
+" hook_add = '''
+" let g:vimfiler_as_default_explorer = 1
+" nnoremap <silent>f :VimFiler -force-quit -winwidth=30 -simple -split<CR>
+" " nnoremap <silent>f :VimFiler -force-quit -winwidth=30 -simple -split -direction='topright'<CR>
+" let g:vimfiler_edit_action = 'vsplit'
+" " let g:vimfiler_edit_action = 'split'
+" " let g:vimfiler_edit_action = 'tabopen'
+" let g:vimfiler_ignore_pattern = '\%(.png\|.pyc\)$'
+" % ^^A  " let g:vimfiler_ignore_pattern = '\(^\.\|\~$\|\.pdf$\|\.[oad]$\)'
+" % ^^A  " let g:vimfiler_ignore_pattern = '\%(.pdf\|.png\|.pyc\)$'
+" nnoremap s vimfiler#do_switch_action('split')
+" nnoremap v vimfiler#do_switch_action('vsplit')
+" % ^^A call vimfiler#set_execute_file('pdf', 'evince')
+" '''
+"    \end{macrocode}
+" ^^A ]]] End of subsubsection `Shougo/vimfiler.vim'.
+"
+" \subsubsection{Conclusion}^^A [[[
+" \begin{myitemize}
+" \1 preservim/nerdtree
+"   \2 bookmarksが簡単
+"   \2 Shougo/vimfiler.vimはbookmarksの設定方法がよくわからない
+" \end{myitemize}
+" ^^A ]]] End of subsubsection `Conclusion'.
+"
+" ^^A ]]] End of subsection `File explorer'.
+"
+" \subsection{Commenting}^^A [[[
+" \begin{myitemize}
+" \1 SpaceVimがnerdcommenterを使っている\urlref{https://spacevim.org/documentation/#commenting}{Commenting}
+" \1 
+" \1 
+" \end{myitemize}
+"
+"
+" ^^A ]]] End of subsection `Commenting'.
+"
+" \subsection{display git diff}^^A [[[
+" \begin{myitemize}
+" \1 airblade/vim-gitgutter
+" \1 'mhinz/vim-signify'
+" \end{myitemize}
+"
+"
+"
+"
+" ^^A ]]] End of subsection `***'.
+"
+" \subsection{auto close bracket}^^A [[[
+" \begin{myitemize}
+" \1 'Townk/vim-autoclose'
+" \1 
+" \end{myitemize}
+"
+"
+" ^^A ]]] End of subsection `auto close bracket'.
+"
+" \subsection{auto completion}^^A [[[
+" \begin{myitemize}
+" \1 \href{https://www.slant.co/topics/3999/~best-semantic-autocompletion-plugins-for-vim}{What are the best semantic autocompletion plugins for Vim?}
+" \1 \href{https://github.com/ycm-core/YouCompleteMe/issues/1751}{Can I install YCM with vim-plug?}
+" \1 \href{https://github.com/ycm-core/YouCompleteMe}{ycm-core/YouCompleteMe}
+" \1 YouCompleteMeはインストールの仕方が悪いのか，エラー発生して上手くいかない
+" \1 vim built in function???
+"   \2 In insert mode, press \verb|Ctrl+n| or \verb|Ctrl+n| to complete word
+" \end{myitemize}
+"
+" \subsubsection{Shougo/ddc.vim}^^A [[[
+" \begin{myitemize}
+" \1 \href{https://github.com/Shougo/ddc.vim}{Shougo/ddc.vim - GitHub}
+"   \2 Dark deno-powered completion framework for neovim/Vim8
+" \1
+" \end{myitemize}
+"
+"
+"
+"
+" ^^A ]]] End of subsubsection `Shougo/ddc.vim'.
+"
+" ^^A ]]] End of subsection `auto completion'.
+"
+" \subsection{Snippets}^^A [[[
+" \begin{myitemize}
+" \1 \href{https://www.vim.org/scripts/script.php?script_id=3633}{vim-snippets : snippets for a variety of vim plugins}
+" \1 \href{https://zenn.dev/shougo/articles/snippet-plugins-2020}{スニペットプラグインについて 2020 年版}
+" \1 \href{https://github.com/SirVer/ultisnips}{SirVer/ultisnips}
+" \end{myitemize}
+"
+" \subsubsection{Shougo/deoppet}^^A [[[
+" \begin{myitemize}
+" \1 The neo-snippet plugin contains snippet source
+" \1 \vimhelp{deoppet-examples}
+" \end{myitemize}
+"
+" \begin{vimcode}
+" Plug 'Shougo/deoppet.nvim'
+" imap <C-k>  <Plug>(deoppet_expand)
+" imap <C-f>  <Plug>(deoppet_jump_forward)
+" imap <C-b>  <Plug>(deoppet_jump_backward)
+" smap <C-f>  <Plug>(deoppet_jump_forward)
+" smap <C-b>  <Plug>(deoppet_jump_backward)
+"
+" call deoppet#initialize()
+" call deoppet#custom#option('snippets',
+"\ map(globpath(&runtimepath, 'neosnippets', 1, 1),
+"\     { _, val -> { 'path': val } }))
+"
+" " Use deoppet source.
+"call ddc#custom#patch_global('sources', ['deoppet'])
+"
+" " Change source options
+"call ddc#custom#patch_global('sourceOptions', {
+"      \ 'deoppet': {'dup': v:true, 'mark': 'dp'},
+"      \ })
+" \end{vimcode}
+" ^^A ]]] End of subsubsection `Shougo/deoppet'.
+"
+" \subsubsection{Shougo/neosnippet}^^A [[[
+" \begin{myitemize}
+" \1 使用してみての所感
+"   \2 snippet挿入時indentが崩れる
+"     \3 Python, YAMLだと致命的
+"   \1 snippet挿入時，挙動が変になることがある
+" \1 
+" \end{myitemize}
+"
+" \begin{myitemize}
+" \1 The neo-snippet plugin contains snippet source
+" \1 \viminline{let g:neosnippet#snippets_directory = ...}
+"   \2 This variable appoints a path to user-defined snippet files
+"   \vimhelp{g:neosnippet#snippets_directory}.
+" \1 \viminline{<Plug>(neosnippet_expand_or_jump)}
+"   \2 Expand a snippet in current cursor position
+"   \vimhelp{<Plug>(neosnippet_expand)}.
+" \1 基本構造
+"   \2 \vimhelp{neosnippet-examples}
+" \end{myitemize}
+"
+" \begin{vimcode}
+" Plug 'Shougo/neosnippet'
+" let g:neosnippet#snippets_directory = '~/Dropbox/configuration-files/vim/output-files/snippets'
+" imap <C-k> <Plug>(neosnippet_expand_or_jump)<Esc>:only<CR>li
+" smap <C-k> <Plug>(neosnippet_expand_or_jump)
+" xmap <C-k> <Plug>(neosnippet_expand_target)
+"
+"
+"
+" " SuperTab like snippets' behavior.
+" "imap <expr><TAB>
+" " \ pumvisible() ? "\<C-n>" :
+" " \ neosnippet#expandable_or_jumpable() ?
+" " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" "smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" " \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+"
+" " Enable snipMate compatibility feature.
+" " let g:neosnippet#enable_snipmate_compatibility = 1
+" \end{vimcode}
+" ^^A ]]] End of subsubsection `Shougo/neosnippet'.
+"
+" \subsubsection{Shougo/neosnippet-snippets}^^A [[[
+" \begin{vimcode}
+" Plug 'Shougo/neosnippet-snippets'
+" \end{vimcode}
+" ^^A ]]] End of subsubsection `Shougo/neosnippet-snippets'.
+"
+" \subsubsection{SirVer/ultisnips}^^A [[[
+" \begin{myitemize}
+" \1 \href{https://github.com/SirVer/ultisnips}{SirVer/ultisnips}
+" \1 
+" \1 
+" \end{myitemize}
+" ^^A ]]] End of subsubsection `SirVer/ultisnips'.
+"
+" ^^A ]]] End of subsection `Snippets'.
+"
+" ^^A ]]] End of section `Comparison of plugins for Neovim'.
 
 
 

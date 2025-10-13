@@ -73,6 +73,11 @@ dotfiles
   - Remove folders from the places sidebar
     - [Remove folders from the places sidebar](https://wiki.archlinux.org/index.php/GNOME/Files#Remove_folders_from_the_places_sidebar)
 
+### Vim
+
+- The origin of `~/.config/nvim/after/ftplugin/***.vim`
+  - \vimhelp[section=3.]{ftplugin-overrule}
+
 ### Visual Studio Code
 
 - File location:
