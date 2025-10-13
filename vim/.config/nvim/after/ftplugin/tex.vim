@@ -183,31 +183,10 @@ let g:quickrun_config = {}
 let g:quickrun_config.tex = {
     \ 'runner': 'vimproc',
     \ 'command': 'latexmk',
-"   \ 'cmdopt': '-pvc',
     \ 'cmdopt': '-pv',
-"   \ 'cmdopt': '-c',
     \ 'outputter': 'error',
-"   \ 'outputter/error/error': 'buffer',
     \ 'outputter/error/error': 'quickfix',
     \ 'srcfile': expand("%"),
-"   \ 'hook/sweep/files': [
-" \						'%S:p:r.aux',
-" \						'%S:p:r.bbl',
-" \						'%S:p:r.blg',
-" \						'%S:p:r.fdb_latexmk',
-" \						'%S:p:r.fls',
-" \						'%S:p:r.idx',
-" \						'%S:p:r.ilg',
-" \						'%S:p:r.ind',
-" \						'%S:p:r.log',
-" \						'%S:p:r.nav',
-" \						'%S:p:r.out',
-" \						'%S:p:r.snm',
-" \						'%S:p:r.toc',
-" \						'%S:p:r.tmp',
-" \						'%S:p:r.upa',
-" \						'%S:p:r.upb',
-" \						],
     \ 'exec': '%c %o %s'
 \ }
 " ^^A ]]] End of section `quickrun'.
