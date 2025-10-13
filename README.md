@@ -22,12 +22,25 @@ $ bash setup.sh
 
 ## Directory structure
 
+> [!NOTE]
+>
+> - `~/.gitconfig` ではなく `~/.config/git/config` を採用する理由
+>   - XDG Base Directory 規約（Linux デスクトップや近代的な設定管理の標準）に従うため
+>   - `$HOME` がすっきりするため
+> - [Dotfiles の整頓とバージョン管理：XDG Base Directory Specification と YADM の活用ガイド](https://qiita.com/LuckyWindsck/items/ef8ae12a3450344d8902)
+
 ```
 dotfiles
 ├── README.md
+├── bash
 ├── git
-│   ├── .gitconfig
+│   └── .config/git
+│       ├── config
+│       ├── ignore
+│       ├── message
 ├── gnome-files
+│   └── .config/gtk-3.0
+│       └── bookmarks
 ├── pandoc
 │   ├── defaults
 │   │   ├── common.yaml
@@ -39,36 +52,14 @@ dotfiles
 │   ├── bib
 │   ├── common
 │   ├── math
-└── visual-stadio-code
-    ├── extensions.sh
-    ├── snippets
-    ├── keybindings.json
-    └── settings.json
+├── vim
+├── visual-stadio-code
+│   ├── extensions.sh
+│   ├── snippets
+│   ├── keybindings.json
+│   └── settings.json
+└── zsh
 ```
-
-### Git
-
-- About `.gitconfig`
-  - Git's configuration files are all simple text files in the style of `.ini` files.
-    They record various choices and settings used by many Git commands
-    @version-control-with-git[page: 28].
-  - `~/.gitconfig`
-    User-specific configuration settings manipulated with the `--global` option
-    \mycite[page=28]{version-control-with-git}.
-  - `~/.gitconfig` or `~/.config/git/config` file:
-    Values specific personally to you, the user.
-    You can make Git read and write to this file specifically by passing the `--global` option,
-    and this affects \emph{all} of the repositories you work with on your system
-    \urlref{https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup}{1.6 Getting Started - First-Time Git Setup}.
-- About `.gitignore`
-  - You can also create a global \verb|.gitignore| file,
-    which is a list of rules for ignoring files in _every_ Git repository on your computer.
-    For example, you might create the file at \verb|~/.gitignore_global| and add some rules to it
-    \urlref{https://help.github.com/en/github/using-git/ignoring-files#create-a-global-gitignore}{Create a global .gitignore}.
-  - `.gitignore_global` とは，
-    Git で管理する全てのフォルダに適用される `.gitignore` のようなファイルです．
-    このファイルを作成して，常に無視したいファイルを追記することで Git の管理下から除外できます%
-    \urlref{https://qiita.com/pira/items/dd67077c5b414c8eb59d#gitignore_global%E3%81%A8%E3%81%AF}{gitignoreglobalを作成する on OSX}．
 
 ### GNOME files
 
@@ -97,7 +88,7 @@ dotfiles
 - [How to Reset your Keyboard Shortcuts in Visual Studio Code](https://bobbyhadz.com/blog/reset-keyboard-shortcuts-in-vscode)
 - [User and workspace settings](https://code.visualstudio.com/docs/configure/settings#_user-settingsjson-location)
 
-## 個人用/仕事用 config-files について
+## 個人用/仕事用 dotfiles について
 
 ### Naming
 

@@ -1,15 +1,15 @@
 [user]
     [includeIf "gitdir:~/Dropbox/dotfiles/"]
-        path = ~/.gitconfig.personal
+        path = ~/.config/git/config.personal
 
     [includeIf "gitdir:~/my-docs/"]
-        path = ~/.gitconfig.personal
+        path = ~/.config/git/config.personal
 
     [includeIf "gitdir:~/projects/"]
-        path = ~/.gitconfig.work
+        path = ~/.config/git/config.work
 
     [includeIf "gitdir:~/Dropbox/config-files/"]
-        path = ~/.gitconfig.personal
+        path = ~/.config/git/config.personal
 
 [alias]
     # - Refs
@@ -29,7 +29,7 @@
 [commit]
     # - Refs
     #   - \href{https://gist.github.com/lisawolderiksen/a7b99d94c92c6671181611be1641c733#template-file}{Using Git Commit Message Templates to Write Better Commit Messages}
-    template = ~/Dropbox/dotfiles/git/.gitmessage
+    template = ~/.config/git/message
 
 [core]
     # - Refs
@@ -38,7 +38,7 @@
     #     - \href{https://help.github.com/en/github/using-git/ignoring-files#create-a-global-gitignore0}{参照先}
     #   - `$ git config --global core.editor nvim`
     #     - cf. "Pro Git"
-    excludesfile = ~/Dropbox/dotfiles/git/.gitignore
+    excludesfile = ~/.config/git/ignore
     editor = nvim
 
 [credential]
