@@ -13,6 +13,12 @@
 ## To-do list
 
 - [ ] `evince` なら `.pdf` のみ補完．のようにコマンドごとに補完する拡張子を指定したい
+- [ ] `config_desktop.sh`
+      -  terminalの色をWhite on blackにする設定を追加したい
+      -  日時などのformatを英語にする設定を追加したい
+      -  terminalのfont設定を有効にする設定を追加したい
+      -  電源の設定を追加したい
+      -  DisplayのRefresh Rate, Scaleを設定できるようにしたい
 
 ## Usage
 
@@ -33,6 +39,8 @@ $ bash setup.sh
 dotfiles
 ├── README.md
 ├── bash
+│   ├── config_desktop.sh
+│   ├── set_wallpaper.sh
 ├── git
 │   └── .config/git
 │       ├── config
@@ -60,6 +68,17 @@ dotfiles
 │   └── settings.json
 └── zsh
 ```
+
+### Bash
+
+> [!TIP]
+>
+> `set_wallpaper.sh` エラー発生時の対処法
+>
+> 1.  `$ vi /etc/ImageMagick-6/policy.xml`
+> 1.  `pdf` の行にある `rights="none"` を `rights="read | write"` に変更
+>
+> - [参照先](https://askubuntu.com/questions/1081695/error-during-converting-jpg-to-pdf)
 
 ### GNOME files
 
