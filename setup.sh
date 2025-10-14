@@ -1,7 +1,25 @@
 #!/usr/bin/bash
-stow -v --target=$HOME git
-stow -v --target=$HOME gnome-files
-stow -v --target=$HOME typst
-stow -v --target=$HOME vim
-stow -v --target=$HOME visual-studio-code
-stow -v --target=$HOME zsh
+readonly COMPUTER_NAME=home
+
+if [[ $(uname -n) == ${COMPUTER_NAME} ]]; then
+  targets=(
+    git
+    gnome-files
+    typst
+    vim
+    visual-studio-code
+    zsh
+  )
+else
+  targets=(
+    git
+    typst
+    vim
+    zsh
+  )
+fi
+
+for target in "${targets[@]}"; do
+  echo "Target: ${target}"
+  stow -v --target=$HOME ${target}
+done
