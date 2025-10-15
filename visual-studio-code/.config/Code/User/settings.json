@@ -111,15 +111,6 @@
   ],
   // #endregion vim.insertModeKeyBindings
 
-  // #region vim.normalModeKeyBindings
-  "vim.normalModeKeyBindings": [
-    {
-      "before": ["<space>"],
-      "after": ["z", "a"]
-    }
-  ],
-  // #endregion vim.normalModeKeyBindings
-
   // - Notes
   //   - vimの設定ファイルを読み込む
   // - Refs
@@ -221,12 +212,17 @@
     "editor.wordBasedSuggestions": "currentDocument",
   },
 
-  // #region typst
+  "[sh]": {
+//   "[bash]": {
+    "editor.tabSize": 2, // 機能せず
+    // "editor.defaultFormatter": "esbenp.prettier-vscode",
+    // "editor.formatOnSave": true,
+  },
+
   "[typst]": {
     // "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
   },
-  // #endregion
 
   // yaml
   "[yaml]": {

@@ -13,6 +13,7 @@
 hash -d dropbox=~/Dropbox
 
 hash -d dotfiles=~dropbox/dotfiles
+hash -d dotfiles-bash=~dotfiles/bash
 hash -d dotfiles-git=~dotfiles/git/.config/git
 hash -d dotfiles-typst=~dotfiles/typst/.local/share/typst/packages/local
 hash -d dotfiles-vim=~dotfiles/vim/.config/nvim

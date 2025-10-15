@@ -13,6 +13,7 @@
 ## To-do list
 
 - [ ] `evince` なら `.pdf` のみ補完．のようにコマンドごとに補完する拡張子を指定したい
+- [ ] @chatgpt[prompt: bashであるディレクトリにすぐに移動するような設定はある？（zshのhash -dのような）]
 - [ ] `config_desktop.sh`
       -  terminalの色をWhite on blackにする設定を追加したい
       -  日時などのformatを英語にする設定を追加したい
@@ -127,7 +128,7 @@ dotfiles
   - 対応関係を覚えておく必要がある
 - 自宅・会社
   - これを採用する
-- [@chatcpt, prompt: 「会社用」と「プライベート用」の `.gitconfig` を使い分けるとき，拡張子は `.work`, `.private` が一般的？ それとも，もっと一般的な拡張子がある？]
+- [@chatgpt, prompt: 「会社用」と「プライベート用」の `.gitconfig` を使い分けるとき，拡張子は `.work`, `.private` が一般的？ それとも，もっと一般的な拡張子がある？]
   - 会社用：`.gitconfig.work`
   - プライベート用：`.gitconfig.personal`
 

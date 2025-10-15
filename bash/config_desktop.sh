@@ -1,149 +1,122 @@
-# - Purpose: 
+# - Purpose: Configuration
+#
 # - Notes
+#
+#   - キーワード見つけ方：
+#     1.  （必要に応じて）\bashinline{cd ~test/gnome}
+#     1.  ~\bashinline{gsettings list-recursively > before.txt}
+#     1.  設定を変更する．
+#     1.  ~\bashinline{gsettings list-recursively > after.txt}
+#     1.  ~\bashinline{vim -d before.txt after.txt}
+#
+#   - `$ gsettings list-recursively`
+#     と実行すると設定一覧が表示される
+#     [ref](http://fedorakenken.doorblog.jp/archives/51929536.html)
+#
+#   - 実行結果から `***` を含む行だけを表示したいときは，次のようにすればよい
+#       （\href{https://www.atmarkit.co.jp/ait/articles/1604/07/news018.html}{参照先}）：
+#     `$ gsettings list-recursively | grep ***`
+#
 #   - 設定の変更が保存されるファイル
 #     - `~/.config/dconf/user`
 #
+#   - The origin of filename
+#     - \href{https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/desktop_migration_and_administration_guide/configuration-overview-gsettings-dconf}{CHAPTER 9. CONFIGURING DESKTOP WITH GSETTINGS AND DCONF}
+#     - "configure"
+#       - to arrange something in a particular way, especially computer equipment;
+#         to make equipment or software work in the way that the user prefers
+#         \mycite[keyword=configure]{oxford-learners-dictionaries}% OK (2020-02-19T23:24:15)
+#       - to arrange something, especially computer equipment, so that it works with other equipment
+#         \mycite[keyword=configure]{longman}% OK (2020-02-19T23:25:58)
+#       - to arrange something or change the controls on a computer or other device
+#         so that it can be used in a particular way
+#         \mycite[keyword=configure]{cambridge-dictionary}% OK (2020-02-19T23:29:06)
+#     - 環境設定する\mycite[keyword=configure]{weblio}% OK (2020-02-19T23:30:48)
+#     - コンフィギュレーションとは，設定，構成，配置，構造，形状，形態などの意味を持つ英単語．
+#       「コンフィグ」（config）はその省略形．
+#       \doublequotes{conf}あるいは\doublequotes{cfg}などの略号で表されることもある．
+#       コンピュータの分野では，機器やソフトウェアの動作や構成などについて利用者が指定・変更できる設定項目，
+#       環境設定という意味で用いられる．
+#       一定の形式で設定内容を記述したファイルとして保存・管理されることが多く，
+#       そのようなファイルを「コンフィギュレーションファイル」「コンフィグファイル」などという．
+#       類義語には\doublequotes{settings}（セッティング），\doublequotes{preferences}（プリファレンス）などがあり，
+#       厳密な意味の違いや使い分けはなく，ほぼ同義として用いられる．
+#       文脈によっては\doublequotes{options}（オプション），\doublequotes{properties}（プロパティ）なども
+#       同じような意味で用いられる\mycite[keyword=コンフィギュレーション]{e-words}．% OK (2020-02-19T23:37:46)
+#   - "desktop"
+#     - a screen on a computer that shows the icons of programs and files that can be used
+#       \mycite[keyword=desktop]{oxford-learners-dictionaries}%  ()
+#     - デスクトップとは，机の上，作業面，卓上（の），などの意味を持つ英単語．
+#       グラフィックス表示（GUI）で操作するOSで，起動時に表示される，
+#       基本となる操作画面のことをデスクトップという
+#       \mycite[keyword=desktop]{e-words}．
 #
-
-% \section{Notes}^^A [[[
-%
-% \begin{commandshell}gsettings list-recursively\end{commandshell}%
-% と実行すると設定一覧が表示される
-% （\href{http://fedorakenken.doorblog.jp/archives/51929536.html}{参照先}）．
-%
-% 実行結果から\verb|***|を含む行だけを表示したいときは，次のようにすればよい
-% （\href{https://www.atmarkit.co.jp/ait/articles/1604/07/news018.html}{参照先}）：
-% \begin{commandshell}gsettings list-recursively | grep ***\end{commandshell}
-%
-% キーワード見つけ方：
-% \begin{myitemize}[enumerate]
-% \1 （必要に応じて）\bashinline{cd ~test/gnome}
-% \1 ~\bashinline{gsettings list-recursively > before.txt}
-% \1 設定を変更する．
-% \1 ~\bashinline{gsettings list-recursively > after.txt}
-% \1 ~\bashinline{vim -d before.txt after.txt}
-% \end{myitemize}
-%
-% \subsection{The origin of filename}^^A [[[
-% \begin{myitemize}
-% \1 \href{https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/desktop_migration_and_administration_guide/configuration-overview-gsettings-dconf}{CHAPTER 9. CONFIGURING DESKTOP WITH GSETTINGS AND DCONF}
-% \1 configure
-%   \2 to arrange something in a particular way, especially computer equipment;
-%   to make equipment or software work in the way that the user prefers
-%   \mycite[keyword=configure]{oxford-learners-dictionaries}% OK (2020-02-19T23:24:15)
-%   \2 to arrange something, especially computer equipment, so that it works with other equipment
-%   \mycite[keyword=configure]{longman}% OK (2020-02-19T23:25:58)
-%   \2 to arrange something or change the controls on a computer or other device
-%   so that it can be used in a particular way
-%   \mycite[keyword=configure]{cambridge-dictionary}% OK (2020-02-19T23:29:06)
-%   \2 環境設定する\mycite[keyword=configure]{weblio}% OK (2020-02-19T23:30:48)
-%   \2 コンフィギュレーションとは，設定，構成，配置，構造，形状，形態などの意味を持つ英単語．
-%   「コンフィグ」（config）はその省略形．
-%   \doublequotes{conf}あるいは\doublequotes{cfg}などの略号で表されることもある．
-%   コンピュータの分野では，機器やソフトウェアの動作や構成などについて利用者が指定・変更できる設定項目，
-%   環境設定という意味で用いられる．
-%   一定の形式で設定内容を記述したファイルとして保存・管理されることが多く，
-%   そのようなファイルを「コンフィギュレーションファイル」「コンフィグファイル」などという．
-%   類義語には\doublequotes{settings}（セッティング），\doublequotes{preferences}（プリファレンス）などがあり，
-%   厳密な意味の違いや使い分けはなく，ほぼ同義として用いられる．
-%   文脈によっては\doublequotes{options}（オプション），\doublequotes{properties}（プロパティ）なども
-%   同じような意味で用いられる\mycite[keyword=コンフィギュレーション]{e-words}．% OK (2020-02-19T23:37:46)
-% \1 desktop
-%   \2 a screen on a computer that shows the icons of programs and files that can be used
-%   \mycite[keyword=desktop]{oxford-learners-dictionaries}%  ()
-%   \2 デスクトップとは，机の上，作業面，卓上（の），などの意味を持つ英単語．
-%   グラフィックス表示（GUI）で操作するOSで，起動時に表示される，
-%   基本となる操作画面のことをデスクトップという\mycite[keyword=desktop]{e-words}．
-% \end{myitemize}
-% ^^A ]]] End of subsection `The origin of filename'.
-%
-% \section{Implemantation}^^A [[[
-%
-% \iffalse
-%<*configuredesktop.sh>
-% \fi
-%
-% \subsection{Shebang}[updated=2022-01-29T15:58:52]^^A [[[
-% \begin{bashcode}
-#!/bin/bash
-% \end{bashcode}
-% ^^A ]]] End of subsection `Shebang'.
-%
-% \subsection{Defining variables}[updated=2021-12-19T15:00:09]^^A [[[
-% \begin{myitemize}
-% \1 \bashinline{uname}
-%   \2 uname - print system information \man{uname}
-% \1 \bashinline*{-n}
-%   \2 print the network node hostname \man{uname}
-% \1 \verb|extension|
-%   \2 \mycite[keyword=拡張子]{e-words}
-% \end{myitemize}
-%
-% \begin{bashcode}
+# #region Defining variables
 readonly COMPUTER_NAME=home
+
 if [[ $(uname -n) == ${COMPUTER_NAME} ]]; then
   extension=home
 else
   extension=office
 fi
-% \end{bashcode}
-% ^^A ]]] End of subsection `Defining variables'.
-%
-% \subsection{\texttt{org.gnome.desktop.background}}[updated=2022-01-09T10:34:44]^^A [[[
-% \begin{myitemize}
-% \1 \bashinline*{picture-uri}
-%   \2 URI to use for the background image.
-%   Note that the backend only supports local (file://) URIs.
-%   \bashinline{gsettings describe org.gnome.desktop.background picture-uri}
-% \end{myitemize}
-%
-% \begin{bashcode}
+# #endregion Defining variables
+#
+# #region org.gnome.desktop.background
+# - Notes
+#   - `picture-uri`
+#     - URI to use for the background image.
+#       Note that the backend only supports local (file://) URIs.
+#       `$ gsettings describe org.gnome.desktop.background picture-uri`
+#
 filename="file:///home/yasutaka/Dropbox/config-files/misc/output-files/shell/wallpaper-${extension}.png"
 gsettings set org.gnome.desktop.background picture-uri ${filename}
-% \end{bashcode}
-% ^^A ]]] End of subsection `org.gnome.desktop.background'.
-%
-% \subsection{\texttt{org.gnome.desktop.interface}}[updated=2022-06-18T19:34:35]^^A [[[
-% \begin{myitemize}
-% \1 \bashinline*{clock-show-date}
-%   \2 If true, display date in the clock, in addition to time.
-%   \bashinline{gsettings describe org.gnome.desktop.interface clock-show-date}
-% \1 \bashinline*{clock-show-seconds}
-%   \2 If true, display seconds in the clock.
-%   \bashinline{gsettings describe org.gnome.desktop.interface clock-show-seconds}
-% \1 \bashinline*{clock-show-weekday}
-%   \2 If true, display weekday in the clock, in addition to time.
-%   \bashinline{gsettings describe org.gnome.desktop.interface clock-show-weekday}
-% \1 \bashinline*{color-scheme}
-%   \2 The preferred color scheme for the user interface.
-%   Valid values are “default”, “prefer-dark”, “prefer-light”.
-%   \bashinline{gsettings describe org.gnome.desktop.interface color-scheme}
-% \1 \bashinline*{gtk-theme}
-%   \2 Basename of the default theme used by gtk+.
-%   \bashinline{gsettings describe org.gnome.desktop.interface gtk-theme}
-% \end{myitemize}
-%
-% \begin{bashcode}
+# #endregion org.gnome.desktop.background
+#
+# #region org.gnome.desktop.interface
+# - Notes
+#   - `clock-show-date`
+#     - If true, display date in the clock, in addition to time.
+#       \bashinline{gsettings describe org.gnome.desktop.interface clock-show-date}
+#   - `clock-show-seconds`
+#     - If true, display seconds in the clock.
+#       \bashinline{gsettings describe org.gnome.desktop.interface clock-show-seconds}
+#   - `clock-show-weekday`
+#     - If true, display weekday in the clock, in addition to time.
+#       \bashinline{gsettings describe org.gnome.desktop.interface clock-show-weekday}
+#   - `color-scheme`
+#     - The preferred color scheme for the user interface.
+#       Valid values are “default”, “prefer-dark”, “prefer-light”.
+#       \bashinline{gsettings describe org.gnome.desktop.interface color-scheme}
+#   - `gtk-theme`
+#     - Basename of the default theme used by gtk+.
+#       \bashinline{gsettings describe org.gnome.desktop.interface gtk-theme}
+#
 gsettings set org.gnome.desktop.interface clock-show-date true
 gsettings set org.gnome.desktop.interface clock-show-seconds true
 gsettings set org.gnome.desktop.interface clock-show-weekday true
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-dark'
-% \end{bashcode}
-% ^^A ]]] End of subsection `org.gnome.desktop.interface'.
-%
-% \subsection{\texttt{org.gnome.desktop.session}}[updated=2022-01-04T00:26:48]^^A [[[
-% \begin{myitemize}
-% \1 \bashinline*{idle-delay}
-%   \2 The number of seconds of inactivity before the session is considered idle.
-%   \bashinline{gsettings describe org.gnome.desktop.session idle-delay}
-% \end{myitemize}
-%
-% \begin{bashcode}
+# #endregion org.gnome.desktop.interface
+#
+# #region org.gnome.desktop.session
+# - Notes
+#   - \bashinline*{idle-delay}
+#     - The number of seconds of inactivity before the session is considered idle.
+#       \bashinline{gsettings describe org.gnome.desktop.session idle-delay}
+#
 gsettings set org.gnome.desktop.session idle-delay 600
-% \end{bashcode}
-% ^^A ]]] End of subsection `org.gnome.desktop.session'.
-%
+# #endregion org.gnome.desktop.session
+#
+#
+#
+
+
+
+
+
+
+
+
 % \subsection{\texttt{org.gnome.mutter}}^^A [[[
 % \begin{myitemize}
 % \1 \bashinline*{experimental-features}
@@ -388,9 +361,3 @@ gsettings set "${schema}:${path}:/:$profile_id/" audible-bell false
 % \verb|> amixer sset 'Master' 50%|
 %
 % ^^A ]]] End of subsection `Sound'.
-%
-% \iffalse
-%</configuredesktop.sh>
-% \fi
-%
-% ^^A ]]] End of section `Implemantation'.

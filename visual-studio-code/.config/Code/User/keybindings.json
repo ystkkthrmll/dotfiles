@@ -15,6 +15,13 @@
 
   // extension.vim_escape
   {
+    "key": "space",
+    "command": "editor.toggleFold",
+    "when": "editorTextFocus && vim.mode == 'Normal'"
+  },
+
+  // extension.vim_escape
+  {
     // - Refs
     //   - \href{https://stackoverflow.com/questions/48369303/use-in-visual-studio-code-vim-extension-caps-instead-of-esc}{Use in Visual Studio Code (Vim extension) CAPS instead of ESC}
     "key": "capslock",
