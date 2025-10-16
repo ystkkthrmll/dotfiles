@@ -1,3 +1,6 @@
+#!/usr/bin/bash
+#
+# #region Outline
 # - Purpose: Configuration
 #
 # - Notes
@@ -50,6 +53,7 @@
 #       グラフィックス表示（GUI）で操作するOSで，起動時に表示される，
 #       基本となる操作画面のことをデスクトップという
 #       \mycite[keyword=desktop]{e-words}．
+# #endregion Outline
 #
 # #region Defining variables
 readonly COMPUTER_NAME=home
@@ -107,48 +111,43 @@ gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-dark'
 gsettings set org.gnome.desktop.session idle-delay 600
 # #endregion org.gnome.desktop.session
 #
+# #region org.gnome.mutter
+# - `experimental-features`
+#   - Fractional Scaling を有効にする設定
 #
-#
-
-
-
-
-
-
-
-
-% \subsection{\texttt{org.gnome.mutter}}^^A [[[
-% \begin{myitemize}
-% \1 \bashinline*{experimental-features}
-%   \2 Fractional Scalingを有効にする設定
-% \end{myitemize}
-%
-% \begin{bashcode}
 gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
-% \end{bashcode}
-% ^^A ]]] End of subsection `org.gnome.mutter'.
-%
-% \subsection{\texttt{org.gnome.nautilus.preferences}}^^A [[[
-% \begin{myitemize}
-% \1 \bashinline*{default-folder-viewer}
-%   \2 icon or list
-% \end{myitemize}
-%
-% \begin{bashcode}
+# #endregion org.gnome.mutter
+#
+# #region org.gnome.nautilus.preferences
+# - Notes
+#   - `default-folder-viewer`
+#     - icon or list
+#
 gsettings set org.gnome.nautilus.preferences default-folder-viewer "'list-view'"
-% \end{bashcode}
-% ^^A ]]] End of subsection `org.gnome.nautilus.preferences'.
-%
-% \subsection{\texttt{org.gnome.settings-daemon.plugins.power}}^^A [[[
-% \begin{myitemize}
-% \1 \bashinline*{sleep-inactive-ac-timeout}
-% \end{myitemize}
-%
-% \begin{bashcode}
+# #endregion org.gnome.nautilus.preferences
+#
+# #region org.gnome.settings-daemon.plugins.power
+# - Notes
+#   - `sleep-inactive-ac-timeout`
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 1800
-% \end{bashcode}
-% ^^A ]]] End of subsection `org.gnome.settings-daemon.plugins.power'.
-%
+# #endregion org.gnome.settings-daemon.plugins.power
+#
+#
+#
+#
+#
+#
+#
+
+
+
+
+
+
+
+
+
+
 % \subsection{\texttt{org.gnome.shell}}^^A [[[
 % \begin{myitemize}
 % \1 \bashinline*{favorite-apps}

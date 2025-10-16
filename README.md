@@ -62,7 +62,7 @@ dotfiles
 │   ├── common
 │   ├── math
 ├── vim
-├── visual-stadio-code
+├── visual-studio-code
 │   ├── extensions.sh
 │   ├── snippets
 │   ├── keybindings.json

@@ -21,9 +21,9 @@
 //   - https://help.ubuntu.com/stable/ubuntu-help/shell-keyboard-shortcuts.html.en
 
 #grid(
-  columns: (240pt, 220pt, 250pt),
+  columns: (260pt, 220pt, 250pt),
   rows: auto,
-  gutter: 5pt,
+  gutter: -3pt,
 
   // First column
   rect[
@@ -41,6 +41,7 @@
     #table(
       columns: (auto, auto),
       // align: horizon,
+      row-gutter: -4pt,
 
       ..for datum in data {
         (datum.at("cmd"), datum.at("desc"))
@@ -71,6 +72,7 @@
     #table(
       columns: (auto, auto),
       // align: horizon,
+      row-gutter: -4pt,
 
       ..for datum in data {
         (datum.at("cmd"), datum.at("desc"))
@@ -92,6 +94,7 @@
     #table(
       columns: (auto, auto),
       // align: horizon,
+      row-gutter: -4pt,
 
       ..for datum in data {
         (datum.at("cmd"), datum.at("desc"))
@@ -104,11 +107,11 @@
     = Visual Studio Code
 
     #let data = (
-      (cmd: [`Ctrl`+`B`], desc: [hide explorer]),  // https://superuser.com/questions/1569067/how-to-close-explorer-via-shortcut-in-vs-code     % https://stackoverflow.com/questions/37815472/vscode-keybinding-to-hide-explorer
-      (cmd: [`Ctrl`+`Enter`], desc: [Open to the side]),  // https://code.visualstudio.com/docs/getstarted/userinterface#_side-by-side-editing
-      (cmd: [`Ctrl+Tab`], desc: [Change tabs]),  // https://stackoverflow.com/questions/38957302/is-there-a-quick-change-tabs-function-in-visual-studio-code
-      (cmd: [`F12`], desc: [Go to definition]),  // https://code.visualstudio.com/docs/editing/editingevolved#_go-to-definition
-      (cmd: [`Ctrl`+`F12`], desc: [Go to implementation]),  // https://code.visualstudio.com/docs/editing/editingevolved#_go-to-implementation
+      (cmd: [`Ctrl`+`B`], desc: [hide explorer]), // https://superuser.com/questions/1569067/how-to-close-explorer-via-shortcut-in-vs-code     % https://stackoverflow.com/questions/37815472/vscode-keybinding-to-hide-explorer
+      (cmd: [`Ctrl`+`Enter`], desc: [Open to the side]), // https://code.visualstudio.com/docs/getstarted/userinterface#_side-by-side-editing
+      (cmd: [`Ctrl+Tab`], desc: [Change tabs]), // https://stackoverflow.com/questions/38957302/is-there-a-quick-change-tabs-function-in-visual-studio-code
+      (cmd: [`F12`], desc: [Go to definition]), // https://code.visualstudio.com/docs/editing/editingevolved#_go-to-definition
+      (cmd: [`Ctrl`+`F12`], desc: [Go to implementation]), // https://code.visualstudio.com/docs/editing/editingevolved#_go-to-implementation
       (cmd: [`Ctrl`+`M`], desc: [Move (custom)]),
       (cmd: [`Ctrl`+`E`], desc: [Explorer (custom)]),
       (cmd: [`Ctrl`+`C`], desc: [Collapse (custom)]),
@@ -119,6 +122,7 @@
     #table(
       columns: (auto, auto),
       // align: horizon,
+      row-gutter: -4pt,
 
       ..for datum in data {
         (datum.at("cmd"), datum.at("desc"))

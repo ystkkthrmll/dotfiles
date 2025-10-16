@@ -48,6 +48,9 @@
     //   - The origin of `C'
     //     - Collapse
     "key": "ctrl+c",
+    // "key": "z shift+r",
+    // "key": "alt+z shift+r",
+    // "key": "ctrl+k ctrl+c",
     "command": "outline.collapse",
     "when": "outlineFocused"
   },
@@ -85,14 +88,15 @@
   },
 
   // #region workbench.action.closeActiveEditor
-  // {
+  {
     // - Refs
     //   - \href{https://code.visualstudio.com/docs/getstarted/keybindings#_editorwindow-management}{Editor/Window Management}
     // "key": "q",
-    // "command": "workbench.action.closeActiveEditor",
+    "key": "ctrl+w",
+    "command": "workbench.action.closeActiveEditor",
     // "when": "inputFocus && vim.mode == 'Normal'"
-    // "when": "editorTextFocus && vim.mode == 'Normal'"
-  // },
+    "when": "editorTextFocus && vim.mode == 'Normal'"
+  },
   // #endregion
 
   // workbench.action.closeSidebar
