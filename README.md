@@ -13,13 +13,8 @@
 ## To-do list
 
 - [ ] `evince` なら `.pdf` のみ補完．のようにコマンドごとに補完する拡張子を指定したい
-- [ ] @chatgpt[prompt: bashであるディレクトリにすぐに移動するような設定はある？（zshのhash -dのような）]
-- [ ] `config_desktop.sh`
-      -  terminalの色をWhite on blackにする設定を追加したい
-      -  日時などのformatを英語にする設定を追加したい
-      -  terminalのfont設定を有効にする設定を追加したい
-      -  電源の設定を追加したい
-      -  DisplayのRefresh Rate, Scaleを設定できるようにしたい
+- [ ] @chatgpt[prompt: bash であるディレクトリにすぐに移動するような設定はある？（zsh の hash -d のような）]
+- [ ] `config_desktop.sh` - terminal の色を White on black にする設定を追加したい - 日時などの format を英語にする設定を追加したい - terminal の font 設定を有効にする設定を追加したい - 電源の設定を追加したい - Display の Refresh Rate, Scale を設定できるようにしたい
 
 ## Usage
 
@@ -57,6 +52,7 @@ dotfiles
 │   │   ├── report-from-markdown-to-latex.yaml
 │   ├── refs
 │   │   ├── misc.yaml
+├── tex
 ├── typst
 │   ├── bib
 │   ├── common
