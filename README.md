@@ -112,6 +112,16 @@ dotfiles
   - Remove folders from the places sidebar
     - [Remove folders from the places sidebar](https://wiki.archlinux.org/index.php/GNOME/Files#Remove_folders_from_the_places_sidebar)
 
+### TeX
+
+- `texmf/tex`
+  - directory名が `tex` でなければならない理由は
+    恐らく \href{run:/usr/share/texlive/texmf-dist/web2c/texmf.cnf}{texmf.cnf} の149行目
+- `texmf/bibtex/bib`
+  - directory名が\verb|bibtex/bib|でなければならない理由は
+    恐らく\href{run:/usr/share/texlive/texmf-dist/web2c/texmf.cnf}{texmf.cnf}の234,314行目
+
+
 ### Vim
 
 - The origin of `~/.config/nvim/after/ftplugin/***.vim`

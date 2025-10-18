@@ -1,0 +1,49 @@
+\RequirePackage{xparse}
+
+\ExplSyntaxOn
+\NewDocumentCommand \mygenerate { o m } {
+  \begingroup
+  \input{l3docstrip}
+  \askforoverwritefalse
+  \keepsilent
+  \nopreamble
+  \nopostamble
+  \IfNoValueTF{#1}{
+    \BaseDirectory{./output-files}
+  }{
+    \BaseDirectory{./#1}
+  }
+  \DeclareDir{output-directory}{.}
+  \usedir{output-directory}
+  \generate{
+    \clist_map_inline:nn {#2} {
+      \file{##1}{\from{\jobname.dtx}{##1}}
+    }
+  }
+  \endgroup
+}
+\ExplSyntaxOff
+
+\NewDocumentCommand \mydriver { o d() }
+  {
+    \IfNoValueTF { #1 }
+      { \documentclass{mydtxfile} }
+      { \documentclass[#1]{mydtxfile} }
+    \IfValueT{#2}{\usepackage{#2}}
+    \begin{document}
+    \DocInput{\jobname.dtx}
+    \end{document}
+  }
+
+\NewDocumentCommand \myrenamefile { o v v }
+  {
+    \IfNoValueTF{#1}
+      { \directlua{os.rename('output-files/#2', 'output-files/#3')} }
+      { \directlua{os.rename('#1/#2', '#1/#3')} }
+  }
+
+\NewDocumentCommand \myendbatchfile { } {%
+  \input l3docstrip
+  \endbatchfile
+}
+

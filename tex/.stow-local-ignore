@@ -1,4 +1,10 @@
-*.pdf
+# *.pdf
+
+bib_file_maker.py
+bib_file_maker.sh
 classes.dtx
-packages.dtx
+classes.pdf
 misc.dtx
+misc.pdf
+packages.dtx
+packages.pdf

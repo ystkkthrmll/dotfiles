@@ -85,6 +85,19 @@ hands-on-machine-learning-with-scikit-learn-and-tensorflow:
   date: 2017
   updated: 2025-10-18T23:08:34
 
+LaTeX2e美文書作成入門:
+  type: Book
+  title: \LaTeXe 美文書作成入門
+  author:
+    - 奥村 晴彦
+    - 黒木 裕介
+  publisher: 技術評論社
+  date: 2017
+  # edition: 7
+  misc:
+    - 奥村 晴彦：名古屋大学理学部卒
+  updated: 2025-10-19T00:09:37
+
 pattern-recognition-and-machine-learning:
   type: Book
   title: Pattern Recognition and Machine Learning
@@ -92,6 +105,25 @@ pattern-recognition-and-machine-learning:
   publisher: Springer
   date: 2006
   updated: 2025-06-28T21:06:03
+
+python-data-science-handbook:
+  type: Book
+  title: Python Data Science Handbook
+  author:
+    - Jake VanderPlas
+  publisher: O'Reilly
+  date: 2017
+  updated: 2025-10-19T00:12:59
+
+python-for-data-analysis:
+  type: Book
+  title: Python for Data Analysis
+  author:
+    - Wes McKinney
+  publisher: O'Reilly
+  date: 2018
+  # edition: 2
+  updated: 2025-10-19T00:12:08
 
 reinforcement-learning:
   type: Book
@@ -115,9 +147,42 @@ the-art-of-readable-code:
   date: 2012
   updated: 2025-10-18T22:51:38
 
+using-docker:
+  type: Book
+  title: Using Docker
+  author:
+    - Adrian Mouat
+  publisher: O'Reilly
+  date: 2016
+  # edition: 1
+  updated: 2025-10-19T00:13:42
+
 wikipedia:
   type: Web
   title: Wikipedia
   url: https://en.wikipedia.org/wiki/Main_Page
   updated: 2025-06-28T21:19:54
+
+独習LaTeX2e:
+  type: Book
+  title: 独習\LaTeXe
+  author:
+  - 吉永 徹美
+  publisher: 翔泳社
+  date: 2008
+  misc:
+    - 京都大学理学部卒
+  updated: 2025-10-19T00:10:29
+
+独習Java:
+  type: Book
+  title: 独習Java
+  author:
+    - ジョセフ・オニール
+  publisher: 翔泳社
+  date: 2010
+  # edition: 4
+  misc:
+    - スタンフォード大学
+  updated: 2025-10-19T00:11:16
 

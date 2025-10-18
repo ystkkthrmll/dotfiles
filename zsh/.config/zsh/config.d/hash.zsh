@@ -13,6 +13,7 @@
 hash -d dropbox=~/Dropbox
 
 hash -d dotfiles=~dropbox/dotfiles
+hash -d dotfiles-autostart=~dotfiles/autostart/.config/autostart
 hash -d dotfiles-bash=~dotfiles/bash
 hash -d dotfiles-git=~dotfiles/git/.config/git
 hash -d dotfiles-pandoc=~dotfiles/pandoc/.local/share/pandoc/defaults
@@ -21,15 +22,6 @@ hash -d dotfiles-typst=~dotfiles/typst/.local/share/typst/packages/local
 hash -d dotfiles-vim=~dotfiles/vim/.config/nvim
 hash -d dotfiles-vscode=~dotfiles/visual-studio-code/.config/Code/User
 hash -d dotfiles-zsh=~dotfiles/zsh/.config/zsh/config.d
-
-
-
-
-hash -d config-files=~dropbox/config-files
-hash -d config-latex=~config-files/latex
-hash -d config-misc=~config-files/misc
-hash -d config-vim=~config-files/vim
-hash -d config-vscode=~config-files/visual-studio-code
 # #endregion dotfiles
 
 # #region misc
