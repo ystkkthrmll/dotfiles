@@ -1,0 +1,62 @@
+
+defaults: common.yaml
+
+pdf-engine: lualatex
+
+pdf-engine-opts:
+- '-shell-escape'
+
+variables:
+  # documentclass: ltjsreport
+  # documentclass: ltjsbook
+  # documentclass: ltjsarticle
+  documentclass: mydocument
+  classoption:
+  - english
+  - graphics
+  - math
+  - programming
+  colorlinks: true
+  linkcolor: teal
+  filecolor: cyan
+  citecolor: magenta
+  urlcolor: brown
+  toccolor: blue
+
+  # `sourcesanspro` is used in the following:
+  # * https://github.com/Wandmalfarbe/pandoc-latex-template
+  fontfamily: sourcesanspro
+  fontfamilyoptions:
+  - default
+  # - semibold
+  # - light
+  # - regular
+  fontsize: 10pt
+  header-includes:
+  - | # https://gist.github.com/wusunlab/9c85fcb7472308a474e7c3fb443639ee
+    \usepackage{xcolor}
+    \usepackage{soul}
+    \definecolor{inlineBG}{HTML}{D0D0D0}
+    \sethlcolor{inlineBG}
+    \let\OldTexttt\texttt
+    \renewcommand{\texttt}[1]{\sethlcolor{inlineBG}{\ttfamily\hl{\mbox{#1}}}}
+  # - |
+    # \usepackage{etoolbox}
+    # \AtBeginEnvironment{quote}{\begin{tcolorbox}[sharp corners]}
+    # \AtEndEnvironment{quote}{\end{tcolorbox}}
+  - |
+    \usepackage{tcolorbox}
+    \usepackage{etoolbox}
+    \AtBeginEnvironment{quote}{
+      \begin{tcolorbox}[
+        colback=black!5!white,
+        colframe=black!75!black,
+        sharp corners,
+        boxrule=0mm,
+        leftrule=1mm,
+        left=-20pt,
+        left skip=15pt,
+      ]
+    }
+    \AtEndEnvironment{quote}{\end{tcolorbox}}
+

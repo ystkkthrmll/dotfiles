@@ -10,6 +10,7 @@ if [[ $(uname -n) == ${COMPUTER_NAME} ]]; then
     # bash
     git
     gnome-files
+    tex
     typst
     vim
     visual-studio-code

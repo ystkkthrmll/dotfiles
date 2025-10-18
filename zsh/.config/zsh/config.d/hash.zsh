@@ -28,8 +28,6 @@ hash -d dotfiles-zsh=~dotfiles/zsh/.config/zsh/config.d
 hash -d config-files=~dropbox/config-files
 hash -d config-latex=~config-files/latex
 hash -d config-misc=~config-files/misc
-hash -d config-pandoc=~config-files/pandoc
-hash -d config-typst=~config-files/typst
 hash -d config-vim=~config-files/vim
 hash -d config-vscode=~config-files/visual-studio-code
 # #endregion dotfiles

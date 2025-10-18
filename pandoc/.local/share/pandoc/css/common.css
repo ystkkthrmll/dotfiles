@@ -1,0 +1,110 @@
+
+/* @page { */
+  /* size: 8.5in 9in; */
+  /* margin-top: 4in; */
+  /* margin-left: 10% auto; */
+  /* font-size: 40px; */
+/* } */
+/* @page :left { */
+  /* margin-top: 4in; */
+  /* margin-left: 10% auto; */
+/* } */
+
+/* body { */
+  /* background-color: #ffffff; */
+  /* font-size: 14px; */
+  /* margin-left: -10%; */
+  /* margin-right: -10%; */
+  /* margin-left: 100px; */
+  /* margin-top: 30in; */
+/* } */
+
+/* Ref: https://www.madcapsoftware.com/blog/css-tip-creating-styled-boxes-notes-warnings-examples-tips/ */
+/* Ref: https://web-camp.io/magazine/archives/87658 */
+
+.note {
+  .title{
+    color: blue;
+    font-weight: bold;
+  }
+  color:black;
+  background-color: #f0f7fb;
+  border-left: solid 4px #3498db;
+  line-height: 18px;
+  mc-auto-number-format: '{b}Note: {/b}';
+  overflow: hidden;
+  padding: 10px;
+  margin: 5px;
+}
+
+.note:before{
+  font-weight: bold;
+  color: #3498db;
+  content: "Note:";
+  padding: 3px;
+}
+
+.tip {
+  .title{
+    color: green;
+    font-weight: bold;
+  }
+  color:black;
+  background-color: #D5F5E3;
+  border-left: solid 4px green;
+  line-height: 18px;
+  mc-auto-number-format: '{b}Tip: {/b}';
+  overflow: hidden;
+  padding: 12px;
+  margin: 5px;
+}
+
+.tip:before{
+  font-weight: bold;
+  color: green;
+  content: "Tip: ";
+  padding: 5px;
+}
+
+.warning {
+  .title{
+    color: red;
+    font-weight: bold;
+  }
+  color: black;
+  background-color: pink;
+  border-left: solid 4px red;
+  line-height: 18px;
+  mc-auto-number-format: '{b}Tip: {/b}';
+  overflow: hidden;
+  padding: 12px;
+  margin: 5px;
+}
+
+.warning:before{
+  font-weight: bold;
+  color: red;
+  content: "Warning: ";
+  padding: 5px;
+}
+
+
+/* code { */
+  /* color: black; */
+  /* background-color: lightgray; */
+  /* font-family: monospace; */
+/* } */
+
+
+blockquote {
+  color: black;
+  background-color: whitesmoke;
+  border-left: solid 4px black;
+  /* line-height: 18px; */
+  overflow: hidden;
+  padding: 5px;
+  margin: 5px;
+  margin-left: 25px;
+}
+
+

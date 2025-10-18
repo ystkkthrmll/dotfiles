@@ -1,0 +1,11 @@
+
+css: ${HOME}/Dropbox/config-files/pandoc/css/report-from-markdown-to-pdf.css
+
+defaults: common.yaml
+
+# from: gfm+alerts
+from: markdown+emoji
+
+to: html
+# to: latex
+
