@@ -8,7 +8,8 @@
 )
 
 #set text(
-  8pt,
+  7.5pt,
+  // 8pt,
   // 9pt,
   // 10pt,
   fill: rgb("ffffff"),
@@ -17,8 +18,7 @@
   font: "Noto Sans Osmanya",
 )
 
-// - Refs
-//   - https://help.ubuntu.com/stable/ubuntu-help/shell-keyboard-shortcuts.html.en
+#let ROW-GUTTER = -5pt
 
 #grid(
   columns: (265pt, 250pt, 250pt),
@@ -30,6 +30,8 @@
     = Ubuntu
 
     #let data = (
+      // - Refs
+      //   - https://help.ubuntu.com/stable/ubuntu-help/shell-keyboard-shortcuts.html.en
       (cmd: [`Shift`+`Super`+$arrow.l$], desc: [move the current window one monitor to the left]), // \href{https://help.ubuntu.com/stable/ubuntu-help/shell-keyboard-shortcuts.html.en}{Useful keyboard shortcuts}
       (cmd: [`Shift`+`Super`+$arrow.r$], desc: [move the current window one monitor to the right]),
       (cmd: [`Alt`+`Prnt Scrn`], desc: [Take a screenshot of a window]), // \href{https://help.ubuntu.com/stable/ubuntu-help/shell-keyboard-shortcuts.html.en}{Useful keyboard shortcuts}
@@ -41,7 +43,7 @@
     #table(
       columns: (auto, auto),
       // align: horizon,
-      row-gutter: -4pt,
+      row-gutter: ROW-GUTTER,
 
       ..for datum in data {
         (datum.at("cmd"), datum.at("desc"))
@@ -72,7 +74,7 @@
     #table(
       columns: (auto, auto),
       // align: horizon,
-      row-gutter: -4pt,
+      row-gutter: ROW-GUTTER,
 
       ..for datum in data {
         (datum.at("cmd"), datum.at("desc"))
@@ -94,7 +96,7 @@
     #table(
       columns: (auto, auto),
       // align: horizon,
-      row-gutter: -4pt,
+      row-gutter: ROW-GUTTER,
 
       ..for datum in data {
         (datum.at("cmd"), datum.at("desc"))
@@ -122,7 +124,7 @@
     #table(
       columns: (auto, auto),
       // align: horizon,
-      row-gutter: -4pt,
+      row-gutter: ROW-GUTTER,
 
       ..for datum in data {
         (datum.at("cmd"), datum.at("desc"))
@@ -166,7 +168,7 @@
     #table(
       columns: (auto, auto),
       // align: horizon,
-      row-gutter: -4pt,
+      row-gutter: ROW-GUTTER,
 
       ..for datum in data {
         (datum.at("cmd"), datum.at("desc"))
@@ -194,7 +196,7 @@
     #table(
       columns: (auto, auto),
       // align: horizon,
-      row-gutter: -4pt,
+      row-gutter: ROW-GUTTER,
 
       ..for datum in data {
         (datum.at("cmd"), datum.at("desc"))
@@ -212,7 +214,7 @@
     #table(
       columns: (auto, auto),
       // align: horizon,
-      row-gutter: -4pt,
+      row-gutter: ROW-GUTTER,
 
       ..for datum in data {
         (datum.at("cmd"), datum.at("desc"))
@@ -229,7 +231,7 @@
     #table(
       columns: (auto, auto),
       // align: horizon,
-      row-gutter: -4pt,
+      row-gutter: ROW-GUTTER,
 
       ..for datum in data {
         (datum.at("cmd"), datum.at("desc"))
@@ -247,7 +249,7 @@
     #table(
       columns: (auto, auto),
       // align: horizon,
-      row-gutter: -4pt,
+      row-gutter: ROW-GUTTER,
 
       ..for datum in data {
         (datum.at("cmd"), datum.at("desc"))
@@ -264,7 +266,7 @@
     #table(
       columns: (auto, auto),
       // align: horizon,
-      row-gutter: -4pt,
+      row-gutter: ROW-GUTTER,
 
       ..for datum in data {
         (datum.at("cmd"), datum.at("desc"))

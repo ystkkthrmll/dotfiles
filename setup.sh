@@ -6,6 +6,8 @@ readonly COMPUTER_NAME=home
 
 if [[ $(uname -n) == ${COMPUTER_NAME} ]]; then
   targets=(
+    # autostart
+    # bash
     git
     gnome-files
     typst

@@ -34,6 +34,8 @@ $ bash setup.sh
 ```
 dotfiles
 ├── README.md
+├── autostart
+│   └── .config/autostart
 ├── bash
 │   ├── config_desktop.sh
 │   ├── set_wallpaper.sh
@@ -65,6 +67,21 @@ dotfiles
 │   └── settings.json
 └── zsh
 ```
+
+### Autostart
+
+- The origin of "autostart"
+  - `~/.config/autostart`
+- In your home directory, there's a folder called `.config/autostart`.
+  Anything placed in this folder will be run when you login
+  - [How to add a program as a startup application from a terminal?](https://askubuntu.com/questions/178567/how-to-add-a-program-as-a-startup-application-from-a-terminal)
+- Filename
+  - Use hyphens, not underscores, to separate words
+    - `/usr/share/applications/google-chrome.desktop`
+    - `/usr/share/applications/setup-mozc.desktop`
+- [How to add a script to Startup Applications from the command line? [duplicate]](https://askubuntu.com/questions/598195/how-to-add-a-script-to-startup-applications-from-the-command-line)
+- Syntax
+  - [Application entry](https://wiki.archlinux.org/title/desktop_entries#Application_entry)
 
 ### Bash
 

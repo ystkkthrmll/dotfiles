@@ -1,0 +1,6 @@
+# - Notes
+#   - `--geometry=...`: window size
+#
+[Desktop Entry]
+Type=Application
+Exec=gnome-terminal --geometry=135x68+0
