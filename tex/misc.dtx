@@ -1,0 +1,1404 @@
+%
+% ^^A Configuring DocStrip [[[
+% \iffalse
+%<*driver>
+\input mydocstrip
+\mygenerate[output-files/misc]{
+  .latexmkrc,
+  pandoc.yaml,
+  %%% mydocstrip.tex,^^A comment outを外すな！
+}
+\mygenerate[output-files/misc/test]{
+  % test-iffalse-1.dtx,
+  % test-iffalse-2.dtx,
+  % test-guard-1.dtx,
+  % test-guard-2.dtx,
+  % test-guard-3.dtx,
+  % test-guard-4.dtx,
+  % test-guard-5.dtx,
+  % test-askforoverwrite-1.dtx,
+  % test-jobname-1.dtx,
+  % test-jobname-2.tex,
+  % ins-code-in-dtx-file.dtx,
+  % test-group-1.dtx,
+}
+\myendbatchfile
+\mydriver[
+  show-notes,
+]
+%</driver>
+% \fi
+% ^^A ]]] End of Configuring DocStrip
+%
+% \mytitle[.latexmkrc, mydocstrip.tex]{\verb|.latexmkrc|, \verb|mydocstrip.tex|}
+%
+% \begin{abstract}^^A [[[
+% \begin{myitemize}
+% \1 \verb|.latexmkrc|
+%   \2 \verb|$ latexmk ...|
+% \1 \verb|mydocstrip.tex|
+%   \2 
+% \end{myitemize}
+% \end{abstract}^^A ]]]
+%
+% \begin{mynote}^^A [[[
+% \begin{myitemize}
+% \1 \href{https://qiita.com/enukasu/items/a0e2516f2263ab6d5b36#cui%E3%83%99%E3%83%BC%E3%82%B9%E3%81%AE%E5%88%A9%E7%82%B9}{どうしてLaTeXを使うのか、もう一度考えてみる}でlatexmkではなくllmkなるものを推奨している
+%   \2 \href{https://github.com/wtsnjp/llmk}{llmk}
+%   \2 \href{https://blog.wtsnjp.com/2018/08/13/llmk-launch/}{llmk プロジェクトが始動しました}
+%   \2 \href{https://speakerdeck.com/wtsnjp/llmk?slide=21}{llmkインストール方法}
+% \1 \href{https://github.com/latex3/latex3/tree/main/l3kernel}{l3kernel}に\verb|dtx|ファイルがたくさんある
+% \1 \verb|dtx|ファイルで\verb|Makefile|作成に向けて
+%   \2 \verb|tcolorbox|パッケージの\texinline{tcbverbatimwrite}もファイル生成できるが追記ができない
+%   \2 \texdoc{filecontentsdef}でもファイル生成できる調べよ\href{http://konoyonohana.blog.fc2.com/blog-entry-286.html}{[LaTeX] filecontentsdef --- filecontents.styの拡張版}
+% \1 \TeX 内でrenameする方法
+%   \2 \href{https://tex.stackexchange.com/questions/319224/execute-luacode-after-enddocument-to-rename-pdf-file-after-creation}{rename pdf file after creation}
+% \1 evinceのショートカットを壁紙に追加
+%   \2 jump/jump backのショートカットキー：
+% \end{myitemize}
+% \end{mynote}^^A ]]]
+%
+% \mytableofcontents
+%
+% \part{\myverb{.latexmkrc}}^^A [[[
+% \verb|.latexmkrc|の由来は\href{run:/usr/share/doc/latexmk/latexmk.pdf}{\texttt{latexmk.pdf}}の
+% \doublequotes{CONFIGURATION/INITIALIZATION (RC) FILES}より．
+%
+% 基本的には\href{run:/usr/share/doc/latexmk/latexmk.pdf}{\texttt{latexmk.pdf}}を参考にした．
+%
+% \section{Notes}^^A [[[
+% \begin{myitemize}
+% \1 latexmkの説明は，\href{run:/usr/share/doc/latexmk/latexmk.pdf}{\texttt{latexmk.pdf}}を参照せよ．
+%   \2 \verb|.latexmkrc|で\verb|$cleanup_mode = 2|としても，消してくれなかった．
+%   \2 \verb|$success_cmd = "latexmk -c %S";|としもダメだった．
+% \1
+% \end{myitemize}
+% ^^A ]]] End of section `Notes'.
+%
+% \section{Implementation}^^A [[[
+%
+% \subsection{Shebang}^^A [[[
+% \urlref{https://ja.wikipedia.org/wiki/%E3%82%B7%E3%83%90%E3%83%B3_(Unix)}{シバン}
+%
+% Shebangのわかりやすい説明\urlref{https://qiita.com/mohira/items/566ca75d704072bcb26f}{!/bin/sh は ただのコメントじゃないよ！ Shebangだよ！}．
+%    \begin{macrocode}
+%<.latexmkrc>#!/usr/bin/env perl
+%    \end{macrocode}
+% ^^A ]]] End of subsection `Shebang'.
+%
+% \subsection{\texttt{\$clean\_ext}}^^A [[[
+% Extra extensions of files for latexmk to remove
+% when any of the clean-up options (\verb|-c| or \verb|-C|) is selected.
+% The value of this variable is a string containing the extensions separated by spaces
+% See \mycite[keyword=\texttt{\$clean\_ext}]{latexmk}.
+%
+% \begin{description}
+% \item[bbl] 
+% \item[listing] tcolorboxのtcblisting環境などで使われるファイル
+% \item[nav] beamerを使用すると生成されるファイル
+% \item[run.xml] 
+% \item[snm] beamerを使用すると生成されるファイル
+% \item[synctex.gz] 
+% \item[upa, upb] \verb|pdfcomment| packageを使用すると出力されるファイル
+% \end{description}
+%
+%    \begin{macrocode}
+%<.latexmkrc>$clean_ext = "bbl listing nav run.xml snm synctex.gz upa upb";
+%    \end{macrocode}
+% ^^A ]]] End of subsection `clean_ext'.
+%
+% \subsection{makeindex}^^A [[[
+% The index processing program.
+%
+% なぜかこれを設定するとエラーが起きる．
+%    \begin{macrocode}
+%^^A<.latexmkrc>$makeindex = "mendex %O %S";
+%    \end{macrocode}
+% ^^A ]]] End of subsection `makeindex'.
+%
+% \subsection{\texttt{\$pdflatex}}^^A [[[
+% The LaTeX processing program in a version that makes a pdf file instead of a dvi file.
+%
+% \verb|luajittex --fmt=luajitlatex.fmt|については\url{https://texwiki.texjp.org/?LuaJITTeX}を参照．
+% \verb/-shell-escape/はminted packageを使う上で必要（\verb|texdoc minted|）．
+%
+% \verb|$ sudo apt update|したら，なぜかluajittexでエラーになった（2017/07/16）．
+% なので（一時的に？）\verb|$pdflatex = "lualatex"|にする．
+%
+% \bashinline{lualatex}の由来\urlref{https://texwiki.texjp.org/?LaTeX%E5%85%A5%E9%96%80%2F%E7%99%BA%E5%B1%95%E7%B7%A8#t7eebe4c}{発展編：最近の LaTeX の動向}
+% 
+%    \begin{macrocode}
+%<.latexmkrc>#$pdflatex = "luajittex --fmt=luajitlatex.fmt -shell-escape %O %S";
+%<.latexmkrc>#$pdflatex = "lualatex -shell-escape %O %S";
+%<.latexmkrc>$lualatex = "lualatex -shell-escape %O %S";
+%    \end{macrocode}
+% ^^A ]]] End of subsection `$pdflatex'.
+%
+% \subsection{\texttt{\$bibtex}}^^A [[[
+%    \begin{macrocode}
+%<.latexmkrc>$bibtex = "bibtex %O %S";
+%    \end{macrocode}
+% ^^A ]]] End of subsection `$bibtex'.
+%
+% \subsection{dvi\_mode, pdf\_mode, postscript\_mode}^^A [[[
+%
+% \subsubsection{\texttt{\$dvi\_mode}}^^A [[[ OK (2020-02-01T14:52:38)
+% If nonzero, generate a dvi version of the document \mycite[keyword=\texttt{\$dvi\_mode}]{latexmk}.
+%    \begin{macrocode}
+%<.latexmkrc>$dvi_mode = 0;
+%    \end{macrocode}
+% ^^A ]]] End of subsubsection `$dvi_mode'.
+%
+% \subsubsection{\texttt{\$pdf\_mode}}^^A [[[ OK (2020-02-01T14:57:55)
+% If zero, do NOT generate a pdf version of the document.
+%
+% If equal to 1, generate a pdf version of the document using pdflatex,
+% using the command specified by the \verb|$pdflatex| variable
+%
+% If equal to 4, generate a pdf version of the document using lualatex,
+% using the command specified by the \verb|$lualatex| variable.
+% \mycite[keyword=\texttt{\$pdf\_mode}]{latexmk}.
+%    \begin{macrocode}
+%<.latexmkrc>$pdf_mode = 4;
+%    \end{macrocode}
+% ^^A ]]] End of subsubsection `$pdf_mode'.
+%
+% \subsubsection{\texttt{\$postscript\_mode}}^^A [[[ OK (2020-02-01T15:01:50)
+% If nonzero, generate a postscript version of the document
+% \mycite[keyword=\texttt{\$postscript\_mode}]{latexmk}.
+%    \begin{macrocode}
+%<.latexmkrc>$postscript_mode = 0;
+%    \end{macrocode}
+% ^^A ]]] End of subsubsection `$postscript_mode'.
+%
+% ^^A ]]] End of subsection `postscript_mode, dvi_mode'.
+%
+% \subsection{\texttt{\$preview\_mode}}^^A [[[
+% If nonzero, run a previewer to preview the document \mycite[keyword=\texttt{\$preview\_mode}]{latexmk}.
+%    \begin{macrocode}
+%<.latexmkrc>$preview_mode = 1;
+%    \end{macrocode}
+% ^^A ]]] End of subsection `$preview_mode'.
+%
+% \subsection{\texttt{\$pdf\_previewer}*}^^A [[[
+% The command to invoke a pdf-previewer \mycite[keyword=\texttt{\$pdf\_previewer}]{latexmk}.
+%
+% \verb|latexmk -c|は不要なファイルを消すため．
+%
+% \verb|evince|を最後に持ってこないとcleanしてくれない．
+%    \begin{macrocode}
+%<*.latexmkrc>
+% $pdf_previewer = "start evince %S";
+% $pdf_previewer = "evince %S &; latexmk -c %S; rm temp.bib";
+$pdf_previewer = "latexmk -c %S; rm temp.bib; evince %S &";
+%</.latexmkrc>
+%    \end{macrocode}
+% ^^A ]]] End of subsection `$pdf_previewer'.
+%
+% ^^A ]]] End of section `Implementation'.
+%
+% ^^A ]]] End of part `.latexmkrc'.
+%
+% \part{\myverb{mydocstrip.tex}}^^A [[[
+%
+% \section{Usage}[updated=2022-01-09T13:06:55]^^A [[[
+%
+% \begin{mywarning}^^A [[[
+% \begin{myitemize}
+% \1 \verb|docstrip|で\verb|<*foo_bar>|のようにguardに\verb|_|を使用すると，上手くstripされない
+% \1 ドット\verb|.|で始まるファイルを生成するには\verb|/usr/share/texlive/texmf-dist/web2c/texmf.cnf|ファイルの
+% \iniinline{openout_any = p}を\iniinline{openout_any = a}に変更する必要がある
+% \urlref{https://tex.stackexchange.com/questions/48685/having-docstrip-place-files-in-different-folders/48690}{Having docstrip place files in different folders}
+% \end{myitemize}
+% \end{mywarning}^^A ]]]
+%
+% Template code:
+%
+% \begin{concealableitemize}^^A [[[
+% \1 The origin of `Configuring DocStrip'
+%   \2 \texdoc[section=3 Configuring DocStrip]{docstrip}
+% \end{concealableitemize}^^A ]]]
+%
+% \begin{texcode}
+%
+% ^^A Configuring DocStrip [[[
+% \iffalse
+%<*driver>
+\input mydocstrip
+\mygenerate[output-files/etc]{
+  .latexmkrc,
+  mydocstrip.tex,
+  ...
+}
+\myrenamefile[output-files/foo]{'foobar.sh'}{'foo_bar.sh'}
+% \myendbatchfile
+\mydriver[
+  show-notes,
+](hologo)
+%</driver>
+% \fi
+% ^^A ]]] End of Configuring DocStrip
+%
+% \mytitle[foo package]{\verb|foo| package}
+%
+% ...
+%
+% ^^A End of file `template-code.dtx'.
+% \end{texcode}
+%
+% \begin{myitemize}
+% \1 \texinline{\mygenerate}
+%   \2 Option引数は生成ファイル保存場所の\myemph{相対パス}を指定
+%     \3 Option引数を指定しない場合は\verb|./output-files|に出力される
+%   \2 第1引数は出力ファイル名を指定
+% \1 \texinline{\myendbatchfile}
+%   \2 \verb|pdf|は作成しなくてもよい場合は\texinline{\myendbatchfile}を宣言せよ
+% \1 \texinline{\mydrivercode}
+%   \2 \verb|[]| option引数は\texinline{\documentclass}のoption引数を指定（必要であれば）
+%   \2 \verb|()| option引数は\texinline{\usepackage}の引数を指定（必要であれば）
+% \end{myitemize}
+% ^^A ]]] End of section `Usage'.
+%
+% \section{Notes}[updated=2021-03-06T12:31:07]^^A [[[
+% \begin{myitemize}
+% \1 The origin of \verb|mydocstrip.tex|
+%   \2 \verb|docstrip.tex| \texdoc{docstrip}
+%   \2 \verb|l3docstrip.tex| \texdoc{l3docstrip}
+% \end{myitemize}
+%
+% \verb|mydocstrip.tex|作成メモ
+%
+% \NewDocumentEnvironment {myoutput} {} {
+%   \noindent
+%   \tcolorbox[
+%     bottom=1pt,
+%     ^^A breakable,
+%     colback=white,
+%     colframe=black,
+%     left=1pt,
+%     right=1pt,
+%     sharp corners,
+%     title=\textbf{\textsf{Output:}},
+%     top=1pt,
+%   ]
+% }{\endtcolorbox}
+%
+% \NewDocumentEnvironment {myerrormessage} {} {
+%   \noindent
+%   \tcolorbox[
+%     bottom=1pt,
+%     ^^A breakable,
+%     colback=white,
+%     colframe=red!70!black,
+%     left=1pt,
+%     right=1pt,
+%     sharp corners,
+%     title=\textbf{\textsf{Error message:}},
+%     top=1pt,
+%   ]
+% }{\endtcolorbox}
+%
+% \subsection{Basic code of \texttt{.dtx} file}[updated=2022-01-09T14:58:51]^^A [[[
+%
+% \begin{concealableitemize}^^A [[[
+% \1 The origin of `basic'
+%   \2 \mycite[keyword=基本]{weblio}
+% \end{concealableitemize}^^A ]]]
+%
+% まず，\verb|.dtx| fileのbasic codeを記載する．
+%
+% ^^A Basic code [[[
+% \begin{multicols}{2}
+% \begin{texcode}
+% \iffalse
+%<*driver>
+\documentclass{l3doc}
+\begin{document}
+  \DocInput{\jobname.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \title{Basic code}
+%
+% \maketitle
+%
+% \begin{documentation}
+%
+% \section{Introduction}
+% ...
+%
+% \end{documentation}
+%
+% \begin{implementation}
+%
+% \section{Implementation}
+% ...
+%
+% \end{implementation}
+% \end{texcode}
+%
+% \begin{myitemize}
+% \1 Basic codeの参考文献
+%   \2 \href{https://github.com/latex3/latex3/blob/main/l3kernel/expl3.dtx}{expl3.dtx}
+%   \concealablemarginalnote{Updated: 2021-03-05T12:24:21}
+%   \2 \href{https://github.com/latex3/latex3/blob/main/l3kernel/l3basics.dtx}{l3basics.dtx}
+%   \concealablemarginalnote{Updated: 2021-03-05T12:25:33}
+%   \2 \href{https://github.com/latex3/latex3/blob/main/l3kernel/l3keys.dtx}{l3keys.dtx}
+%   \concealablemarginalnote{Updated: 2021-03-05T12:30:10}
+%   \2 『\LaTeXe 美文書作成入門』\<\mycite[page=294--295]{latex2e-bibunshosakusei}
+%   \concealablemarginalnote{Updated: 2021-03-05T23:41:15}
+%   \2 \texdoc[section=2.1 The driver file]{doc}
+%   \concealablemarginalnote{Updated: 2021-03-14T11:07:36}
+% \end{myitemize}
+% \end{multicols}^^A ]]]
+%
+% \subsubsection{The role of \texcommand{DocInput}}[updated=2022-01-09T14:11:03]^^A [[[
+% \begin{myitemize}
+% \1 \texinline{\DocInput}という命令は，最初に読み込んだ\verb|jltxdoc|という
+% 特殊なドキュメントクラスで定義されており，\verb|test.dtx|というファイル（つまり自分自身）を読み込んで，
+% \texinline{%}をコメントと解釈しないで処理します．
+% \texinline{\DocInput}で読み込んだときにコメント開始を表す文字は\verb|^^A|という3文字の連続です
+% \mycite[page=296]{latex2e-bibunshosakusei}．
+% \concealablemarginalnote{Updated: 2022-01-09T13:59:46}
+% \end{myitemize}
+% ^^A ]]] End of subsubsection `The role of \DocInput'.
+%
+% \subsubsection{The role of \texcommand{jobname}}[updated=2022-01-09T14:27:20]^^A [[[
+% \begin{myitemize}
+% \1 \verb|%<<TEST-CODE ... %TEST-CODE|はverbatimに出力するためのコマンド
+% \texdoc[section=6.3 Verbatim mode]{docstrip}．
+% これらがないと意図した通りに出力させてない
+% \1 下記出力結果から，\texinline{\jobname}には
+% 実行されるファイル名から拡張子を除いた文字列が格納されることがわかる
+% \end{myitemize}
+%
+% \begin{multicols}{2}
+% \begin{texcode}
+%<*test-jobname-1.dtx>
+%<<TEST-CODE
+% \iffalse
+%<*driver>
+\documentclass{l3doc}
+\begin{document}
+  \DocInput{\jobname.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% jobname: \jobname
+%TEST-CODE
+%</test-jobname-1.dtx>
+% \end{texcode}
+%
+% \begin{myoutput}
+% jobname: test-jobname-1
+% \end{myoutput}
+% \end{multicols}
+%
+% \begin{multicols}{2}
+% \begin{texcode}
+%<*test-jobname-2.tex>
+\documentclass{article}
+\begin{document}
+jobname: \jobname
+\end{document}
+%</test-jobname-2.tex>
+% \end{texcode}
+%
+% \begin{myoutput}
+% jobname: test-jobname-2
+% \end{myoutput}
+% \end{multicols}
+% ^^A ]]] End of subsubsection `The role of \jobname'.
+%
+% \subsubsection{The role of \texcommand{iffalse}, \texcommand{fi}}[updated=2022-01-09T14:38:51]^^A [[[
+%
+% \paragraph{非comment行の処理}[updated=2021-03-05T21:54:09]^^A [[[
+% 次のcodeで問題なく\bashinline{latexmk test-iffalse-1.dtx}を実行できる．
+%
+% 出力結果から非コメント行である11，13行目も出力されることがわかる．
+%
+% \begin{multicols}{2}
+% \begin{minted}[linenos]{latex}
+%<*test-iffalse-1.dtx>
+%<<TEST-CODE
+% \iffalse
+%<*driver>
+\documentclass{l3doc}
+\begin{document}
+  \DocInput{\jobname.dtx}
+\end{document}
+%</driver>
+% \fi
+\verb|test|
+%<*foo>
+\LaTeX3
+%</foo>
+% EOF
+%TEST-CODE
+%</test-iffalse-1.dtx>
+% \end{minted}
+%
+% \begin{myoutput}
+% \verb|test| <*foo> \LaTeX3 </foo> EOF
+% \end{myoutput}
+% \end{multicols}
+% ^^A ]]] End of paragraph `非comment行の処理'.
+%
+% \paragraph{\texcommand{iffalse} ... \texcommand{fi}が必要な理由}[updated=2022-01-09T14:38:38]^^A [[[
+% 次のcodeで\bashinline{latexmk test-iffalse-2.dtx}を実行するとエラーとなる．
+%
+% \begin{myitemize}
+% \1 \texinline{\iffalse}と\texinline{\fi}が必要な理由
+%   \2 \texinline{\DocInput}内で再度\texinline{\documentclass{l3doc}}が読み込まれてしまう
+%   \2 \texinline{\DocInput}では\texinline{\iffalse}と\texinline{\fi}で
+%   囲んだ部分もコメントになります．
+%   ...
+%   このようにしないと，自分自身から自分自身を読み込み，さらにまた自分自身を読み込み，
+%   ・・・という無限の連鎖が生じてしまいます
+%   \mycite[page=297]{latex2e-bibunshosakusei}．
+%   \2 The next few lines are also surrounded by \texinline{\iffalse} ...
+%   \texinline{\fi} so as not to be processed by \verb|latex|
+%   on the second pass through the \verb|.dtx| file
+%   \texdoc[section=3.1 Prologue]{dtxtut}.
+% \end{myitemize}
+%
+% したがって，\texinline{\iffalse}と\texinline{\fi}の役割は，
+% \texinline{\DocInput}内で\texinline{\documentclass{l3doc}}を再度読み込まないように
+% コメント化するためである．
+%
+% \begin{multicols}{2}
+% \begin{texcode}
+%<*test-iffalse-2.dtx>
+%<<TEST-CODE
+%<*driver>
+\documentclass{l3doc}
+\begin{document}
+  \DocInput{\jobname.dtx}
+\end{document}
+%</driver>
+% EOF
+%TEST-CODE
+%</test-iffalse-2.dtx>
+% \end{texcode}
+%
+% \begin{myerrormessage}
+% \verb|! LaTeX Error: Can be used only in preamble.|
+% \end{myerrormessage}
+% \end{multicols}
+% ^^A ]]] End of paragraph `\iffalse ... \fiが必要な理由'.
+%
+% ^^A ]]] End of subsubsection `The role of \iffalse,  \fi'.
+%
+% \subsubsection{The role of guard}[updated=2022-01-09T14:57:20]^^A [[[
+% \begin{myitemize}
+% \0 \texinline{%<foo>}や\texinline{%<*foo>}などの呼び方
+% \1 A guard is a boolean expression that is enclosed in \verb|<| and \verb|>|.
+% It also has to follow the \verb|%| at the beginning of the line
+% \texdoc[section=5 Conditional inclusion of code]{docstrip}.
+% \concealablemarginalnote{Updated: 2021-03-14T11:02:55}
+% \1 The main reason for constructing a \verb|DocStrip| command file is
+% to describe what files should be generated, from what sources
+% and what optional (`guarded') pieces of code should be included
+% \texdoc[section=4.2 Batchfile commands, keyword=\texcommand{from}]{docstrip}.
+% \concealablemarginalnote{Updated: 2021-03-14T10:57:16}
+% \1 \texinline{\from}コマンドの第2引数は\doublequotes{\meta{optionlist}}と書かれている
+% \texdoc[section=4.2 Batchfile commands, keyword=\texcommand{from}]{docstrip}
+% \concealablemarginalnote{Updated: 2021-03-14T10:53:19}
+% \1 When you use the \verb|DocStrip| program to strip comments out of \TeX{} macro files
+% you have the possibility to make more than one stripped macro file from one documented file.
+% This is achieved by the support for optional code.
+% The optional code is marked in the documented file with a `guard'
+% \texdoc[section=5 Conditional inclusion of code]{docstrip}.
+% \1 \texdoc[section=2 Internal functions and variables]{l3docstrip}だと\doublequotes{guard}と呼んでいる？？？
+% \1 『\LaTeXe 美文書作成入門』\<\mycite{latex2e-bibunshosakusei}には特に呼び方は書かれていない
+% \concealablemarginalnote{Updated: 2021-03-14T11:00:58}
+% \1 \texdoc{dtxtut}だと\doublequotes{tag}と呼んでいる？？？
+% \1 \texdoc{tclldoc}だと\doublequotes{guard}と呼んでいる？？？
+% \end{myitemize}
+%
+% \paragraph{driver guard名の変更}[updated=2022-01-09T14:42:34]^^A [[[
+% \begin{myitemize}
+% \1 次のcodeで問題なく\bashinline{latexmk test-guard-1.dtx}を実行できる
+% \1 guard名を\texinline{%<*foobar>}に変更しても問題なく実行できる
+% \1 このことから\texinline{driver}というguard名に特別な意味は無いことがわかる
+% \end{myitemize}
+%
+% \begin{multicols}{2}
+% \begin{texcode}
+%<*test-guard-1.dtx>
+%<<TEST-CODE
+% \iffalse
+%<*foo>
+\documentclass{l3doc}
+\begin{document}
+  \DocInput{\jobname.dtx}
+\end{document}
+%</foo>
+% \fi
+% test code
+%TEST-CODE
+%</test-guard-1.dtx>
+% \end{texcode}
+%
+% \begin{myoutput}
+% test code
+% \end{myoutput}
+% \end{multicols}
+% ^^A ]]] End of paragraph `driver guard名の変更'.
+%
+% \paragraph{\texcommand{begin\{document\}}より前のcode}[updated=2022-01-09T14:47:27]^^A [[[
+% \begin{myitemize}
+% \1 次のcodeで\bashinline{latexmk test-guard-2.dtx}を実行するとエラーとなる
+% \1 このことから，\texinline{%}で始まらない行が上から順に処理されることがわかる
+% \1 また，\texinline{driver} guardに特別な意味は無いこともわかる
+% \footnote{恐らく，歴史的な経緯でguard名を\texinline{driver}にしていると思われる．}
+% \end{myitemize}
+%
+% \begin{multicols}{2}
+% \begin{texcode}
+%<*test-guard-2.dtx>
+%<<TEST-CODE
+%<*foo>
+test code
+%</foo>
+% \iffalse
+%<*driver>
+\documentclass{l3doc}
+\begin{document}
+  \DocInput{\jobname.dtx}
+\end{document}
+%</driver>
+% \fi
+% EOF
+%TEST-CODE
+%</test-guard-2.dtx>
+% \end{texcode}
+%
+% \begin{myerrormessage}
+% \verb|! LaTeX Error: Missing \begin{document}.|
+% \end{myerrormessage}
+% \end{multicols}
+% ^^A ]]] End of paragraph `\begin{document}より前のcode'.
+%
+% \paragraph{\texcommand{begin\{document\}}より後ろのcode}[updated=2022-01-09T14:51:03]^^A [[[
+% \begin{myitemize}
+% \1 次のcodeで問題なく\bashinline{latexmk test-guard-3.dtx}を実行できる
+% \1 出力結果から\texinline{\end{document}}で処理が終了することがわかる
+% \end{myitemize}
+%
+% \begin{multicols}{2}
+% \begin{texcode}
+%<*test-guard-3.dtx>
+%<<TEST-CODE
+%<driver>test code
+%
+% \iffalse
+%<*foobar>
+\documentclass{l3doc}
+\begin{document}
+Before
+  \DocInput{\jobname.dtx}
+After
+\end{document}
+This sentense is not read.
+%</foobar>
+% \fi
+% EOF
+%TEST-CODE
+%</test-guard-3.dtx>
+% \end{texcode}
+%
+% \begin{myoutput}
+% Before <driver>test code\\EOF After
+% \end{myoutput}
+% \end{multicols}
+% ^^A ]]] End of paragraph `\begin{document}より後ろのcode'.
+%
+% \paragraph{guardの削除}[updated=2022-01-09T14:52:38]^^A [[[
+% \begin{myitemize}
+% \1 次のcodeで問題なく\bashinline{latexmk test-guard-4.dtx}を実行できる
+% \1 このことから，documentを作成するだけならばguardは必須ではないことがわかる
+% \end{myitemize}
+%
+% \begin{multicols}{2}
+% \begin{texcode}
+%<*test-guard-4.dtx>
+%<<TEST-CODE
+% \iffalse
+\documentclass{l3doc}
+\begin{document}
+  \DocInput{\jobname.dtx}
+\end{document}
+% \fi
+% test code
+%TEST-CODE
+%</test-guard-4.dtx>
+% \end{texcode}
+%
+% \begin{myoutput}
+% test code
+% \end{myoutput}
+% \end{multicols}
+% ^^A ]]] End of paragraph `guardの削除'.
+%
+% \paragraph{driver guardの必要性}[updated=2022-01-09T14:57:05]^^A [[[
+% 次のcodeで問題なく\bashinline{latexmk test-guard-5.dtx}を実行できる
+% \footnote{codeの詳しい説明は後述する．}：
+%
+% \begin{texcode}
+%<*test-guard-5.dtx>
+%<<TEST-CODE
+% \iffalse
+\begingroup
+\input docstrip
+\nopreamble\nopostamble
+\generate{\file{foo.py}{\from{\jobname.dtx}{foo}}}
+\endgroup
+\documentclass{l3doc}
+\begin{document}
+  \DocInput{\jobname.dtx}
+\end{document}
+% \fi
+%
+%<foo>test code
+% EOF
+%TEST-CODE
+%</test-guard-5.dtx>
+% \end{texcode}
+%
+% しかし，このcodeから\verb|foo.py|を生成すると次のようになる：
+% \begin{texcode}
+%<*foo.py>
+\begingroup
+\input docstrip
+\nopreamble\nopostamble
+\generate{\file{foo.py}{\from{\jobname.dtx}{foo}}}
+\endgroup
+\documentclass{l3doc}
+\begin{document}
+  \DocInput{\jobname.dtx}
+\end{document}
+test code
+%</foo.py>
+% \end{texcode}
+%
+% このことから\verb|dtx|ファイルから他ファイルを生成する場合，
+% driver codeは何かしらのguardで囲む必要があることがわかる．
+% ^^A ]]] End of paragraph `driver guardの必要性'.
+%
+% ^^A ]]] End of subsubsection `The role of guard'.
+%
+% ^^A ]]] End of subsection `Basic code of .dtx file'.
+%
+% \subsection{Basic code of \texttt{.ins} file}[updated=2022-01-09T16:00:26]^^A [[[
+%
+% ^^A Basic code [[[
+% \begin{multicols}{2}
+% \begin{texcode}
+%<*basic-code-of-ins-file.dtx>
+\input docstrip
+\askforoverwritefalse
+\keepsilent
+\nopreamble
+\nopostamble
+\generate{
+  \file{foo.tex}{\from{bar.dtx}{foo}}
+}
+\endbatchfile
+%</basic-code-of-ins-file.dtx>
+% \end{texcode}
+%
+% \begin{myitemize}
+% \1 Basic codeの参考文献
+%   \2 \href{https://github.com/latex3/latex3/blob/main/l3kernel/l3.ins}{l3.ins}
+%   \concealablemarginalnote{OK (2021-03-06T00:01:21)}
+%   \2 \href{https://github.com/latex3/latex2e/blob/main/base/classes.ins}{classes.ins}
+%   \concealablemarginalnote{OK (2021-03-05T23:59:39)}
+%   \2 『\LaTeXe 美文書作成入門』\<\mycite[page=295]{latex2e-bibunshosakusei}
+%   \concealablemarginalnote{OK (2021-03-06T00:01:34)}
+%     \3 \texinline{\generateFile}を使用しているが，このコマンドは古い
+%     \texdoc[section=4.2.1 Supporting old interface]{docstrip}．
+%     \concealablemarginalnote{OK (2021-03-07T19:31:55)}
+% \end{myitemize}
+% \end{multicols}^^A ]]]
+%
+% \subsubsection{The role of \texcommand{input docstrip}}[updated=2022-01-09T15:06:06]^^A [[[
+% \begin{myitemize}
+% \1 All DocStrip batch files should start with the line: \verb|\input docstrip|
+% \texdoc[section=4.2 Batchfile commands]{docstrip}
+% \1 恐らく，\verb|docstrip|ファイル内に\texinline{\askforoverwritefalse}などが定義させていると思われる
+% \end{myitemize}
+% ^^A ]]] End of subsubsection `The role of \input docstrip'.
+%
+% \subsubsection{The role of \texcommand{askforoverwritefalse}}[updated=2022-01-09T15:50:27]^^A [[[
+% \begin{myitemize}
+% \1 生成したいファイル名のファイルが既に存在する場合，次のように上書きを許可するか確認される：
+% \verb|) File ./foo.py already exists on the system.|\\
+% \verb|Overwrite it? [y/n]|
+% この確認をいちいち要求されないようにするために，\texinline{\askforoverwritefalse}を記述する
+% \1 \texinline{\askforoverwritefalse}
+%   \2 These macros specify what should happen if a file that is to be generated already exists.
+%   If \texinline{\askforoverwritetrue} is active (the default) the user is asked
+%   whether the file should be overwritten.
+%   If however \texinline{\askforoverwritefalse} was issued existing files will be overwritten silently.
+%   These switches are local and can be issued in any place in the file
+%   even inside \texinline{\generate} clause (between \texinline{\files} however)
+%   \texdoc[section=4.2 Batchfile conmmands,keyword=\texcommand{askforoverwritetrue}]{docstrip}.
+% \end{myitemize}
+% ^^A ]]] End of subsubsection `The role of \askforoverwritefalse'.
+%
+% \subsubsection{The role of \texcommand{keepsilent}}[updated=2022-01-09T15:56:30]^^A [[[
+% \begin{myitemize}
+% \1 When the option \verb|stats| is included in \verb|DocStrip| it can write message
+% to the terminal as each line of the input file(s) is processed.
+% The feature can be toggled with the commands
+% \texinline{\showprogress} and \texinline{\keepsilent}
+% \texdoc[section=4.2 Batchfile commands, keyword=\texcommand{keepsilent}]{docstrip}.
+% \end{myitemize}
+% ^^A ]]] End of subsubsection `The role of \keepsilent'.
+%
+% \subsubsection{The role of \texcommand{nopreamble}，\texcommand{nopostamble}}[updated=2022-01-09T15:57:47]^^A [[[
+% \begin{myitemize}
+% \1 上記の\verb|test-guard-5.dtx|において，\texinline{\nopreamble\nopostamble}を削除して
+% \bashinline{latexmk test-guard-5.dtx}を実行すると，
+% 生成file \verb|foo.py|内に意図しないcodeが自動挿入されていることがわかる．
+% これを無効にするために\texinline{\nopreamble}，\texinline{\nopostamble}を記述する
+% \1 \texinline{\nopreamble}, \texinline{\nopostamble}
+%   \2 If no preamble should be used you can deploy the \texinline{\nopreamble} command.
+%   This command is equivalent to saying \texinline{\usepreamble\empty}.
+%   The same mechanism works for postambles, \texinline{\use...} declarations are local
+%   and can appear inside \texinline{\generate}
+%   \texdoc[section=4.2 Batchfile commands, keyword=\texcommand{nopreamble}]{docstrip}.
+% \end{myitemize}
+% ^^A ]]] End of subsubsection `The role of \nopreamble，\nopostamble'.
+%
+% \subsubsection{The role of \texcommand{generate\{...\}}}[updated=2021-03-06T08:17:23]^^A [[[
+% \begin{quote}
+%   |\generate{|[|\file{|\meta{ouptut}|}{|[|\from{|\meta{input}|}{|\meta{optionlist}|}|]*|}|]*|}|
+% \end{quote}
+% The \meta{output} and \meta{input} are normal file specifications
+% as are appropriate for your computer system.
+% The \meta{optionlist} is a comma separated list of `options'
+% that specify which optional code fragments in \meta{input}
+% should be included in \meta{output} \texdoc[section=4.2 Batchfile commands]{docstrip}.
+% ^^A ]]] End of subsubsection `The role of \generate{...}'.
+%
+% \subsubsection{The role of \texcommand{endbatchfile}}[updated=2021-03-06T11:05:11]^^A [[[
+% All batch files should end with this command.
+% Any lines after this in the file are ignored.
+% In old files that start \verb|\def\batchfile{...| this command is optional, but is a good idea anyway.
+% If this command is omitted from a batchfile then normally \TeX\ will go to its interactive \verb|*| prompt,
+% so you may stop DocStrip by typing \verb|\endbatchfile| to this prompt
+% \texdoc[section=4.2 Batchfile commands, keyword=\texcommand{endbatchfile}]{docstrip}.
+% ^^A ]]] End of subsubsection `The role of \endbatchfile'.
+%
+% ^^A ]]] End of subsection `Basic code of ins file'.
+%
+% \subsection{\texttt{.dtx} file内に\texttt{.ins} codeを記述}[updated=2021-03-06T12:30:31]^^A [[[
+%
+% ^^A Code [[[
+% \begin{multicols}{2}
+% \begin{texcode}
+%<*ins-code-in-dtx-file.dtx>
+%<<TEST-CODE
+% \iffalse
+%<*driver>
+\begingroup
+\input docstrip
+\askforoverwritefalse
+\generate{
+  \file{sample.py}{\from{\jobname.dtx}{foo}}
+}
+\endgroup
+\documentclass{l3doc}
+\begin{document}
+  \DocInput{\jobname.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \title{Sample code}
+% \maketitle
+% ...
+%
+%TEST-CODE
+%</ins-code-in-dtx-file.dtx>
+% \end{texcode}
+%
+% \begin{myitemize}
+% \1 Codeの参考文献
+%   \2 \href{https://github.com/latex3/latex3/blob/main/l3kernel/l3doc.dtx}{l3doc.dtx}^^A OK (2021-03-06T12:03:09)
+% \end{myitemize}
+% \end{multicols}^^A ]]]
+%
+% \subsubsection{\texcommand{begingroup}, \texcommand{endgroup}の必要性}[updated=2021-03-06T12:30:21]^^A [[[
+%
+% \paragraph{\texcommand{begingroup}, \texcommand{endgroup}の削除}[updated=2021-03-06T12:15:00]^^A [[[
+% 上記の\verb|ins-code-in-dtx-file.dtx|において，\texinline{\begingroup}と\texinline{\nopostamble}を削除して
+% \bashinline{latexmk ins-code-in-dtx-file.dtx}を実行するとエラーとなる．
+% このときのerror messageを次に示す：
+% \begin{myerrormessage}
+% \verb|! Paragraph ended before \@firstoftwo was complete.|
+% \end{myerrormessage}
+%
+% なお，\verb|sample.py|は問題なく生成される．
+% ^^A ]]] End of paragraph `\begingroup, \endgroupの削除'.
+%
+% \paragraph{\texcommand{endbatchfile}での対処}[updated=2021-03-06T12:22:05]^^A [[[
+% 次のcodeで\bashinline{latexmk test-group-1.dtx}を実行するとエラーとなる．
+%
+% \begin{multicols}{2}
+% \begin{texcode}
+%<*test-group-1.dtx>
+%<<TEST-CODE
+% \iffalse
+%<*driver>
+\input docstrip
+\askforoverwritefalse
+\generate{
+  \file{sample.py}{\from{\jobname.dtx}{foo}}
+}
+\endbatchfile
+\documentclass{l3doc}
+\begin{document}
+  \DocInput{\jobname.dtx}
+\end{document}
+%</driver>
+% \fi
+% EOF
+%TEST-CODE
+%</test-group-1.dtx>
+% \end{texcode}
+%
+% \begin{myerrormessage}
+% \ttfamily
+% Failure to make 'test-group-1.pdf'\\
+% Latexmk: Errors, so I did not complete making targets\\
+% Collected error summary (may duplicate other messages):\\
+% lualatex: failed to create output file\\
+% Latexmk: Use the -f option to force complete processing,\\
+% unless error was exceeding maximum runs, or warnings treated as errors.\\
+% \end{myerrormessage}
+% \end{multicols}
+% ^^A ]]] End of paragraph `\endbatchfileでの対処'.
+%
+% \paragraph{The role of \texcommand{begingroup}, \texcommand{endgroup}}[updated=2021-03-06T12:30:04]^^A [[[
+% \begin{myitemize}
+% \1 \texinline{\begingroup}，\texinline{\endgroup}の説明
+%   \2 「その部分の内部にしか，書体変更などの変更の影響は及ばない」ような部分を
+%   「グループ」といいます\mycite[page=122]{dokushu-latex2e}．
+% \1 \texinline{\begingroup}, \texinline{\endgroup}
+%   \2 TeX therefore opens a group and then inputs the program DocStrip.
+%   This is done in a group so the DocStrip stuff doesn't affect what comes later
+%   \urlref{https://tex.stackexchange.com/questions/212776/what-exactly-happens-when-latex-runs-on-a-dtx-file#:~:text=TeX therefore opens}{What exactly happens when LaTeX runs on a dtx file?}.
+% \end{myitemize}
+% ^^A ]]] End of paragraph `The role of \begingroup, \endgroup'.
+%
+% ^^A ]]] End of subsubsection `\begingroup, \endgroupの必要性'.
+%
+% ^^A ]]] End of subsection `dtx file内にins codeを記述'.
+%
+% ^^A ]]] End of section `Notes'.
+%
+% \section{Implementation}[updated=2021-03-07T18:44:04]^^A [[[
+% 上記の\verb|ins-code-in-dtx-file.dtx|を元に\verb|mydocstrip.tex|を作成する．
+%
+% \subsection{Loading package}[updated=2021-03-07T14:39:13]^^A [[[
+% \begin{myitemize}
+% \1 \texinline{\usepackage{xparse}}だとエラーとなる
+%   \2 \texinline{! LaTeX Error: \usepackage before \documentclass.}とエラーメッセージが出る
+% \1 \verb|xparse| packageは内部で\verb|expl3| packageを読み込んでいる
+%   \2 \href{run:/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty}{\ttfamily xparse.sty}
+% \end{myitemize}
+%
+% \begin{texcode}
+%<mydocstrip.tex>\RequirePackage{xparse}
+% \end{texcode}
+% ^^A ]]] End of subsection `Loading package'.
+%
+% \subsection{Defining \texcommand{mygenerate}}[updated=2021-03-07T18:43:51]^^A [[[
+% \begin{myitemize}
+% \1 \verb|l3docstrip|
+%   \2 The \textsf{l3docstrip} module adds \LaTeX3 extensions to the \textsf{DocStrip} program
+%   for extracting code from \verb|.dtx|
+%   \texdoc[section=1 Extending \textsf{DocStrip}]{l3docstrip}.
+%   \concealablemarginalnote{OK (2021-03-07T14:54:02)}
+% \1 \texinline{\clist_map_inline}について
+%   \2 Applies \meta{inline function} to every \meta{item} stored within the \meta{comma list}.
+%   The \meta{inline function} should consist of code which receives the \meta{item} as \texinline{#1}.
+%   The \meta{items} are returned from left to right
+%   \texdoc[section=5 Mapping to comma lists, keyword=\texinline{\clist_map_inline}]{interface3}.
+%   \concealablemarginalnote{OK (2021-03-07T14:55:49)}
+% \1 \texinline{\clist_map_inline}の第2引数について
+%   \2 \texinline{#1}は\texinline{\mygenerateinternal}の第1引数を受け取る
+%   \2 \texinline{##1}は\texinline{\clist_map_inline}の第1引数のコンマで区切られた1つ1つを受け取る
+% \1 comma separated listのsample code
+% \urlref{https://tex.stackexchange.com/questions/159118/how-to-iterate-over-a-comma-separated-list}{How to iterate over a comma separated list?}
+% \end{myitemize}
+%
+% \subsubsection{Trial 1}[updated=2021-03-07T16:20:06]^^A [[[
+% \begin{multicols}{2}
+% \begin{texcode}
+%<*trial-mydocstrip-1.tex>
+\NewDocumentCommand \mygenerate { o m } {
+  \begingroup
+  \input l3docstrip
+  \askforoverwritefalse
+  \keepsilent
+  \nopreamble
+  \nopostamble
+  \generate{
+    \clist_map_inline:nn {#2} {
+      \IfValueTF{#1}{
+        \file{#1/##1}{\from{\jobname.dtx}{##1}}
+      }{
+        \file{output-files/##1}{\from{\jobname.dtx}{##1}}
+      }
+    }
+  }
+  \endgroup
+}
+%</trial-mydocstrip-1.tex>
+% \end{texcode}
+%
+% \begin{myerrormessage}
+% \verb|! Undefined control sequence.|
+%
+% \verb|<argument> \clist|
+%
+% \verb|        _map_inline:nn { } { ... }|
+% \end{myerrormessage}
+% \end{multicols}
+% ^^A ]]] End of subsubsection `Trial 1'.
+%
+% \subsubsection{Trial 2}[updated=2021-03-07T16:42:19]^^A [[[
+% \begin{multicols}{2}
+% \begin{texcode}
+%<*trial-mydocstrip-2.tex>
+\NewDocumentCommand \mygenerate { o m } {
+  \begingroup
+  \input l3docstrip
+  \askforoverwritefalse
+  \keepsilent
+  \nopreamble
+  \nopostamble
+  \generate{
+    \ExplSyntaxOn
+    \clist_map_inline:nn {#2} {
+      \IfValueTF{#1}{
+        \file{#1/##1}{\from{\jobname.dtx}{##1}}
+      }{
+        \file{output-files/##1}{\from{\jobname.dtx}{##1}}
+      }
+    }
+    \ExplSyntaxOff
+  }
+  \endgroup
+}
+%</trial-mydocstrip-2.tex>
+% \end{texcode}
+%
+% \begin{myerrormessage}
+% \verb|! Undefined control sequence.|
+%
+% \verb|<argument> \ExplSyntaxOn \clist|
+%
+% \verb|        _map_inline:nn { } { ... }|
+% \end{myerrormessage}
+% \end{multicols}
+% ^^A ]]] End of subsubsection `Trial 2'.
+%
+% \subsubsection{Trial 3}[updated=2021-03-07T16:46:20]^^A [[[
+% \begin{multicols}{2}
+% \begin{texcode}
+%<*trial-mydocstrip-3.tex>
+\NewDocumentCommand \mygenerate { o m } {
+  \begingroup
+  \input l3docstrip
+  \askforoverwritefalse
+  \keepsilent
+  \nopreamble
+  \nopostamble
+  \ExplSyntaxOn
+  \generate{
+    \clist_map_inline:nn {#2} {
+      \IfValueTF{#1}{
+        \file{#1/##1}{\from{\jobname.dtx}{##1}}
+      }{
+        \file{output-files/##1}{\from{\jobname.dtx}{##1}}
+      }
+    }
+  }
+  \ExplSyntaxOff
+  \endgroup
+}
+%</trial-mydocstrip-3.tex>
+% \end{texcode}
+%
+% \begin{myerrormessage}
+% \verb|! Undefined control sequence.|
+%
+% \verb|<argument> \clist|
+%
+% \verb|        _map_inline:nn { } { ... }|
+% \end{myerrormessage}
+% \end{multicols}
+% ^^A ]]] End of subsubsection `Trial 3'.
+%
+% \subsubsection{Trial 4}[updated=2021-03-07T16:22:56]^^A [[[
+% \begin{multicols}{2}
+% \begin{texcode}
+%<*trial-mydocstrip-4.tex>
+\ExplSyntaxOn
+\NewDocumentCommand \mygenerate { o m } {
+  \begingroup
+  \input l3docstrip
+  \askforoverwritefalse
+  \keepsilent
+  \nopreamble
+  \nopostamble
+  \generate{
+    \clist_map_inline:nn {#2} {
+      \IfValueTF{#1}{
+        \file{#1/##1}{\from{\jobname.dtx}{##1}}
+      }{
+        \file{output-files/##1}{\from{\jobname.dtx}{##1}}
+      }
+    }
+  }
+  \endgroup
+}
+\ExplSyntaxOff
+%</trial-mydocstrip-4.tex>
+% \end{texcode}
+%
+% \begin{myerrormessage}
+% \verb|! Undefined control sequence.|
+%
+% \verb|\mygenerate code ...docstrip\askforoverwritefalse|
+%
+% \verb|                \keepsilent \nopreamble ...|
+% \end{myerrormessage}
+% \end{multicols}
+% ^^A ]]] End of subsubsection `Trial 4'.
+%
+% \subsubsection{Trial 5}[updated=2021-03-07T16:26:57]^^A [[[
+% The \texinline{\ExplSyntaxOn} function switches to a category code régime
+% in which spaces are ignored and in which the colon (\texinline{:}) and
+% underscore (\texinline{_}) are treated as \doublequotes{letters},
+% thus allowing access to the names of code functions and variables.
+% Within this environment, \texinline{~} is used to input a space.
+% The \texinline{\ExplSyntaxOff} reverts to the document category code régime
+% \texdoc[section=1 Using the \LaTeX3 modules, keyword=\texinline{\ExplSyntaxOn}]{interface3}.
+%
+% \begin{multicols}{2}
+% \begin{texcode}
+%<*trial-mydocstrip-5.tex>
+\ExplSyntaxOn
+\NewDocumentCommand \mygenerate { o m } {
+  \begingroup
+  \input~l3docstrip
+  \askforoverwritefalse
+  \keepsilent
+  \nopreamble
+  \nopostamble
+  \generate{
+    \clist_map_inline:nn {#2} {
+      \IfValueTF{#1}{
+        \file{#1/##1}{\from{\jobname.dtx}{##1}}
+      }{
+        \file{output-files/##1}{\from{\jobname.dtx}{##1}}
+      }
+    }
+  }
+  \endgroup
+}
+\ExplSyntaxOff
+%</trial-mydocstrip-5.tex>
+% \end{texcode}
+%
+% \begin{myerrormessage}
+% \verb|! Undefined control sequence.|
+%
+% \verb|\mygenerate code ...docstrip\askforoverwritefalse|
+%
+% \verb|                \keepsilent \nopreamble ...|
+% \end{myerrormessage}
+% \end{multicols}
+% ^^A ]]] End of subsubsection `Trial 5'.
+%
+% \subsubsection{Version 1}[updated=2021-03-07T16:30:05]^^A [[[
+% \begin{texcode}
+%<*mydocstrip-version-1.tex>
+\ExplSyntaxOn
+\NewDocumentCommand \mygenerate { o m } {
+  \begingroup
+  \input{l3docstrip}
+  \askforoverwritefalse
+  \keepsilent
+  \nopreamble
+  \nopostamble
+  \generate{
+    \clist_map_inline:nn {#2} {
+      \IfValueTF{#1}{
+        \file{#1/##1}{\from{\jobname.dtx}{##1}}
+      }{
+        \file{output-files/##1}{\from{\jobname.dtx}{##1}}
+      }
+    }
+  }
+  \endgroup
+}
+\ExplSyntaxOff
+%</mydocstrip-version-1.tex>
+% \end{texcode}
+% ^^A ]]] End of subsubsection `Version 1'.
+%
+% \subsubsection{Version 2}[updated=2021-03-07T18:43:41]^^A [[[
+% \begin{myitemize}
+% \1 \texinline{\BaseDirectory}などの記述を追記することで任意のdirectoryにファイル生成できる
+% \urlref{https://tex.stackexchange.com/questions/48685/having-docstrip-place-files-in-different-folders/48690}{Having docstrip place files in different folders}．
+%   \2 ただし，\verb|/usr/share/texlive/texmf-dist/web2c/texmf.cnf|の記述を
+%   \verb|openout_any = a|に変更する必要がある
+% \1 \texinline{\BaseDirectory}
+%   \2 \textsf{DocStrip} will write only to current directory unless your config has a call to this macro.
+%   (This means DocStrip won’t write to random directories unless you tell it to, which is nice.)
+%   \texdoc[section=3.1 Selecting output directories, keyword=\texinline{\BaseDirectory}]{docstrip}
+% \1 \texinline{\DeclareDir}
+%   \2 Having specified the base directory you should tell \textsf{DocStrip}
+%   how to interpret labels used in \texinline{\usedir} commands.
+%   This is done with \texinline{\DeclareDir} with two arguments.
+%   The first is the label and the second is actual name of directory relative to base directory
+%   \texdoc[section=3.1 Selecting output directories, keyword=\texinline{\DeclareDir}]{docstrip}.
+% \1 \texinline{\usedir}
+%   \2 Using this macro package author can tell where a file should be installed.
+%   All \texinline{\file}s generated in the scope of that declaration are written
+%   to a directory specified by its one argument
+%   \texdoc[section=3.1 Selecting output directories, keyword=\texinline{\usedir}]{docstrip}.
+% \1 The origin of \doublequotes{output directory}
+%   \2 \texdoc[section=3.1 Selecting output directories]{docstrip}
+% \end{myitemize}
+%
+% \begin{texcode}
+%<*mydocstrip.tex>
+\ExplSyntaxOn
+\NewDocumentCommand \mygenerate { o m } {
+  \begingroup
+  \input{l3docstrip}
+  \askforoverwritefalse
+  \keepsilent
+  \nopreamble
+  \nopostamble
+  \IfNoValueTF{#1}{
+    \BaseDirectory{./output-files}
+  }{
+    \BaseDirectory{./#1}
+  }
+  \DeclareDir{output-directory}{.}
+  \usedir{output-directory}
+  \generate{
+    \clist_map_inline:nn {#2} {
+      \file{##1}{\from{\jobname.dtx}{##1}}
+    }
+  }
+  \endgroup
+}
+\ExplSyntaxOff
+%</mydocstrip.tex>
+% \end{texcode}
+% ^^A ]]] End of subsubsection `Version 2'.
+%
+% ^^A ]]] End of subsection `Defining \mygenerate'.
+%
+% \subsection{Defining \texcommand{mydriver}}[updated=2021-03-20T08:24:12]^^A [[[
+% \begin{myitemize}
+% \1 The origin of \doublequotes{driver}
+%   \2 \texdoc[section=3.1 Prologue, keyword=\texinline{\EnableCrossrefs}]{dtxtut}
+%   \concealablemarginalnote{OK (2021-03-07T09:48:45)}
+%   \2 \texdoc[section=2.1 The driver file]{doc}
+%   \concealablemarginalnote{OK (2021-03-07T09:51:25)}
+%   \2 \urlref{https://www.tug.org/TUGboat/tb29-2/tb92pakin.pdf}{tb92pakin.pdf}
+%   \concealablemarginalnote{OK (2021-03-07T09:56:28)}
+% \1 \texinline{d()}
+%   \2 \href{https://qiita.com/zr_tex8r/items/50168ad7087516c3e139#%E5%BC%95%E6%95%B0%E4%BB%95%E6%A7%98%E6%96%87%E5%AD%97%E3%81%AE%E4%B8%80%E8%A6%A7}{引数仕様文字の一覧}
+% \end{myitemize}
+%
+% \begin{texcode}
+%<*mydocstrip.tex>
+\NewDocumentCommand \mydriver { o d() }
+  {
+    \IfNoValueTF { #1 }
+      { \documentclass{mydtxfile} }
+      { \documentclass[#1]{mydtxfile} }
+    \IfValueT{#2}{\usepackage{#2}}
+    \begin{document}
+    \DocInput{\jobname.dtx}
+    \end{document}
+  }
+%</mydocstrip.tex>
+% \end{texcode}
+% ^^A ]]] End of subsection `Defining \mydriver'.
+%
+% \subsection{Defining \texcommand{myrenamefile}}[updated=2022-01-10T00:09:01]^^A [[[
+% \begin{myitemize}
+% \1 \luainline{os.rename()}
+%   \2 Renames file or directory named \verb|oldname| to \verb|newname|.
+%   If this function fails, it returns \verb|nil|, plus a string describing the error.
+%   \urlref{https://www.lua.org/manual/5.1/manual.html#5.8#:~:text=os.rename%20(oldname,%20newname)}{os.rename (oldname, newname)}
+% \end{myitemize}
+%
+% \begin{texcode}
+%<*mydocstrip.tex>
+\NewDocumentCommand \myrenamefile { o v v }
+  {
+    \IfNoValueTF{#1}
+      { \directlua{os.rename('output-files/#2', 'output-files/#3')} }
+      { \directlua{os.rename('#1/#2', '#1/#3')} }
+  }
+%</mydocstrip.tex>
+% \end{texcode}
+% ^^A ]]] End of subsection `Defining \myrenamefile'.
+%
+% \subsection{Defining \texcommand{myendbatchfile}}[updated=2021-03-07T10:17:34]^^A [[[
+% \begin{myitemize}
+% \1 \verb|pdf|は作成しなくてもよい場合，単に\texinline{\mygenerate}をcomment outしただけではエラーになる．
+% そのため，\texinline{\myendbatchfile}を定義する．
+% \1 \texinline{\input l3docstrip}がないと\verb|! Undefined control sequence.|
+% \verb|\myendbatchfile code ->\endbatchfile|
+% \concealablemarginalnote{OK (2021-03-07T10:16:58)}
+% \end{myitemize}
+%
+% \begin{texcode}
+%<*mydocstrip.tex>
+\NewDocumentCommand \myendbatchfile { } {%
+  \input l3docstrip
+  \endbatchfile
+}
+%</mydocstrip.tex>
+% \end{texcode}
+% ^^A ]]] End of subsection `Defining \myendbatchfile'.
+%
+% ^^A ]]] End of section `Implementation'.
+%
+% ^^A ]]] End of part `mydocstrip.tex'.
+%
+% \endinput
+%
+% \part{\myverb{docstrip.py}}^^A [[[
+%
+% \verb|OK (datetime)|にはEPE8の規則にも合致しているかを確認すること．
+%
+% \section{Usage}^^A [[[
+% パッケージを使えるようにするため
+%
+% 実行方法：
+% \begin{bashcode}
+% bash installing-extra-packages.sh
+% \end{bashcode}
+%
+% \subsection{docstrip.pyを利用する際の注意点}^^A [[[
+% \begin{myitemize}
+% \1 guard名と生成ファイル名を一致させて\verb|.dtx|ファイルを書くこと．
+% \1 \verb|.|（ドット）始まりのファイルなどは\verb|***.tmp|で生成して，後でrenameする．
+%   \2 そもそも\verb|.|（ドット）始まりでオプション（\verb|%<.latexmk>foo|）を書くと上手くいかない．
+% \1
+% \end{myitemize}
+% ^^A ]]] End of subsection `Introduction'.
+%
+% ^^A ]]] End of section `Usage'.
+%
+% \section{Implementation}^^A [[[
+%
+% \subsection{Importing modules}[updated=]^^A [[[
+% \begin{pythoncode}
+%<*docstrip.py>
+import sys
+%</docstrip.py>
+% \end{pythoncode}
+% ^^A ]]] End of subsection `Importing modules'.
+%
+% \subsection{Checking arguments}^^A [[[
+% タイトルは\mycite[page=71]{introducing-python}より．
+%
+% 引数の受け取り方\mycite[page=110]{introducing-python}
+%
+% \verb|sys.exit()|は\href{https://docs.python.org/3/library/sys.html#sys.exit}{ここ}より．
+%
+% \begin{pythoncode}
+%<*docstrip.py>
+if len(sys.argv) == 1:
+    print('no filename')
+    sys.exit()
+elif len(sys.argv) == 2:
+    print('no ouptut filename')
+    sys.exit()
+%</docstrip.py>
+% \end{pythoncode}
+% ^^A ]]] End of subsection `Checking arguments'.
+%
+% \subsection{Defining variables}^^A [[[
+% タイトルは\mycite[page=17]{introducing-python}より．
+%
+% \verb|ins_filename|の由来は\mycite[page=343]{introducing-python}．
+%
+% \verb|output|の由来は\bashinline{texdoc docstrip}の\verb|\generate|より．
+%
+% create multiline strings \mycite[page=28]{introducing-python}
+%
+% \begin{pythoncode}
+%<*docstrip.py>
+ins_filename = sys.argv[1] + '.ins'
+dtx_filename = sys.argv[1] + '.dtx'
+num_output_file = len(sys.argv) - 2
+%
+ins_file_code =   '\\input docstrip\n'
+ins_file_code +=  '\\askforoverwritefalse\n'
+ins_file_code +=  '\\nopreamble\n'
+ins_file_code +=  '\\nopostamble\n'
+ins_file_code +=  '\\generate{'
+%
+for i in range(num_output_file):
+    guard_name = sys.argv[i+2]
+    if guard_name[0] == '.':
+        output_filename = guard_name[1:]
+    else:
+        output_filename = guard_name
+    ins_file_code += '\t\\file{{{}}}{{\\from{{{}}}{{{}}}}}'.format(output_filename, dtx_filename, guard_name)
+%
+ins_file_code +=  '}'
+ins_file_code +=  '\\endbatchfile'
+%</docstrip.py>
+% \end{pythoncode}
+% ^^A ]]] End of subsection `Defining variables'.
+%
+% \subsection{Write the Content of \texttt{.ins} file}^^A [[[ OK (2020-01-05T19:37:18)
+% タイトルは以下より：
+% \begin{myitemize}
+% \1 \doublequotes{When you're about to write some Python code, ...}\mycite[page=114]{introducing-python}
+% \1 \doublequotes{Make bottle return the contents of this file ...}\mycite[page=226]{introducing-python}
+% \1 \doublequotes{The .vim files are normally loaded with an autocommand.} (cf. \verb|: h syn-files|)
+% \end{myitemize}
+%
+% \verb|format|で\verb|{}|を残す方法は
+% \href{https://www.pythonmembers.club/2018/05/09/handling-curly-braces-in-string-formatting-python/}{ここ}を参考にした．
+%
+% \verb|option|の由来は\bashinline{texdoc docstrip}の\verb|\generate|より．
+%
+% \verb|\file|コマンドの第1引数が\verb|.|（ドット）始まりだとエラーになるため，
+% 変数\verb|output_filename|に割り当てる際，場合分けが必要．
+%
+% \begin{pythoncode}
+%<*docstrip.py>
+with open(ins_filename, 'w') as fout:
+    print(ins_file_code, file=fout)
+%</docstrip.py>
+% \end{pythoncode}
+% ^^A ]]] End of subsection `Write the Content of .ins file'.
+%
+% ^^A ]]] End of section `Implementation'.
+%
+% ^^A ]]] End of part `docstrip.py'.
+%
+% ^^A End of file `misc.dtx'.

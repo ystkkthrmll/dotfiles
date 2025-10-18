@@ -1,10 +1,4 @@
 
-chatgpt:
-  type: Web
-  title: ChatGPT
-  url: https://chatgpt.com/
-  updated: 2025-08-30T14:12:32
-
 elements-of-information-theory:
   type: Book
   title: Elements of information theory
@@ -33,17 +27,16 @@ iso-80000-2:
     - https://cdn.standards.iteh.ai/samples/64973/329519100abd447ea0d49747258d1094/ISO-80000-2-2019.pdf
   updated: 2025-08-23T09:23:10
 
-pattern-recognition-and-machine-learning:
+principles-of-mathematical-analysis:
   type: Book
-  title: Pattern Recognition and Machine Learning
-  author: Christopher M. Bishop
-  updated: 2025-06-28T21:06:03
-
-wikipedia:
-  type: Web
-  title: Wikipedia
-  url: https://en.wikipedia.org/wiki/Main_Page
-  updated: 2025-06-28T21:19:54
+  title: Principle of Mathematical Analysis
+  author: Walter Rudin
+  # edition: 3
+  misc:
+    - |
+      link("https://en.wikipedia.org/wiki/Walter_Rudin")[Wikipedia] によると，
+      この本は世界規模で数学教育に影響を与えているらしい．
+  updated: 2025-10-18T23:22:10
 
 解析入門I:
   type: Book

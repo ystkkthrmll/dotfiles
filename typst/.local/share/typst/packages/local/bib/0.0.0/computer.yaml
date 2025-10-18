@@ -1,0 +1,123 @@
+
+chatgpt:
+  type: Web
+  title: ChatGPT
+  url: https://chatgpt.com/
+  updated: 2025-08-30T14:12:32
+
+deep-learning:
+  type: Book
+  title: Deep Learning
+  author:
+    - Ian Goodfellow
+    - Yoshua Bengio
+    - Aaron Courville
+  publisher: ""
+  # issued: ""
+  misc:
+    - 深層学習の世界的名著 (https://www.kinokuniya.co.jp/f/dsg-01-9784048930628)
+    - website 版が公開されている
+  url: https://www.deeplearningbook.org/
+  updated: 2025-10-18T23:03:54
+
+deep-learning-e-shikaku-workbook:
+  type: Book
+  title: 深層学習教科書 ディープラーニング E資格（エンジニア）精選問題集
+  author:
+    - 小林 範久
+    - 小林 寛幸
+  publisher: 翔泳社
+  date: 2024
+  updated: 2025-10-18T23:05:21
+
+deep-learning-from-scratch:
+  type: Book
+  title: ゼロから作るDeep Learning --- Pythonで学ぶディープラーニングの理論と実装
+  author:
+    - 斎藤 康毅
+  publisher: O'Reilly
+  date: 2016
+  misc:
+    - 東京工業大学工学部卒業
+    - 'The origin of "deep-learning-from-scratch": https://github.com/oreilly-japan/deep-learning-from-scratch'
+  updated: 2025-10-18T23:06:15
+
+deep-learning-from-scratch-2:
+  type: Book
+  title: ゼロから作るDeep Learning 2 --- 自然言語処理編
+  author:
+    - 斎藤 康毅
+  publisher: O'Reilly
+  date: 2023
+  misc:
+    - 東京工業大学工学部卒業
+  updated: 2025-10-18T23:06:47
+
+deep-learning-from-scratch-4:
+  type: Book
+  title: ゼロから作るDeep Learning 4 --- 強化学習編
+  author:
+    - 斎藤 康毅
+  publisher: O'Reilly
+  date: 2022
+  misc:
+    - 東京工業大学工学部卒業
+  updated: 2025-10-18T23:07:35
+
+e-words:
+  type: Web
+  title: IT用語辞典 e-Words
+  url: https://e-words.jp/
+  updated: 2025-10-18T22:56:38
+
+goo国語辞書:
+  type: Web
+  title: goo国語辞書
+  url: https://dictionary.goo.ne.jp/jn/
+  updated: 2025-10-18T22:56:57
+
+hands-on-machine-learning-with-scikit-learn-and-tensorflow:
+  type: Book
+  title: Hands-On Machine Learning with Scikit-Learn & TensorFlow
+  author:
+    - Aurélien Géron
+  publisher: O'Reilly
+  date: 2017
+  updated: 2025-10-18T23:08:34
+
+pattern-recognition-and-machine-learning:
+  type: Book
+  title: Pattern Recognition and Machine Learning
+  author: Christopher M. Bishop
+  publisher: Springer
+  date: 2006
+  updated: 2025-06-28T21:06:03
+
+reinforcement-learning:
+  type: Book
+  title: Reinforcement Learning
+  author:
+    - Richard S. Sutton
+    - Andrew G. Barto
+  publisher: The MIT Press
+  date: 2018
+  misc:
+    - E資格講師曰く，強化学習のバイブルらしい
+  updated: 2025-10-18T22:50:48
+
+the-art-of-readable-code:
+  type: Book
+  title: The Art of Readable Code
+  author:
+    - Dustin Boswell
+    - Trevor Foucher
+  publisher: O'Reilly
+  date: 2012
+  updated: 2025-10-18T22:51:38
+
+wikipedia:
+  type: Web
+  title: Wikipedia
+  url: https://en.wikipedia.org/wiki/Main_Page
+  updated: 2025-06-28T21:19:54
+
