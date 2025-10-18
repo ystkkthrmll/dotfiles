@@ -1,0 +1,25 @@
+
+citeproc: true
+
+highlight-style: breezedark
+# highlight-style: espresso
+# highlight-style: kate
+# highlight-style: pygments
+# highlight-style: tango
+# highlight-style: zenburn
+
+number-sections: true
+
+reference-links: true
+
+resource-path:
+- ${HOME}/Dropbox/config-files/pandoc/refs
+
+standalone: true
+
+table-of-contents: true
+
+toc-depth: 3
+
+top-level-division: chapter
+

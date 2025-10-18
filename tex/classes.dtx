@@ -1,0 +1,2263 @@
+%
+% ^^A Configuring DocStrip [[[
+% \iffalse
+%<*driver>
+\input mydocstrip
+\mygenerate[texmf/tex]{
+  mydocument.cls,
+  mydtxfile.cls,
+  myslides.cls,
+  mywallpaper.cls,
+}
+\myendbatchfile
+\mydriver[
+  show-notes,
+]
+%</driver>
+% \fi
+% ^^A ]]] End of Configuring DocStrip
+%
+% \mytitle[mydocument, mydtxfile, myslides, mywallpaper Class]{%
+%   \verb|mydocument|, \verb|mydtxfile|, \verb|myslides|, \verb|mywallpaper| Class%
+% }
+%
+% \begin{abstract}^^A [[[
+% 以下のクラスファイルを作成：
+% \begin{myitemize}
+% \1 \verb|mydocument|
+%   \2 ドキュメント作成用クラス
+%   \2 Options
+%     \3 \verb|english|
+%     \3 \verb|math|
+%     \3 \verb|programming|
+%     \3 \verb|short-document|
+%       \4 章なしドキュメント（\verb|\chapter|なし）
+%     \3 \verb|show-notes|
+%     \3 \verb|two-column|
+% \1 \verb|mydtxfile|
+%   \2 \verb|dtx| file用
+%   \2 Options
+%     \3 \verb|english|
+%     \3 \verb|show-notes|
+% \1 \verb|myslides|
+%   \2 プレゼンテーションのスライド作成用クラス
+%   \2 Options
+%     \3 \verb|handout|
+%     \3 \verb|show-notes|
+% \1 \verb|mywallpaper|
+%   \2 パソコンの壁紙作成用クラス
+%   \2 Options
+%     \3 \verb|job|
+%       \4 \verb|job|指定時は仕事用のモニター用
+%       \4 \verb|job|指定が無い場合はLG Electronics 27"のサイズ
+% \end{myitemize}
+% \end{abstract}^^A ]]]
+%
+% \begin{mynote}^^A [[[
+% \begin{myitemize}
+% \1 \texdoc{l3styleguide}を読め
+% \1 \texdoc{l3color}を読め
+% \1 \texdoc[part=XXXVI]{source3}にコードの説明が書かれている
+%   \2 \texdoc{l3backend-code}でも見れるっぽい
+% \1 \href{https://blog.wtsnjp.com/2018/04/28/expl3-for-tex-users/}{TeX 言語者のための expl3 入門}
+% \1 \href{https://ctan.org/pkg/l3kernel?lang=en}{ここ}のマニュアルを確認せよ
+% \1 \texdoc{usrguide}に基本コマンド（\verb|\documentclass|や\verb|\usepackage|）の説明が記されている．
+% \1 \texdoc{usrguide}で\verb|\newcommand|など基本的なコマンドの説明が載ったドキュメントが見れる
+% \1 \href{https://ja.osdn.net/projects/luatex-ja/wiki/LuaTeX-ja%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9#h3-.E3.83.95.E3.82.A9.E3.83.B3.E3.83.88.E3.81.AE.E6.8C.87.E5.AE.9A}{フォント変更}
+% \1 \texdoc{symbols}でたくさん特殊文字が載っているものが出る
+% \1 tikzの\doublequotes{15.5 Filling a Path}の\verb|even odd rule|で$A \subset B$がベン図で描ける．
+% \1 \texdoc[section=2.1 Theorems beginning with lists]{amsthdoc}に定理に\verb|enumerate|でナンバリングする
+% 方法が書いてある．
+% \1 \verb|l3doc.cls|クラスがあるっぽい\texdoc[section=2 Documentation conventions]{l3keys}
+% \1 \verb|l3docstrip|なるプログラムがあるっぽい\texdoc{l3doc}
+% \1 \bashinline{texdoc -l dtx}
+% \1 \bashinline{texdoc -l docstrip}
+% \1 \texdoc{cprotect}でmacroの引数に\verb|\verb|が使えるようになる
+% \1 \texdoc{fancyvrb}でもmacroの引数に\verb|\verb|が使えるようになる
+% \1 \verb|\AtBeginDocument|などは，使えるかも\urlref{https://en.wikibooks.org/wiki/LaTeX/Macros#LaTeX_Hooks}{Hooks}
+% \1 
+% \end{myitemize}
+% \end{mynote}^^A ]]]
+%
+% \begin{mywarning}[title=To-do list]^^A [[[
+% \begin{myitemize}
+% \1 latex-notes-zh-cn
+% \1 \href{https://qiita.com/zr_tex8r/items/af2905bc93ac2c936a67}{徹底攻略！ LuaLaTeXでLuaコードを「書く」ためのコツ}を読め
+% \end{myitemize}
+% \end{mywarning}^^A ]]]
+%
+% \mytableofcontents
+%
+% \part{Notes}^^A [[[
+%
+% \verb|N, n, c, V, v, o, x, e, ...|の説明 \texdoc[section=1 Naming functions and variables]{interface3}
+%
+% \verb|\color_set:nn { \meta{name} } { \meta{color expression} }| \texdoc{l3color}
+%
+% \verb|\\meta{scope}_\meta{module}_\meta{description}_\meta{type}|
+%
+% A \emph{module} is a collection of closely related functions and variables.
+% Typical module names include \verb|int| for integer parameters and related functions,
+% \verb|seq| for sequences and \verb|box| for boxes
+% \texdoc[section=3.2 Formal naming syntax]{expl3}.
+%
+%
+%
+% \section{The origin of filenames}^^A [[[
+%
+% \subsection{\texttt{mydocument.cls}}^^A [[[
+% ***
+% ^^A ]]] End of subsection `mydocument.cls'.
+%
+% \subsection{\texttt{mydtxfile.cls}}[updated=2021-07-09T20:18:36]^^A [[[
+% \begin{myitemize}
+% \1 \doublequotes{\texttt{dtx} file}
+%   \2 \texdoc[section=1 Documentation of the \LaTeX{} sources]{ltxdoc}
+% \end{myitemize}
+% ^^A ]]] End of subsection `mydtxfile.cls'.
+%
+% \subsection{\texttt{myslides.cls}}[updated=2021-07-09T20:37:40]^^A [[[
+% \begin{myitemize}
+% \1 \verb|slides.cls|
+%   \2 Producing slides with \LaTeXe\texdoc{slides}
+% \1 Google Slides
+% \1 slide
+%   \2\relax [countable] one page of an electronic presentation, that may contain text and images,
+%   that is usually viewed on a computer screen or projected onto a larger screen
+%   \mycite[keyword=slide]{oxford-learners-dictionaries}
+% \end{myitemize}
+% ^^A ]]] End of subsection `myslides.cls'.
+%
+% \subsection{\texttt{mywallpaper.cls}}[updated=2021-12-20T20:55:44]^^A [[[
+% \begin{myitemize}
+% \1 コンピュータの操作画面の背景に用いる画像を壁紙（wallpaper）という。
+% 部屋の壁紙になぞらえてこのように呼ばれる。
+% \mycite[keyword=デスクトップ]{e-words}
+% \1 A wallpaper or background (also known as a desktop wallpaper, desktop background,
+% desktop picture or desktop image on computers) is a digital image (photo, drawing etc.)
+% used as a decorative background of a graphical user interface on the screen of a computer,
+% smartphone or other electronic device.
+% \mycite[keyword=Wallpaper (computing)]{wikipedia}
+% \end{myitemize}
+% ^^A ]]] End of subsection `mywallpaper.cls'.
+%
+% ^^A ]]] End of section `The origin of filenames'.
+%
+% \section{The Structure of a class}^^A [[[
+% 基本構造は\href{run:/usr/share/texlive/texmf-dist/doc/latex/base/clsguide.pdf}{clsguide.pdf}
+%（\texdoc[section=3 The structure of a class or package]{clsguide}），
+% \href{https://en.wikibooks.org/wiki/LaTeX/Creating_Packages}{ここ}を参考にした．
+%
+% \verb|cls|ファイルのコードの大まかな流れは，次の通り：
+% \begin{myitemize}[enumerate]
+% \1 クラスファイルの読み込み
+% \1 オプションの設定
+% \1 必要最低限のパッケージの読み込み
+% \1 ページレイアウトの設定
+% \end{myitemize}
+% （ちなみに，\verb|/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty|や
+% \verb|/usr/share/texlive/texmf-dist/tex/latex/physics/physics.sty|も
+% パッケージを読み込んでから，オプションを宣言している．）
+%
+% ここで，なぜページレイアウトの設定を\verb|myclass.cls|内で行うかについて述べておく．
+% 仮に，\verb|mypackage.sty|内で設定すると，
+% dtxファイルでは\verb|\documentclass{ltjltxdoc}|のあと\verb|\usepackage{mypackage}|するが，
+% \verb|\usepackage{mypackage}|でページレイアウトが変更されてしまうので困るため．
+% それ以外にも，\verb|\documentclass{beamer}|のとき，
+% \verb|\usepackage{mypackage}|するとページレイアウトが同様に変更されてしまうため．
+% つまりページレイアウトはクラスファイルに固有であるから．
+%
+% \subsection{Is it a class or a package?}^^A [[[
+% The first thing to do when you want to put some new \LaTeX{} commands
+% in a file is to decide whether it should be a \emph{document class} or a package.
+% The rule of thumb is \texdoc[section=2.3 Is it a class or a package?]{clsguide}:
+% \begin{quote}
+% If the commands could be used with any document class, then make them a package;
+% and if not, then make them a class.
+% \end{quote}
+% ^^A ]]] End of subsection `Is it a class or a package?'.
+%
+% ^^A ]]] End of section `The Structure of a Class'.
+%
+% \subsection{Command names}^^A [[[
+% コマンドの命名規則\texdoc[section=2.4 Command names]{clsguide}．
+%
+% \begin{mywarning}^^A [[[
+% ここで定義した自作のコマンド名や環境名は，よほどの事情がない限り変更してはならない．
+% なぜなら，もし変更すると，多くのファイル中のコマンド名も変えなければならないから．
+% したがって，\textcolor{red}{コマンド名やマクロ名は慎重に決めよ}．
+% ただし，定義した内容自体は，（互換性を保ちつつ）適宜改良してよい．
+% \end{mywarning}^^A ]]]
+%
+% ^^A ]]] End of subsection `Command names'.
+%
+% ^^A ]]] End of part `Notes'.
+%
+% \part{Implementation}^^A [[[
+% \iffalse
+%<@@=myclass>
+% \fi
+%
+% \section{Identification}[updated=2021-07-09T20:19:51]^^A [[[
+%
+% \begin{concealableitemize}^^A [[[
+% \1 The origin of \doublequotes{Identification}
+%   \2 \texdoc[section=3.1 Identification]{clsguide}
+% \end{concealableitemize}^^A ]]]
+%
+% \begin{myitemize}
+% \1 \verb|\ProvidesExplClass| acts broadly in the same way
+% as the corresponding \LaTeXe{} kernel function \verb|\ProvidesClass|.
+% However, it also implicitly switches \verb|\ExplSyntaxOn| for the remainder of the code with the file.
+% At the end of the file, \verb|\ExplSyntaxOff| will be called to reverse this
+% \texdoc[section=1 Using the \LaTeX3 modules]{interface3}.
+% \1 \verb|\ProvidesExplClass|を使っている\verb|cls|ファイル：
+% \href{https://github.com/latex3/latex3/blob/main/l3kernel/l3doc.dtx}{l3doc.dtx}
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<mydocument.cls>\ProvidesExplClass{ mydocument }{}{}{}
+%<mydtxfile.cls>\ProvidesExplClass{ mydtxfile }{}{}{}
+%<myslides.cls>\ProvidesExplClass{ myslides }{}{}{}
+%<mywallpaper.cls>\ProvidesExplClass{ mywallpaper }{}{}{}
+% \end{latexcode}
+% ^^A ]]] End of section `Identification'.
+%
+% \section{Declaration of options}^^A [[[
+%
+% \begin{concealableitemize}^^A [[[
+% \1 The origin of \doublequotes{Declaration of options}
+%   \2 \texdoc[section=3 Declaration of Options]{classes}
+% \end{concealableitemize}^^A ]]]
+%
+% \begin{myitemize}
+% \1 \latexinline{\DeclareOption}
+%   \2 \texdoc[section=Declaring options]{clsguide}
+% \1 \verb|\bool_new:N \g_@@_show_notes_bool|
+%   \2 \href{https://github.com/latex3/latex3/blob/main/l3kernel/l3doc.dtx}{l3doc.dtx}
+% \1 \verb|\DeclareOption { show-notes } { \bool_gset_true:N  \g_@@_show_notes_bool }|
+%   \2 \href{https://github.com/latex3/latex3/blob/main/l3kernel/l3doc.dtx}{l3doc.dtx}
+%   \2 \texdoc[section=3.3 Declaring options]{clsguide}
+% \1 \verb|\PassOptionsToClass|, \verb|\PassOptionsToPackage|
+%   \2 It is possible to pass options on to another package or class,
+%   using the command \verb|\PassOptionsToClass| or \verb|\PassOptionsToPackage|
+%   \texdoc[section=Declaring options]{clsguide}.
+%   \2 \verb|\PassOptionsToClass| and \verb|\PassOptionsToPackage| are used
+%   to automatically invoke the corresponding options when the class or the package is loaded
+%   \urlref{https://en.wikibooks.org/wiki/LaTeX/Creating_Packages#Creating_your_own_class}{Creating your own class}.
+% \end{myitemize}
+%
+% \subsection{English option}^^A [[[
+%
+% \begin{concealableitemize}^^A [[[
+% \1 The origin of \doublequotes{English option}
+%   \2 \texdoc[section=***]{classes}
+% \end{concealableitemize}^^A ]]]
+%
+% \begin{myitemize}
+% \1 ltjsclassesは\verb|english|オプションで英語化できる\texdoc{ltjsclasses}
+% \1 
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls>
+\bool_new:N \g_@@_english_bool
+\DeclareOption { english }
+  {
+    \bool_gset_true:N \g_@@_english_bool
+    \PassOptionsToClass{\CurrentOption}{ltjsarticle,ltjsreport}
+    \PassOptionsToPackage{\CurrentOption}{mymath}
+  }
+%</mydocument.cls|mydtxfile.cls|myslides.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `English option'.
+%
+% \subsection{graphics option}^^A [[[
+% \begin{myitemize}
+% \1 図を書く用のパッケージ
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls>
+\bool_new:N \g_@@_graphics_bool
+\DeclareOption { graphics } { \bool_gset_true:N \g_@@_graphics_bool }
+%</mydocument.cls|mydtxfile.cls|myslides.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `graphics option'.
+%
+% \subsection{Handout option}^^A [[[
+% \begin{myitemize}
+% \1 \verb|presentation|オプションにおいてスライドを作成する際，
+% \verb|handout|を指定すると印刷用のスライド構成になる
+% \1 \verb|handout|の由来はbeamer
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<myslides.cls>\DeclareOption{ handout }{ \PassOptionsToClass{\CurrentOption}{beamer} }
+% \end{latexcode}
+% ^^A ]]] End of subsection `Handout option'.
+%
+% \subsection{Job option}^^A [[[
+% \begin{myitemize}
+% \verb|job|オプション指定時は仕事用のモニター用に作成．
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<*mywallpaper.cls>
+\newif\if@job
+\DeclareOption{ job }{\@jobtrue}
+%</mywallpaper.cls>
+% \end{latexcode}
+% ^^A ]]] End of section `Job option'.
+%
+% \subsection{Math option}^^A [[[
+% \begin{myitemize}
+% \1 \verb|mymath|パッケージを読み込むかどうかのオプション
+% \1 なぜ\verb|mymath|だけ特別扱いするのかというと，
+% （\verb|myminted|，\verb|mytcolorbox|などと比べて）使用頻度が比較的高いから．
+% また，\verb|english|オプションも一回だけで済む
+% （\verb|\documentclass[english]{myclass}|，\verb|\usepackage[english]{mymath}|ではなく，
+% \verb|\documentclass[english,math]{myclass}|で済むから）．
+% \1 なお，\doublequotes{mathematics}だと長いので\doublequotes{math}にした
+% （『ジーニアス英和辞典』\<\cite{genius}によると両者は等しい）
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls>
+\bool_new:N \g_@@_math_bool
+\DeclareOption { math } { \bool_gset_true:N \g_@@_math_bool }
+%</mydocument.cls|mydtxfile.cls|myslides.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `Math option'.
+%
+% \subsection{Programming option}^^A [[[
+% プログラミング関係のマクロを使えるようにするためのオプション．
+% \begin{latexcode}
+%<*mydocument.cls|myslides.cls>
+\bool_new:N \g_@@_programming_bool
+\DeclareOption { programming } { \bool_gset_true:N \g_@@_programming_bool }
+%</mydocument.cls|myslides.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `Programming option'.
+%
+% \subsection{short-document option}^^A [[[
+% \begin{myitemize}
+% \1 \doublequotes{Article option}の由来は\verb|texdoc classes|．
+% \1 \verb|article|にするかどうかのオプション．
+% \verb|article|にすると\verb|\chapter|が使用できなくなるなど，文書の論理構造が変わる．
+% \1 \verb|\documentclass{ltjsreport}|をデフォルトにする．
+% \verb|\documentclass{article}|をオプションにした理由は，
+% 明らかに\verb|documentclass{ltjsreport}|を使う機会の方が多いから．
+% \1 なお，\verb|\newif\if@article|の機能を\doublequotes{switch}と呼ぶ\texdoc{classes}．
+% \1 \verb|short|の由来
+%   \2 \href{https://en.wikibooks.org/wiki/LaTeX/Document_Structure#Document_classes}{ここ}の
+%   \doublequotes{short reports}より
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<*mydocument.cls>
+\bool_new:N \g_@@_short_document_bool
+\DeclareOption { short-document } { \bool_gset_true:N \g_@@_short_document_bool }
+%</mydocument.cls>
+% \end{latexcode}
+% ^^A ]]] End of section `short-document option'.
+%
+% \subsection{show-notes option}^^A [[[
+% \begin{myitemize}
+% \1 \href{https://github.com/latex3/latex3/blob/main/l3kernel/l3doc.dtx}{l3doc.dtx}に
+% \verb|show-notes|というoptionがある
+% \1 \verb|show|の由来：
+%   \2 \texdoc{minted}の\verb|showspaces|，\verb|showtabs|
+%   \2 \texdoc{tcolorbox}の\verb|showframe|
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls>
+\bool_new:N \g_@@_show_notes_bool
+\DeclareOption { show-notes }
+  {
+    \bool_gset_true:N \g_@@_show_notes_bool
+    \PassOptionsToPackage{\CurrentOption}{mymath}
+  }
+%</mydocument.cls|mydtxfile.cls|myslides.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `show-notes option'.
+%
+% \subsection{Twocolumn printing}^^A [[[
+% \doublequotes{Twocolumn printing}の由来は\texdoc{classes}．
+%
+% 2段組にするかのオプション．
+% \begin{latexcode}
+%<*mydocument.cls>
+\bool_new:N \g_@@_twocolumn_bool
+\DeclareOption { two-column }
+  {
+    \bool_gset_true:N \g_@@_twocolumn_bool
+    \PassOptionsToClass{\CurrentOption}{ltjsarticle,ltjsreport}
+  }
+%</mydocument.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `Twocolumn printing'.
+%
+% \subsection{\texcommand{ProcessOptions}}^^A [[[
+% \begin{myitemize}
+% \1 \verb|texdoc classes|では独立した章に\verb|\ProcessOptions|はあったが\verb|\ExecuteOptions|しないので，ここに記した．
+% \1 \verb|\ProcessOptions| \texdoc[section=Declaring options]{clsguide}
+% \1 \verb|\ProcessOptions| terminates the option processing
+% \urlref{https://en.wikibooks.org/wiki/LaTeX/Creating_Packages}{参照先}.
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>\ProcessOptions\relax
+% \end{latexcode}
+% ^^A ]]] End of subsection `\ProcessOptions'.
+%
+% ^^A ]]] End of section `Declaration of options'.
+%
+% \section{Loading class}^^A [[[
+%
+% \begin{concealableitemize}^^A [[[
+% \1 The origin of \doublequotes{Loading class}
+%   \2 \texdoc[section=5 Loading Packages]{classes}
+%   \2 \latexinline{\LoadClass}
+% \end{concealableitemize}^^A ]]]
+%
+% \begin{myitemize}
+% \1 \verb|\LoadClass|
+%   \2 \texdoc[section=3.2 Using classes and packages]{clsguide}
+% \1 \verb/\LoadClass/は\verb|cls|ファイル内でしか使えない
+% \urlref{https://texwiki.texjp.org/?LaTeX%20%E3%81%AE%E3%82%A8%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8}{参照サイト}
+% \end{myitemize}
+%
+% \subsection{\texttt{mydocument.cls}}[updated=2021-07-17T08:11:24]^^A [[[
+% \begin{myitemize}
+% \1 About ltjsarticle class
+%   \2 Lua\LaTeX-ja用jsclasses互換クラス\texdoc{ltjsclasses}
+%   \2 これは，元々奥村晴彦先生により作成され，現在は日本語\TeX 開発コミュニティにより管理されている
+%   \verb|jsclasses.dtx|をLua\LaTeX-ja用に改変したものです\texdoc[section=1 はじめに]{ltjsclasses}。
+% \1 \verb|ltjsreport|
+%   \2 ltjsreportクラスを新設しました。従来のltjsbookのreportオプションと比べると，
+%   abstract環境の使い方および挙動がアスキーのjreportに近づきました\texdoc[section=1 はじめに]{ltjsclasses}。
+%   \2 2017/7/21に\verb|\LoadClass[report]{ltjsbook}|から\verb|\LoadClass{ltjsreport}|に変更した．
+%   両者の違いについては\href{http://qiita.com/zr_tex8r/items/cfd853ed901f0db8011b}{ここ}を参照せよ．
+% \1 ltjsreportクラスのオプションについて
+%   \2 \verb|notitlepage|
+%     \3 表題ページ\texdoc[section=3 オプション]{ltjsclasses}
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<*mydocument.cls>
+\bool_if:NTF \g_@@_short_document_bool
+  { \LoadClass { ltjsarticle } }
+  { \LoadClass [ notitlepage ] { ltjsreport } }
+%</mydocument.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `mydocument.cls'.
+%
+% \subsection{\texttt{mydtxfile.cls}}^^A [[[
+% lualatexで処理する場合，\verb|\documentclass{jltxdoc}|は使えない．
+% なぜなら\verb|jltxdoc.cls|ファイル中に\verb|\NeedsTeXFormat{pLaTeX2e}|があるから．
+% 代わりに\verb|ltjltxdoc|を使う（偶然見つけた）．
+% 詳しくは\texdoc{ltjltxdoc}を参照せよ．
+%
+% また，\verb|expl3.dtx|や\verb|l3doc.dtx|などで使われている\verb|l3doc.cls|クラスがあるが，
+% これは\verb|minted| packageなどでsyntax highlightingすると最初の2文字が表示されない．
+%
+% \begin{quotation}
+% l3doc.cls って「汎用性の高そうな名前」なのだけど，実は汎用性ないんだよね（LaTeX3 チームの公式見解）
+%
+% ここで「汎用性がない」っていうのは「\LaTeX3プロジェクト以外で使用されていることを一切念頭に置いておらず，
+% 使用を推奨しないしサポートもしない」という意味．
+% \urlref{https://twitter.com/wtsnjp/status/980051594304675840}{twitter.com/wtsnjp}
+% \end{quotation}
+%
+% \begin{latexcode}
+%<mydtxfile.cls>\LoadClass{ltjltxdoc}
+% \end{latexcode}
+% ^^A ]]] End of subsection `mydtxfile.cls'.
+%
+% \subsection{\texttt{myslides.cls}}^^A [[[
+% \begin{myitemize}
+% \1 About beamer class
+%   \2 
+% \1 beamerクラスのオプションについて
+%   \2 \verb|8pt|
+%     \3 \texdoc[section=18.2.1 Choosing a Font Size for Normal Text]{beamer}
+%   \2 \verb|hyperref=...|
+%     \3 \verb|$ texdoc beamer|の\doublequotes{2.6 Compatibility with Other Packages and Classes}の
+%     \verb|\usepackage{hyperref}|の箇所に説明あり．
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<*myslides.cls>
+\LoadClass[
+  8pt,
+  hyperref={colorlinks=true, pdfencoding=auto},
+]{beamer}
+%</myslides.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `myslides.cls'.
+%
+% \subsection{\texttt{mywallpaper.cls}}[updated=2021-07-17T08:02:45]^^A [[[
+% \begin{myitemize}
+% \1 About ltjsarticle class
+%   \2 Lua\LaTeX-ja用jsclasses互換クラス\texdoc{ltjsclasses}
+%   \2 これは，元々奥村晴彦先生により作成され，現在は日本語\TeX 開発コミュニティにより管理されている
+%   \verb|jsclasses.dtx|をLua\LaTeX-ja用に改変したものです\texdoc[section=1 はじめに]{ltjsclasses}．
+% \1 ltjsarticleクラスのオプションについて
+%   \2 \verb|9pt|
+%     \3 サイズオプション\texdoc[section=3 オプション]{ltjsclasses}
+%   \2 \verb|english|
+%     \3 英語化\texdoc[section=3 オプション]{ltjsclasses}
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<mywallpaper.cls>\LoadClass[9pt,english]{ltjsarticle}
+% \end{latexcode}
+% ^^A ]]] End of subsection `mywallpaper.cls'.
+%
+% ^^A ]]] End of section `Loading class'.
+%
+% \section{Loading packages}^^A [[[
+%
+% \begin{concealableitemize}^^A [[[
+% \1 The origin of \doublequotes{Loading packages}
+%   \2 \texdoc[section=5 Loading Packages]{classes}
+% \end{concealableitemize}^^A ]]]
+%
+% \verb|\RequirePackage|については\verb|texdoc clsguide|のUsing classes and packagesを参照．
+%
+% \subsection{geometry}^^A [[[
+% \verb|geometry|はpage layoutを設定するためパッケージ（\texdoc{geometry}）．
+% 初心者は\verb|\oddsidemargin|などをいじるのは避けるべきらしい
+% \urlref{https://texwiki.texjp.org/?geometry}{参照サイト}．
+% なのでgeometry packageを介して設定する．
+%
+% \begin{latexcode}
+%<mydocument.cls|mydtxfile.cls|mywallpaper.cls>\RequirePackage{geometry}
+% \end{latexcode}
+% ^^A ]]] End of subsection `geometry'.
+%
+% \subsection{libertine}^^A [[[
+% font変更パッケージ．
+% \verb|mono=false|とすると，typewriter体が\LaTeX デフォルトの書体になる\urlref{https://tex.stackexchange.com/questions/196110/using-libertine-sans-serif-font-along-with-latex-typewriter-default-font/196111}{Using libertine Sans Serif font along with LaTeX typewriter default font}．
+% \begin{latexcode}
+%^^A <mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>\RequirePackage[mono=false]{libertine}
+%<mywallpaper.cls>\RequirePackage[mono=false]{libertine}
+% \end{latexcode}
+% ^^A ]]] End of subsection `libertine'.
+%
+% \subsection{longtable}[updated=2021-07-11T11:56:26]^^A [[[
+% \begin{myitemize}
+% \1 About longtable package
+%   \2 This file is maintained by the \LaTeX{} Project team \texdoc{longtable}.
+%   \2 This package defines the \verb|longtable| environment,
+%   a multi-page version of tabular \texdoc[section=Abstract]{longtable}.
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<mydocument.cls|mydtxfile.cls|myslides.cls>\RequirePackage{longtable}
+% \end{latexcode}
+% ^^A ]]] End of subsection `longtable'.
+%
+% \subsection{luatexja}^^A [[[
+% beamerで日本語を利用可能にするため．
+%
+% \begin{latexcode}
+%<myslides.cls>\RequirePackage{luatexja}
+% \end{latexcode}
+% ^^A ]]] End of subsection `luatexja'.
+%
+% \subsection{multicol}[updated=2021-07-11T11:59:51]^^A [[[
+% \begin{myitemize}
+% \1 About multicol package
+%   \2 This file is maintained by the \LaTeX{} Project team \texdoc{multicol}.
+%  \2 This article describes the use and the implementation of the \verb|multicols| environment.
+%   This environment allows switching between one and multicolumn format on the same page
+%   \texdoc[section=Abstract]{multicol}.
+% \1 使用先
+%   \2 \verb|\mytableofcontents|
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<mydocument.cls|mydtxfile.cls>\RequirePackage{multicol}
+% \end{latexcode}
+% ^^A ]]] End of subsection `multicol'.
+%
+% \subsection{outlines}[updated=2020-05-30T17:29:31]^^A [[[
+% \begin{myitemize}
+% \1 About outlines package
+%   \2 箇条書きを簡単に書くためパッケージ
+%   \2 The \verb|outlines| package defines the \verb|outline| environment,
+%   that allows outline-style indented lists with freely mixed levels up to four levels deep.
+%   It replaces the nested \verb|begin/end| pairs by different item tags \latexinline{\1}
+%   to \latexinline{\4} for each nesting level.
+%   This is very convenient in cases where nested lists are used a lot,
+%   such as for to-do lists or presentation slides \texdoc[section=Abstract]{outlines}.
+% \1 etc.
+%   \2 \verb|outlines| packageを選んだ理由は
+%   \href{run:/home/yasutaka/Dropbox/config-files/latex/notes.pdf}{notes.pdf}を参照せよ．
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>\RequirePackage{outlines}
+% \end{latexcode}
+% ^^A ]]] End of subsection `outlines'.
+%
+% \subsection{subfiles}^^A [[[
+%
+% \begin{latexcode}
+%<mydocument.cls>\RequirePackage{subfiles}
+% \end{latexcode}
+% ^^A ]]] End of subsection `subfiles'.
+%
+% \subsection{tcolorbox}^^A [[[
+% \verb|mynote|環境などに使用する．
+% \begin{latexcode}
+%<mydocument.cls|mydtxfile.cls|myslides.cls>\RequirePackage{tcolorbox}
+% \end{latexcode}
+% ^^A ]]] End of subsection `tcolorbox'.
+%
+% \subsection{titlesec}^^A [[[
+% \verb|\section|等を再定義するため．
+%
+% biblatexパッケージと併用はできないと\texdoc{biblatex}に書いてあった．
+%
+% \href{https://www.overleaf.com/learn/latex/Sections_and_chapters}{ここ}に説明があったので，
+% ちゃんとしたパッケージっぽい．
+% \begin{latexcode}
+%<mydocument.cls|mydtxfile.cls>\RequirePackage{titlesec}
+% \end{latexcode}
+% ^^A ]]] End of subsection `titlesec'.
+%
+% \subsection{xcolor}^^A [[[
+% xcolorパッケージは\LaTeX で色を使うためのcolorパッケージを
+% 強力にしたもの\mycite[page=139]{latex2e-bibunshosakusei}．
+%
+% \begin{latexcode}
+%^^A <mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>\RequirePackage{xcolor}
+%^^A <mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>\RequirePackage{l3color}
+% \end{latexcode}
+% ^^A ]]] End of subsection `xcolor'.
+%
+% \subsection{xparse}^^A [[[
+% \begin{myitemize}
+% \1 About xparse package
+%   \2 マクロ定義を簡単にするため
+% \1 etc.
+%   \2 \url{http://qiita.com/zr_tex8r/items/50168ad7087516c3e139}がわかりやすい．
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>\RequirePackage{xparse}
+% \end{latexcode}
+% ^^A ]]] End of subsection `xparse'.
+%
+% \subsection{hyperref}^^A [[[
+% hyperrefはwebサイトに飛べるようにするため．
+%
+% オプションについて
+% \begin{myitemize}
+% \1 \verb|citecolor|
+%   \2 Color for bibliographical citations in text \texdoc[section=3.5 Extension options]{hyperref}.
+% \1 \verb|colorlinks|
+%   \2 Colors the text of links and anchors.
+%   The colors chosen depend on the the type of link \texdoc[section=3.5 Extension options]{hyperref}.
+% \1 \verb|linkcolor|
+%   \2 Color for normal internal links \texdoc[section=3.5 Extension options]{hyperref}.
+%       \3 数式番号のリンクもこの色
+% \1 \verb|pdfencoding=auto|は日本語文字化け防止のため(cf. \url{https://texwiki.texjp.org/?hyperref})
+% \verb|urlcolor|
+%   \2 Color for linked URLs \texdoc[section=3.5 Extension options]{hyperref}.
+% \end{myitemize}
+%
+% \begin{mywarning}^^A [[[
+% \verb|hyperref|パッケージはできるだけ後ろのほうで読み込む必要がある
+% \mycite[page=178]{latex2e-bibunshosakusei}．
+%
+% ただし，\verb|\C|を再定義するために，\verb|hyperref|パッケージを読み込んだ後，
+% \verb|mymath|パッケージを読み込むこと．
+% 先に\verb|\C|を定義してから\verb|hyperref|パッケージを読み込むと上手くいかない．
+% \end{mywarning}^^A ]]]
+%
+% \verb|urlcolor|の色は\mycite{python-for-data-analysis}を参考にした．
+% rgbは\href{https://www.peko-step.com/tool/getcolor.html}{このサイト}を使って調べた．
+%
+% \verb|myslides.cls|については内部で読み込むため，ここには指定しない（指定するとエラーになる）．
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls>
+\color_set:nn {mycitecolor} {green!50!black}
+\color_set:nn {mylinkcolor} {blue}
+\definecolor {myurlcolor} {rgb} {0.6, 0, 0}
+% \color_set:nnn {myurlcolor} {rgb} {0.6, 0, 0}
+%
+\RequirePackage[
+  citecolor=green!50!black,
+  colorlinks=true,
+  linkcolor=blue,
+  pdfencoding=auto,
+  urlcolor=myurlcolor,
+]{hyperref}
+%</mydocument.cls|mydtxfile.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `hyperref'.
+%
+% \subsection{mygraphics}^^A [[[
+% \verb|graphics|オプション指定時は\verb/mygraphics.sty/を読み込む．
+%
+% \begin{latexcode}
+%<mydocument.cls|mydtxfile.cls|myslides.cls>\bool_if:NT \g_@@_graphics_bool { \RequirePackage { mygraphics } }
+% \end{latexcode}
+% ^^A ]]] End of subsection `mygraphics'.
+%
+% \subsection{mymath}^^A [[[
+% \verb|math|オプション指定時は\verb/mymath.sty/を読み込む．
+% なぜ\verb|mymath|だけ特別扱いするのかというと，（\verb|myminted|，\verb|mytcolorbox|などと比べて）使用頻度が比較的高いから．
+%
+% \begin{mywarning}^^A [[[
+% \verb|mymath.sty|は\verb|hyperref.sty|の後に読み込む必要がある．
+% 理由は\verb|hyperref.sty|で定義された\verb|\C|を\verb|mymath.sty|内で再定義しているから．
+% \end{mywarning}^^A ]]]
+%
+% \begin{latexcode}
+%<mydocument.cls|mydtxfile.cls|myslides.cls>\bool_if:NT \g_@@_math_bool { \RequirePackage { mymath } }
+% \end{latexcode}
+% ^^A ]]] End of subsection `mymath'.
+%
+% \subsection{myprogramming}^^A [[[
+% \verb|programming|オプション指定時は\verb/myprogramming.sty/を読み込む．
+%
+% \begin{mywarning}^^A [[[
+% \verb|myprogramming.sty|はできるだけ後ろで読み込む必要がある．
+% 理由は\verb|myprogramming.sty|内で\verb|attachfile.sty|を読み込んでいるが，
+% \verb|attachfile.sty|をできるだけ後ろで読み込む必要があるから\texdoc[section=2 Usage]{attachfile}．
+% \end{mywarning}^^A ]]]
+%
+% \begin{latexcode}
+%<mydocument.cls|myslides.cls>\bool_if:NT \g_@@_programming_bool { \RequirePackage { myprogramming } }
+% \end{latexcode}
+%
+% \verb|mydtxfile| classでは必ず\verb|myprogramming| packageを読み込む．
+% \begin{latexcode}
+%<mydtxfile.cls>\RequirePackage { myprogramming }
+% \end{latexcode}
+% ^^A ]]] End of subsection `myprogramming'.
+%
+% ^^A ]]] End of section `Loading packages'.
+%
+% \section{Page layout}^^A [[[
+%
+% \begin{concealableitemize}^^A [[[
+% \1 The origin of \doublequotes{Page layout}
+%   \2 \texdoc[section=6.3 Page Layout]{classes}
+% \end{concealableitemize}^^A ]]]
+%
+% ここでページレイアウトを設定する理由については^^A\secref{introduction}を参照せよ．
+%
+% 以下\verb|geometry|のパラメータの説明：
+% \begin{myitemize}
+% \1 \texdoc{geometry}でパラメータと図が記載されている
+% \1 \href{https://www.overleaf.com/learn/latex/page_size_and_margins}{ここ}にパラメータの図がある
+% \1 \verb|hmargin| left and right margin \texdoc[section=5.4 Margin size]{geometry}.
+% \1 \verb|landscape| switches the paper orientation to landscape mode
+% \texdoc[section=5.1 Paper size]{geometry}.
+% \1 \verb|vmargin| top and bottom margin. \texdoc{geometry}
+% \1 
+% \end{myitemize}
+%
+% \subsection{\texttt{mydocument.cls}}^^A [[[
+% onecolumnにおいてテキスト横幅が長すぎると次の行がどこかがわかりづらく読みづらいので，
+% テキスト横幅をtwocolumnに比べて短く設定する．
+%
+% \verb|\dim_new:N \l_...|は\href{https://github.com/latex3/latex3/blob/main/l3kernel/l3doc.dtx}{l3doc.dtx}を参考にした
+%
+% \subsubsection{Creating dim variables}^^A [[[
+% titleは\texdoc[section=1 Creating and initialising dim variables]{interface3}
+% \begin{latexcode}
+%<*mydocument.cls>
+\dim_new:N \l_@@_hmargin_left_dim
+\dim_new:N \l_@@_hmargin_right_dim
+%</mydocument.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `Creating dim variables'.
+%
+% \subsubsection{Setting dim variables}^^A [[[
+% titleは\texdoc[section=2 Setting dim variables]{interface3}
+% \begin{latexcode}
+%<*mydocument.cls>
+\dim_set:Nn \l_@@_hmargin_left_dim {\if@twocolumn 15pt \else 65pt \fi}
+\dim_set:Nn \l_@@_hmargin_right_dim
+  {
+    \bool_if:NTF \g_@@_twocolumn_bool
+      {15pt}
+      {
+        \bool_if:NTF \g_@@_show_notes_bool
+          { 100pt }
+          { 65pt }
+      }
+  }
+%</mydocument.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `Creating dim variables'.
+%
+% \subsubsection{***}^^A [[[
+%
+% \begin{latexcode}
+%<*mydocument.cls>
+\geometry{
+  bottom=25pt,
+  columnsep=10pt,
+  footskip=15pt,
+  headsep=1pt,
+  % hmargin=\myhmargin,
+  left=\l_@@_hmargin_left_dim,
+  marginparwidth=80pt,
+  right=\l_@@_hmargin_right_dim,
+  top=24pt,
+  % vmargin=20pt,
+}
+%</mydocument.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `***'.
+%
+% ^^A ]]] End of subsection `mydocument.cls'.
+%
+% \subsection{\texttt{mydtxfile.cls}}^^A [[[
+% \begin{latexcode}
+%<*mydtxfile.cls>
+\geometry{
+  bottom=30pt,
+  footskip=25pt,
+  % vmargin=30pt,
+  top=20pt,
+}
+%</mydtxfile.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `mydtxfile.cls'.
+%
+% \subsection{\texttt{mywallpaper.cls}}^^A [[[
+%
+% \begin{latexcode}
+%<*mywallpaper.cls>
+\def\myhmargin{\if@job 20pt \else 5pt \fi}
+\geometry{
+  hmargin=\myhmargin,
+  landscape,
+  vmargin=45pt,
+}
+%</mywallpaper.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `mywallpaper.cls'.
+%
+% \subsection{\texcommand{columnseprule}}^^A [[[
+% \verb|\columnseprule|は2段組のときに左右の段の間に罫線を入れるため．
+% \begin{latexcode}
+%<mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>\setlength{\columnseprule}{0.8pt}
+% \end{latexcode}
+% ^^A ]]] End of subsection `***'.
+%
+% ^^A ]]] End of section `Page layout'.
+%
+% \section{Redefining 体裁 (Style???)}^^A [[[
+%
+% \subsection{\texcommand{end\{document\}}}^^A [[[
+% \verb|etoolbox| Package
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls>
+\AtEndDocument{\mybibliography}
+%</mydocument.cls|mydtxfile.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `\end{document}'.
+%
+% \subsection{The title}^^A [[[
+%
+% \begin{concealableitemize}^^A [[[
+% \1 The origin of \doublequotes{The title}
+%   \2 \texdoc[section=***]{classes}
+% \end{concealableitemize}^^A ]]]
+%
+% \subsubsection{\texcommand{mytitle}}^^A [[[
+% オプション引数でpdftitleの指定ができるようにした．
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls>
+\NewDocumentCommand \mytitle { o m }
+  {
+    \title{#2}
+    \hypersetup{
+      pdftitle=\IfValueTF{#1}{#1}{#2}
+    }
+    \maketitle
+  }
+%</mydocument.cls|mydtxfile.cls|myslides.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `\mytitle'.
+%
+% \subsubsection{\texcommand{@maketitle}}^^A [[[
+% タイトルの体裁を変更するには\verb|\@maketitle|を変更すればよい
+% \mycite[page=185]{teach-yourself-latex2e}．
+%
+% 以下は\verb|/usr/share/texlive/texmf-dist/tex/luatex/luatexja/ltjsarticle.cls|を参考に作成した．
+%
+%
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls>
+\def\mytitlefont{\Huge\bfseries\gtfamily}
+\def\@maketitle{%
+    \newpage\null
+    \begin{center}
+        \let\footnote\thanks
+        {\mytitlefont\@title\par}
+    \end{center}
+    \begin{flushright}
+        {\small\@date}
+    \end{flushright}
+    \par
+}
+%</mydocument.cls|mydtxfile.cls>
+% \end{latexcode}
+%
+%
+%
+% \begin{latexcode}
+%<*mywallpaper.cls>
+\def\mytitlefont{\Huge\sffamily\gtfamily}
+\def\@maketitle
+  {
+    \newpage\null
+    \begin{center}
+      \let\footnote\thanks
+      {\mytitlefont\@title\par}
+    \end{center}
+    \par
+    \vspace{-5pt}
+  }
+%</mywallpaper.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `\@maketitle'.
+%
+% ^^A ]]] End of subsection `The title'.
+%
+% \subsection{Table of contents}^^A [[[
+%
+% \begin{concealableitemize}^^A [[[
+% \1 The origin of \doublequotes{Table of contents}
+%   \2 ***
+% \end{concealableitemize}^^A ]]]
+%
+% \subsubsection{\myverb{mydocument.cls}, \myverb{mydtxfile.cls}}^^A [[[
+% \begin{myitemize}
+% \1 目次に載せるレベルの調整\mycite[page=346]{teach-yourself-latex2e}
+% \mycite[page=168]{latex2e-bibunshosakusei}
+% \1 \verb|\multicols{2}***\endmulticols|ではうまくいかなかった．
+% \1 \doublequotes{column}の由来は\verb|onecolumn|，\verb|twocolumn|より．
+% \1
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<mydocument.cls>\def\mytableofcontents@depth{3}
+%<mydtxfile.cls>\def\mytableofcontents@depth{2}
+% \end{latexcode}
+%
+%
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls>
+\keys_define:nn { tableofcontents }{
+  column .code:n    = \tl_set:Nn \l_tableofcontents_column_tl { #1 },
+  column .initial:n = 2,
+  depth  .code:n    = \def\mytableofcontents@depth{#1},
+}
+%
+\NewDocumentCommand \mytableofcontents { O{} } {
+  \group_begin:
+  \keys_set:nn { tableofcontents }{#1}
+  \begin{multicols}{\l_tableofcontents_column_tl}
+  \setcounter{tocdepth}{\mytableofcontents@depth}
+  \tableofcontents
+  \end{multicols}
+  \newpage
+  \group_end:
+}
+%</mydocument.cls|mydtxfile.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsecton `mydocument.cls, mydtxfile.cls'.
+%
+% \subsubsection{\myverb{myslides.cls}}[updated=2021-11-25T21:28:38]^^A [[[
+% \begin{myitemize}
+% \1 \latexinline{\frame{Table~of~contents} ... \endframe}ではエラー発生する
+% \1
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<*myslides.cls>
+\NewDocumentCommand \mytableofcontents { }
+  {
+    \begin{frame}{Table~of~contents}
+    \tableofcontents
+    \end{frame}
+  }
+%</myslides.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsecton `myslides.cls'.
+%
+% ^^A ]]] End of subsecton `Table of contents'.
+%
+% \subsection{Parts, Chapters, and Sections}^^A [[[
+% \doublequotes{Chapters and Sections}の由来は\texdoc{classes}．
+%
+% \url{http://qiita.com/kiritex/items/deeec0843caf37b66054}を見よ．
+%
+% \url{http://tex.stackexchange.com/questions/84061/how-can-i-make-a-bold-horizontal-rule-under-each-section-title}を見よ．
+%
+% \verb|\titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]|
+% \texdoc[section=3.1. Format]{titlesec}
+% \begin{myitemize}
+% \1 \verb|[hang]|
+%   \2 
+% \1 
+% \end{myitemize}
+%
+% \verb|\subsubsection|については『独習\LaTeXe』\<\cite{teach-yourself-latex2e}に倣った．
+%
+% \subsubsection{Defining colors}^^A [[[
+% \verb|\colorlet|については\texdoc[section=2.5.2 Color definition in xcolor]{xcolor}
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls>
+% \RequirePackage{color}
+% \colorlet{mysubsubsectioncolor}{red!50!black}
+% \definecolor{mysubsectioncolor}{RGB}{72,61,139}
+%</mydocument.cls|mydtxfile.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `Defining colors'.
+%
+% \subsubsection{Defining Font and Size}^^A [[[
+% \verb|\colorlet|については\texdoc[section=2.5.2 Color definition in xcolor]{xcolor}
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls>
+\def\myparagraphfont{\normalsize\bfseries\gtfamily}
+%</mydocument.cls|mydtxfile.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `Defining Font and Size'.
+%
+% \subsubsection{\texcommand{part}}^^A [[[
+%
+% \begin{latexcode}
+%<mydtxfile.cls>\def\partname{Part}
+%<*mydocument.cls|mydtxfile.cls>
+\let\originalpart=\part
+\RenewDocumentCommand \part { m o }
+  {
+    \newpage
+    \originalpart{#1}
+    \IfValueT{#2}
+      {
+        \concealablemarginalnote{ \keys_set:nn{ section }{ #2 } }
+      }
+  }
+%</mydocument.cls|mydtxfile.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `\part'.
+%
+% \subsubsection{\texcommand{section}}^^A [[[
+% \verb|changeFontOfSectionalHeading|\texdoc[section=1 Introduction]{sectsty}
+%
+% \verb|shift|, \verb|width|, \verb|height|\mycite[page=115]{teach-yourself-latex2e}.
+%
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls>
+\ExplSyntaxOff
+\directlua{
+  function changeSectionTest(command, backhspace, color, shift, width, height, size, hspace, upvspace, underlinewidth, vspace)
+    tex.sprint( '\string\\titleformat{')
+    tex.sprint(   '\string\\' .. command)
+    % tex.sprint(   '\string\\', command) エラーとなる
+    tex.sprint( '}[block]{')
+    tex.sprint(   '\string\\hspace{', backhspace, 'pt}')
+    tex.sprint(   '{')
+    tex.sprint(     '\string\\color{', color, '}')
+    tex.sprint(     '\string\\rule[', shift, 'pt]{', width, 'pt}{', height, 'pt}')
+    tex.sprint(     '\string\\hspace{3pt}')
+    tex.sprint(   '}')
+    tex.sprint(   '\string\\' .. size .. '\string\\bfseries\string\\gtfamily')
+    tex.sprint( '}{')
+    tex.sprint(   '\string\\the' .. command)
+    % tex.sprint(   '\string\\the', command) エラーとなる
+    tex.sprint( '}{')
+    tex.sprint(   '5pt')
+    % tex.sprint(   hspace, 'pt') エラーとなる
+    tex.sprint( '}{}[')
+    tex.sprint(   '\string\\vspace{', upvspace, 'pt}')
+    tex.sprint(   '{')
+    tex.sprint(     '\string\\color{', color, '}')
+    tex.sprint(     '\string\\titlerule[', underlinewidth, 'pt]')
+    tex.sprint(   '}')
+    tex.sprint(   '\string\\vspace{', vspace, 'pt}')
+    tex.sprint( ']')
+  end
+
+  changeSectionTest('section',       -9, 'blue!50!black',  -6, 9, 25, 'Large', 5, -1.18, 1, 0)
+  changeSectionTest('subsection',    -7, 'green!50!black', -5, 7, 21, 'large', 5, -0.76, 0.7, 0)
+  changeSectionTest('subsubsection', -5, 'yellow!50!black', -4, 5, 17, 'normalsize', 5, -0.75, 0.3, 3)
+}
+\ExplSyntaxOn
+%</mydocument.cls|mydtxfile.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `Defining Colors'.
+%
+% \subsubsection{\texcommand{paragraph}}^^A [[[
+% \verb|section|の由来は\texdoc[section=1. Introduction]{titlesec}
+%
+% \doublequotes{■}は\texdoc{jsclasses}に倣った．
+% \begin{latexcode}
+%<mydocument.cls>\titleformat*{\paragraph}{}% pandocでmdからpdfに変換する際のエラーを解消するため
+%<*mydtxfile.cls>
+\titleformat{\paragraph}{\myparagraphfont}{}{}{■}
+% \titleformat{\paragraph}{\myparagraphfont}{}{}{■}[\vspace{-40pt}]
+%</mydtxfile.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `\paragraph'.
+%
+% \subsubsection{Show the Time of Last Modification}^^A [[[
+% \begin{myitemize}
+% \1 \verb|\section[目次用の見出し]{本文用の見出し}|\mycite[page=166]{teach-yourself-latex2e}
+% \1 \doublequotes{Updated: ***}は\texdoc{l3keys}より．
+% \1 section等に\texttt{OK (date time)}でPEP 8も確認したことがわかるように追加せよ
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls>
+\keys_define:nn { section } {
+  label   .code:n = #1,
+  pep8    .code:n = #1,
+  updated .code:n = Updated:~#1,
+}
+%
+\ExplSyntaxOff
+\directlua{
+  function modifySectionCommandToDisplayModificationTime(command)
+    tex.sprint( '\string\\let\string\\original' .. command .. '=\string\\' .. command)
+    tex.sprint( '\string\\RenewDocumentCommand{\string\\' .. command .. '}{ s m o }{')
+    tex.sprint(   '\string\\IfBooleanTF{\string#1}{')
+    tex.sprint(     '\string\\original' .. command .. '*{\string#2}')
+    tex.sprint(   '}{')
+    tex.sprint(     '\string\\bool_if:NTF \string\\g_@@_show_notes_bool')
+    tex.sprint(       '{')
+    tex.sprint(         '\string\\IfValueTF{\string#3}{')
+    tex.sprint(           '\string\\original' .. command .. '[\string#2]{')
+    tex.sprint(             '\string#2\string\\hfill{')
+    tex.sprint(               '\string\\small\string\\mdseries\string\\sffamily')
+    % tex.sprint(               '\string\\ExplSyntaxOn')
+    tex.sprint(               '\string\\keys_set:nn { section } { \string#3 }')
+    % tex.sprint(               '\string\\ExplSyntaxOff')
+    tex.sprint(             '}')
+    tex.sprint(           '}')
+    tex.sprint(         '}{')
+    tex.sprint(           '\string\\original' .. command .. '{\string#2}')
+    tex.sprint(         '}')
+    tex.sprint(       '}')
+    tex.sprint(       '{')
+    tex.sprint(         '\string\\original' .. command .. '{\string#2}')
+    tex.sprint(       '}')
+    tex.sprint(     '}')
+    tex.sprint(   '}')
+  end
+  %
+  tex.sprint('\string\\ExplSyntaxOn')
+  modifySectionCommandToDisplayModificationTime('section')
+  modifySectionCommandToDisplayModificationTime('subsection')
+  modifySectionCommandToDisplayModificationTime('subsubsection')
+  modifySectionCommandToDisplayModificationTime('paragraph')
+  tex.sprint('\string\\ExplSyntaxOff')
+}
+\ExplSyntaxOn
+%</mydocument.cls|mydtxfile.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `Show the Time of Last Modification'.
+%
+% ^^A ]]] End of subsection `Parts, Chapters, and Sections'.
+%
+% \subsection{Sections (mywallpaper.cls)}^^A [[[
+%
+% \subsubsection{\texcommand{section}}^^A [[[
+% \begin{latexcode}
+%<*mywallpaper.cls>
+\RequirePackage{amssymb}
+%
+\RenewDocumentCommand \section { m }
+  {
+    \vspace{5pt}\\
+    \hspace{10pt}
+    {
+      \Large
+      % \ding{"6C}
+      $\blacksquare$
+      \hspace{3pt}
+      \textbf{#1}
+    }
+    \vspace{3pt}\\
+  }
+%</mywallpaper.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `\section'.
+%
+% \subsubsection{\texcommand{subsection}}^^A [[[
+% \begin{latexcode}
+%<*mywallpaper.cls>
+\RenewDocumentCommand \subsection { m }
+  {
+    \vspace{1pt}\\
+    \hspace{10pt}
+    {
+      \large
+      % \ding{"75}
+      $\blacktriangleright$
+      \hspace{3pt}
+      \textbf{#1}
+    }\\
+  }
+%</mywallpaper.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `\subsection'.
+%
+% ^^A ]]] End of subsection `Sections (mywallpaper.cls)'.
+%
+% \subsection{Captions}^^A [[[
+% \doublequotes{Captions}の由来は\texdoc{classes}．
+% \verb|\thetable|については\mycite[page=279]{teach-yourself-latex2e}．
+% \verb|\thefigure|については\href{http://www.biwako.shiga-u.ac.jp/sensei/kumazawa/tex/011.html<Paste>}{ここ}を参照．
+% また，\verb|\@addtoreset|については，\mycite[page=546]{teach-yourself-latex2e}．
+% \begin{latexcode}
+%<*mydocument.sty|mydtxfile.cls>
+\renewcommand*{\thetable}{
+    \thesection.\arabic{table}
+}
+\@addtoreset{table}{section}
+%
+\renewcommand*{\thefigure}{
+    \thesection.\arabic{figure}
+}
+\@addtoreset{figure}{section}
+%</mydocument.sty|mydtxfile.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `Captions'.
+%
+% \subsection{\texttt{macrocode} Environment}^^A [[[
+% \verb|etoolbox|パッケージに\verb|\AtBeginEnvironment|などが定義されている．
+%
+% \begin{latexcode}
+%<*mydtxfile.cls>
+\AtBeginEnvironment{macrocode}{%
+    \tcolorbox[%
+        bottom=-13pt,
+        left=2pt,
+        sharp~corners,
+        top=0pt,
+    ]
+}
+%</mydtxfile.cls>
+% \end{latexcode}
+%
+%
+% \begin{myitemize}
+% \1 \verb|\AtEndEnvironment{macrocode}{\endtcolorbox}|だと余分な行が追加されてしまう．
+% \1 \verb|\AfterEndEnvironment{macrocode}{\endtcolorbox}|だとエラーになってしまう．
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<*mydtxfile.cls>
+% \AtEndEnvironment{macrocode}{\endtcolorbox}
+% \AfterEndEnvironment{macrocode}{\endtcolorbox}
+\let\originalendmacrocode=\endmacrocode
+% \def\endmacrocode{\endtcolorbox\originalendmacrocode}
+\def\endmacrocode{\originalendmacrocode\endtcolorbox}
+%</mydtxfile.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsecton `macrocode Environment'.
+%
+% \subsection{\texttt{myslides.cls}}^^A [[[
+%
+% \subsubsection{日本語フォント変更}^^A [[[
+% \begin{myitemize}
+% \1 日本語フォントをゴシック体にする
+%   \2 \urlref{https://qiita.com/zr_tex8r/items/69e8cc32038ff29f5ac3}{今さら人に聞けない「日本語でBeamer」のキホン}
+% \1 
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<myslides.cls>\renewcommand{\kanjifamilydefault}{\gtdefault}
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `日本語フォント変更'.
+%
+% \subsubsection{数式フォント変更}^^A [[[
+% \begin{myitemize}
+% \1 \urlref{https://tex.stackexchange.com/questions/34265/how-to-get-beamer-math-to-look-like-article-math}{How to get Beamer Math to look like Article Math}
+% \1 
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<myslides.cls>\usefonttheme{professionalfonts}
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `数式フォント変更'.
+%
+% \subsubsection{use theme}^^A [[[
+% \begin{myitemize}
+% \1 focusについては\href{https://www.latextemplates.com/template/focus-presentation}{Focus Presentation}を参照
+% \1 
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<myslides.cls>\usetheme{focus}
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `use theme'.
+%
+% \subsubsection{itemize環境}^^A [[[
+% \begin{myitemize}
+% \1 triangle, circle, square, ball
+%   \2 \texdoc[section={12.1 Itemizations, Enumerations, and Descriptions}]{beamer}
+% \1 
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<*myslides.cls>
+% \setbeamertemplate{itemize~item}[square]
+% \setbeamertemplate{itemize~subitem}[triangle]
+\setbeamertemplate{itemize~subsubitem}[circle]
+% \setbeamercolor{itemize~item}{fg=mybeamerthemecolor}
+% \setbeamercolor{itemize~subitem}{fg=mybeamerthemecolor}
+\setbeamercolor{itemize~subsubitem}{fg=black}
+%</myslides.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `itemize環境'.
+%
+%
+%
+%
+%
+% \begin{latexcode}
+%<*myslides-old.cls>
+\setbeamertemplate{navigation symbols}{}% 下のアイコンを消すため(cf. http://www.opt.mist.i.u-tokyo.ac.jp/~tasuku/beamer.html)
+\setbeamertemplate{footline}[frame number]% フッターにスライド番号のみ表示させるため(cf. http://www.opt.mist.i.u-tokyo.ac.jp/~tasuku/beamer.html)
+\useinnertheme[shadow]{rounded}
+\colorlet{mybeamerthemecolor}{black!70!blue}
+\colorlet{mygray}{gray!30!white}
+\colorlet{mygreen}{black!70!green}
+\setbeamercolor{title}{fg=white,bg=mybeamerthemecolor}
+\setbeamercolor{frametitle}{fg=white,bg=mybeamerthemecolor}% frametitleのcolorの変更
+\setbeamercolor{block~title}{fg=white,bg=mybeamerthemecolor}
+\setbeamercolor{block~body}{bg=mygray}
+\setbeamercolor{block~title~example}{fg=white,bg=mygreen}
+\setbeamercolor{block~body~example}{bg=mygray}
+%</myslides-old.cls>
+% \end{latexcode}
+%
+%
+%
+%
+% ^^A ]]] End of subsection `presentationオプション時のみ読み込むパッケージ'.
+%
+% \subsection{背景・文字の色を変更}^^A [[[
+% \begin{myitemize}
+% \1 \verb|\pagecolor|
+%   \2 背景色の設定
+%   \2 \doublequotes{backgroundcolor}の由来は\texdoc{minted}の\doublequotes{background color}より．
+% \1 \verb|\color|
+%   \2 文字の色
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<*mywallpaper.cls>
+\RequirePackage{xcolor}
+\pagecolor{black}
+\color{white}
+%</mywallpaper.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `＊＊＊'.
+%
+% \subsection{ページ番号}^^A [[[
+% \begin{myitemize}
+% \1 \verb|\pagestyle{myheadings}|
+%   \2 \href{https://tex.stackexchange.com/questions/56316/top-right-side-page-numbering}{Top right side page numbering}
+% \1 \verb|\pagestyle{empty}|はページ番号を消すため\mycite[page=284]{latex2e-bibunshosakusei}
+% \1
+% \end{myitemize}
+%
+% \begin{latexcode}
+%^^A<mydocument.cls|mydtxfile.cls>\pagestyle{headings}
+%<mydocument.cls|mydtxfile.cls>\pagestyle{myheadings}
+%<mywallpaper.cls>\pagestyle{empty}
+% \end{latexcode}
+% ^^A ]]] End of subsection `ページ番号'.
+%
+% ^^A ]]] End of section `Redefining 体裁Style'.
+%
+% \section{Custom Environments???}^^A [[[
+%
+% \subsection{mynote, mytip, mywarning environments}^^A [[[
+% \begin{myitemize}
+% \1 The origin of names
+%   \2 \doublequotes{note}
+%   \2 \doublequotes{tip}
+%     \3 \cite{bill-python, mark-python}
+%     \3 \href{http://d.hatena.ne.jp/keyword/TIPS}{ここ}
+%   \2 \doublequotes{warning}
+%     \3 \href{https://sublime-and-sphinx-guide.readthedocs.io/en/latest/notes_warnings.html}{Use Notes and Warnings}
+%     \concealablemarginalnote{OK (2021-03-08T01:17:25)}
+%     \3 This element indicates a warning or caution
+%     \mycite[page=xviii]{hands-on-machine-learning-with-scikit-learn-and-tensorflow}.
+%     \concealablemarginalnote{OK (2021-03-08T01:19:55)}
+%     \3 This icon indicates a warning or caution
+%     \mycite[page=xiii]{version-control-with-git}.
+%     \concealablemarginalnote{OK (2021-03-08T01:17:08)}
+%     \3 cautionとwarningの違いは\cite{longman}の\doublequotes{warning}を参照
+% \end{myitemize}
+%
+% \subsubsection{Defining environments}^^A [[[
+% \begin{myitemize}
+% \1 \verb|bottom|は
+% \1 \verb|boxrule|
+%   \2 Sets all rules of the frame to \meta{length}
+%   \texdoc[section=4.7.2 Rules, keyword=/tcb/boxrule]{tcolorbox}.
+%   \concealablemarginalnote{OK (2021-03-08T01:53:00)}
+% \1 \verb|colback|は背景の色
+% \1 \verb|colframe|は枠の色
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls>
+\ExplSyntaxOff
+\directlua{
+  function defineNTWEnvironment(envname, colback, colframe, title)
+    tex.sprint( '\string\\NewDocumentEnvironment{', envname, '} { O{} } {')
+    tex.sprint(   '\string\\tcolorbox[')
+    tex.sprint(     'bottom=3pt,')
+    tex.sprint(     'boxrule=0.5pt,')
+    tex.sprint(     'colback=', colback, ',')
+    tex.sprint(     'colframe=', colframe, ',')
+    tex.sprint(     'fonttitle=\string\\sffamily\string\\bfseries\string\\large,')
+    tex.sprint(     'left=3pt,')
+    tex.sprint(     'left skip=5pt,')
+    tex.sprint(     'right=3pt,')
+    tex.sprint(     'right skip=5pt,')
+    tex.sprint(     'sharp corners,')
+    tex.sprint(     'title=', title, ',')
+    tex.sprint(     'top=3pt,')
+    tex.sprint(     '\string#1')
+    tex.sprint(   ']')
+    tex.sprint(   '\string\\small')
+    tex.sprint( '}{')
+    tex.sprint(   '\string\\endtcolorbox')
+    tex.sprint( '}')
+  end
+%
+  defineNTWEnvironment('mynote',    'purple!5!white',   'violet!60!black',  'Note')
+  defineNTWEnvironment('note',    'purple!5!white',   'violet!60!black',  'Note')
+  defineNTWEnvironment('mytip',     'orange!7!white',  'yellow!10!orange', 'Tip')
+  defineNTWEnvironment('tip',     'orange!7!white',  'yellow!10!orange', 'Tip')
+  defineNTWEnvironment('mywarning', 'red!5!white',      'red!70!black',     'Warning')
+  defineNTWEnvironment('warning', 'red!5!white',      'red!70!black',     'Warning')
+}
+\ExplSyntaxOn
+%</mydocument.cls|mydtxfile.cls|myslides.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `Defining environments'.
+%
+% ^^A ]]] End of subsection `mynote, mytip, mywarning environments'.
+%
+% \subsection{myitemize}^^A [[[
+%
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>
+\NewDocumentEnvironment { myitemize } { o }
+  { \IfValueTF{ #1 }{ \outline[#1] }{ \outline } }
+  { \endoutline }
+%</mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `myitemize'.
+%
+% \subsection{mytabular}^^A [[[
+% \begin{myitemize}
+% \1 \latexinline{mytabular}の由来はデフォルトの\latexinline{tabular}環境より．
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls>
+\NewDocumentEnvironment {mytabular} { m }
+  { \longtable{ #1 } }
+  { \endlongtable }
+%</mydocument.cls|mydtxfile.cls|myslides.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `mytabular'.
+%
+% \subsection{concealable***}^^A [[[
+% \doublequotes{concealable}\urlref{https://en.wiktionary.org/wiki/concealable}{Wiktionary},
+% \urlref{https://www.yourdictionary.com/concealable}{yourdictionary}
+%
+% \subsubsection{Defining colors}^^A [[[
+% \verb|\colorlet|については\texdoc[section=2.5.2 Color definition in xcolor]{xcolor}
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls>
+% \color_set:nn {myconcealablecolor} {black}
+\colorlet {myconcealablecolor} {black}
+\NewDocumentCommand \myconcealablefonttitle {} {\sffamily\bfseries\small}
+%</mydocument.cls|mydtxfile.cls|myslides.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `Defining colors'.
+%
+% \subsubsection{concealablenote}^^A [[[
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls>
+\newenvironment{concealablenote}{}{}
+%
+\bool_if:NTF \g_@@_show_notes_bool
+  {
+    \renewenvironment{concealablenote}{
+      \tcolorbox[
+        colframe=myconcealablecolor,
+        fontupper=\footnotesize,
+        fonttitle=\myconcealablefonttitle,
+        title=Concealable~note,
+      ]
+    }{
+      \endtcolorbox
+    }
+  }
+  {
+    \let\concealablenote=\comment
+    \let\endconcealablenote=\endcomment
+  }
+%</mydocument.cls|mydtxfile.cls|myslides.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `concealablenote'.
+%
+% \subsubsection{concealablemarginalnote}^^A [[[
+% \doublequotes{marginal note}\mycite[keyword=傍注]{weblio}
+%
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls>
+\NewDocumentCommand \concealablemarginalnote { m } {
+  \bool_if:NTF \g_@@_show_notes_bool
+    { \marginpar{\tiny\sffamily #1} }
+    { \relax }
+}
+%</mydocument.cls|mydtxfile.cls|myslides.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `concealablemarginalnote'.
+%
+% \subsubsection{concealableitemize}^^A [[[
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls>
+\newenvironment{concealableitemize}{}{}
+%
+\bool_if:NTF \g_@@_show_notes_bool
+  {
+    \renewenvironment { concealableitemize }
+      {
+        \tcolorbox
+          [
+            after~skip=3pt,
+            bottom=1pt,
+            colframe=myconcealablecolor,
+            fontupper=\footnotesize,
+            % fontlower=\tiny,
+            fonttitle=\myconcealablefonttitle,
+            sharp~corners,
+            top=1pt,
+            title=Concealable~itemize,
+          ]
+        \myitemize
+      }
+      {
+        \endmyitemize
+        \endtcolorbox
+      }
+  }
+  {
+    \let\concealableitemize=\comment
+    \let\endconcealableitemize=\endcomment
+  }
+%</mydocument.cls|mydtxfile.cls|myslides.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `concealableitemize'.
+%
+% ^^A ]]] End of subsection `concealable***'.
+%
+% \subsection{mycolumn environment (mywallpaper.cls)}^^A [[[
+% \begin{myitemize}
+% \1 \verb|\begin{minipage}[<position>][<height>][<alignment>]{<width>}|
+% \mycite[page=199]{dokushu-latex2e}
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<*mywallpaper.cls>
+\NewDocumentEnvironment { mycolumn } { m } {
+  \minipage[b][100pt][t]{#1}　% 全角スペースを入れないとなぜかエラーが発生する
+}{
+  \endminipage
+}
+%</mywallpaper.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `mycolumn environment (mywallpaper.cls)'.
+%
+% \subsection{todolist environment}^^A [[[
+%
+% \begin{concealableitemize}^^A [[[
+% \1 The origin of `to-do list'
+%   \2 \mycite[keyword=to-do list]{oxford-learners-dictionaries}
+%   \2 \mycite[keyword=to-do list]{cambridge-dictionary}
+% \end{concealableitemize}^^A ]]]
+%
+% \begin{myitemize}
+% \1 \LaTeX でto-do listを作成する理由
+%   \2 Excelだと開くのに時間が掛かるし，たまにフリーズする
+%   \2 ExcelでOneDriveだと，たまに保存されないエラー発生する
+%   \2 Excelだとgit管理できない
+%   \2 Pythonだとcodingキツい
+% \1 Task status
+%   \2 \href{https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.taskstatus?view=net-6.0#fields}{TaskStatus Enum - docs.microsoft.com}
+%     \3 \verb|Running|
+%       \4 The task is running but has not yet completed.
+%     \3 \verb|WaitingToRun|
+%       \4 The task has been scheduled for execution but has not yet begun executing.
+%   \2 \href{https://www.ibm.com/docs/en/epm/10.1.1?topic=tasks-task-status}{Task Status - IBM Documentation}
+%     \3 Scheduled, Complete, Closed
+%   \2 \href{https://www.timelog.com/media/311686/timelog_whitepaper_workflow_en.pdf}{Project status, task status, and project stages}
+%     \3 Not started \myarrow In progress \myarrow On hold \myarrow Completed \myarrow Cancelled
+%   \2 \href{https://huddle.zendesk.com/hc/en-us/articles/200125223-What-statuses-are-available-for-tasks-}{What statuses are available for tasks?}
+%     \3 Not started \myarrow In progress \myarrow Completed
+% \1 `done'
+%   \2 finished; completed \mycite[keyword=done]{oxford-learners-dictionaries}
+%   \2 finished or completed \mycite[keyword=done]{cambridge-dictionary}
+%   \2 \href{https://eikaiwa.dmm.com/uknow/questions/76788/}{完了って英語でなんて言うの？}
+% \1 english
+%   \2 `deadline'
+%     \3 \mycite[keyword=期限]{weblio}
+%     \3 a point in time by which something must be done
+%     \mycite[keyword=deadline]{oxford-learners-dictionaries}
+%     \3 a time by which something must be done
+%     \mycite[keyword=deadline]{cambridge-dictionary}
+%     \3 \href{https://atenglish.com/blog/deadline-775.html}{期限、期間、締め切りを表わす、ネイティブの上手いビジネス英語表現}
+%   \2 `item'
+%     \3 \mycite[keyword=項目]{weblio}
+%     \3 one thing on a list of things to buy, do, talk about, etc.
+%     \mycite[keyword=item]{oxford-learners-dictionaries}
+%     \3 a single thing in a set or on a list
+%     \mycite[keyword=item]{cambridge-dictionary}
+%   \2 `immediately'
+%   \2 `someday'
+%   \2 `important'
+% \1 
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>
+\NewDocumentEnvironment { todolist } { }
+  {
+    \longtable{lllll} \hline
+      Status  & Deadline  & Task  & Remarks & 対応済み日時 \\ \hline
+  }
+  { \hline \endlongtable }
+%
+\NewDocumentCommand \todolistentry { O{black} m m m m O{} }
+  {
+    \textcolor{ #1 }{ #2 } &
+    \textcolor{ #1 }{ #3 } &
+    \textcolor{ #1 }{ #4 } &
+    \textcolor{ #1 }{ #5 } &
+    \textcolor{ #1 }{ #6 } \\
+  }
+%</mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `todolist environment'.
+%
+%
+%
+% ^^A ]]] End of section `Custom Environments'.
+%
+% \section{自作Commands}^^A [[[
+%
+% \begin{mytip}^^A [[[
+% コマンド名にprefixとして\latexinline{my}を付ければ，
+% 他のパッケージで既に定義されているコマンドとはかぶらないと思う．
+% \end{mytip}^^A ]]]
+%
+% \subsection{\texcommand{myinput}}^^A [[[
+% \doublequotes{myinclude}にしなかった理由：\\
+% The \verb|\subfile| command is more like \verb|\input| than \verb|\include| in the sense
+% that it does not start a new page \texdoc[section=2.2 Results]{subfiles}.
+%
+% \begin{myitemize}
+% \1 source file
+%   \2 Authors may find it convenient to put the LaTeX source files for imported documents
+%   into subdirectories of the directory for the main document
+%   \texdoc[section=2.3 Imports in subdirectories]{combine}.
+%   \2 This mechanism is beneficial for documents which span hundreds of pages
+%   in order to make the source file(s) more manageable
+%   \texdoc[section=1 Introduction]{childdoc}.
+% \1 main file
+%   \2 \LaTeX provides a mechanism to structure a large document (such as a book) into a main file
+%   and several child files (containing the chapters) using the \verb|\include| command
+%   \texdoc[section=1 Introduction]{childdoc}.
+% \1 child file
+%   \2 Moreover, compilation can be restricted to selected child files
+%   by means of the \verb|\includeonly| command \texdoc[section=1 Introduction]{childdoc}.
+% \1 subfile
+%   \2 With the \verb|subfiles| set, the typesetting of a multi-file project consisting of one main file
+%   and one or more subsidiary files (subfiles) is more comfortable
+%   \texdoc[section=Abstract]{subfiles}.
+%   \2 \href{https://www.merriam-webster.com/dictionary/sub-file}{ここ}
+%   \2 \urlref{https://www.overleaf.com/learn/latex/Multi-file_LaTeX_projects}{Multi-file LaTeX projects}
+%   \2 \urlref{https://pypi.org/project/subfiles/}{subfiles 1.1.1}
+%   \2 \urlref{https://www.collinsdictionary.com/us/dictionary/english/subfile}{Colloins}
+% \1 sub-file
+%   \2 Keeping pictures in their own sub-files improves readability of the main file
+%   and simplifies the sharing of them between different documents
+%   \texdoc[section=4 Introduction]{standalone}.
+%   \2 This may halt the \TeX{} run (if the current file is the main file) or
+%   may abort reading a sub-file \texdoc[section=3 Issuing messages]{interface3}.
+% \1 subsidiary document
+%   \2 It is up to the user to ensure that the main document loads all packages
+%   required by subsidiary documents \texdoc[section=1 Introduction]{docmute}.
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<*mydocument.cls>
+\NewDocumentCommand \myinput { o m }
+  {
+    \IfValueTF{ #1 }
+      { \subfile{#1/#2} }
+%     { \subfile{subfiles/#2} }
+      { \subfile{#2} }
+  }
+%</mydocument.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `\myinput'.
+%
+% \subsection{相互参照}^^A [[[
+% \begin{myitemize}
+% \1 相互参照のパッケージはいくつかあるが
+% \urlref{http://konoyonohana.blog.fc2.com/blog-entry-250.html}{[LaTeX] reference --- 相互参照 のいろいろ}，
+% どれもいまいちだったので自作した
+% \1 \verb/\***name/については『独習\LaTeXe』\<\mycite[page=279]{teach-yourself-latex2e}に倣った．
+% また，\verb|article.cls|には\verb|\contentsname|，\verb|\figurename|，\verb|\partname|などが定義されている．
+% \1 
+% \end{myitemize}
+%
+% \subsubsection{文字について}^^A [[[
+%
+% \begin{table}[ht]^^A [[[
+% \centering
+% \RenewDocumentCommand \temporarycommand { m m m } { #1 & #2 & #3 \\}
+% \begin{tabular}{lll} \hline
+%   \temporarycommand{}{English}{日本語}\hline \hline
+%   \temporarycommand{figure}{Figure\mycite[page=14]{version-control-with-git}}{図\mycite{***}}
+%   \temporarycommand{table}{Table\mycite[page=35]{version-control-with-git}, \mycite[page=139]{introducting-python}}{表\mycite{***}}
+%   \temporarycommand{chapter}{Chapter\mycite[page=xii]{version-control-with-git}, \mycite[page=117]{introducting-python}}{第$n$章\cite[]{}}
+%   \temporarycommand{section}{Sec.\cite[]{}}{図\cite[]{}}
+%   \temporarycommand{subsection}{Subsec.\cite[]{}}{図\cite[]{}}\hline
+% \end{tabular}
+% \end{table}^^A ]]]
+%
+% ^^A ]]] End of subsubsection `文字について'.
+%
+% \subsubsection{Chapter}^^A [[[
+% \doublequotes{ch}については\mycite[page=166]{latex2e-bibunshosakusei}．
+% \begin{macro}{\chlabel, \chref}
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls>
+\newcommand{\chlabel}[1]{\label{ch:#1}}
+%
+\NewDocumentCommand\chref{s m}{%
+	\if@english
+		Chapter~\ref{ch:#2}%
+	\else
+		\IfBooleanTF{#1}{%
+			\appendixname\nobreak\ref{ch:#2}%
+		}{%
+			第\nobreak\ref{ch:#2}\nobreak 章%
+		}%
+	\fi
+}
+%</mydocument.cls|mydtxfile.cls>
+% \end{latexcode}
+% \end{macro}
+% ^^A ]]] End of subsubsection `Chapter'.
+%
+% \subsubsection{Figure}^^A [[[
+% \begin{myitemize}
+% \1 The origin of \doublequotes{fig}
+%   \2 『独習\LaTeXe』\<\mycite[page=343]{yoshinaga-latex}
+% \1 \verb|jsbook|に定義されている\verb|\figurename|を使った方がよい気がする
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls>
+\newcommand{\figlabel}[1]{\label{fig:#1}}
+%
+\newtoks\figrefname
+\figrefname={\if@english Figure~\else 図\fi}
+\newcommand{\figref}[1]{
+  \the\figrefname\nobreak\ref{fig:#1}%
+}
+%</mydocument.cls|mydtxfile.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `Figure'.
+%
+% \subsubsection{Section}^^A [[[
+% \doublequotes{sec}については『独習\LaTeXe』\<\mycite[page={33, 340}]{teach-yourself-latex2e}を参考にした．
+% \begin{macro}{\seclabel, \secref}
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls>
+\newcommand{\seclabel}[1]{\label{sec:#1}}
+%
+\newcommand*{\secref}[1]{%
+	\if@english
+		Section~\ref{sec:#1}%
+	\else
+		\ref{sec:#1}\nobreak 節%
+	\fi
+}
+%</mydocument.cls|mydtxfile.cls>
+% \end{latexcode}
+% \end{macro}
+% ^^A ]]] End of subsubsection `Section'.
+%
+% \subsubsection{Subsection}^^A [[[
+% \doublequotes{subsec}については適当につけた．
+% \begin{macro}{\subseclabel, \subsecref}
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls>
+\newcommand{\subseclabel}[1]{\label{subsec:#1}}
+%
+\newcommand{\subsecref}[1]{%
+	\if@english
+		Section~\ref{subsec:#1}%
+	\else
+		\ref{subsec:#1}\nobreak 項%
+	\fi
+}
+%</mydocument.cls|mydtxfile.cls>
+% \end{latexcode}
+% \end{macro}
+% ^^A ]]] End of subsubsection `Subsection'.
+%
+% \subsubsection{Subsubsection}^^A [[[
+% articleオプションのときのために一応定義しておく．
+%
+% \doublequotes{subsubsec}については適当につけた．
+% \begin{macro}{\subsubseclabel, \subsubsecref}
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls>
+\newcommand{\subsubseclabel}[1]{\label{subsubsec:#1}}
+%
+\newcommand{\subsubsecref}[1]{%
+	\if@english
+		Section~\ref{subsubsec:#1}%
+	\else
+		\ref{subsubsec:#1}\nobreak 項%
+	\fi
+}
+%</mydocument.cls|mydtxfile.cls>
+% \end{latexcode}
+% \end{macro}
+% ^^A ]]] End of subsubsection `Subsubsection'.
+%
+% \subsubsection{Table}^^A [[[
+% "tab"については『独習\LaTeXe』\<\cite[279]{yoshinaga-latex}を参考にした．
+% \begin{macro}{\tabref}
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls>
+\newcommand{\tablabel}[1]{\label{tab:#1}}
+%
+\newtoks\tabrefname
+\tabrefname={\if@english Table~\else 表\fi}
+\newcommand*{\tabref}[1]{\the\tabrefname\nobreak\ref{tab:#1}}
+%</mydocument.cls|mydtxfile.cls>
+% \end{latexcode}
+% \end{macro}
+% ^^A ]]] End of subsubsection `Table'.
+%
+% ^^A ]]] End of subsection `相互参照'.
+%
+% \subsection{\texcommand{myarrow}}^^A [[[
+% \doublequotes{arrow}の由来は，数式の\verb|\Rightarrow|，\verb|\Leftrightarrow|，\verb|\Downarrow|や，
+% textcompパッケージの\verb|textrightarrow|などから．
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>
+% \define@key{myarrow}{color}{}
+% \define@key{myarrow}{???style??}{}
+%
+\RequirePackage{pifont}
+\RequirePackage{textcomp}
+\NewDocumentCommand \myarrow {} {\ding{222}}
+% \NewDocumentCommand \myarrow {} {➞}
+%</mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `myarrow'.
+%
+% \subsection{\texcommand{mypage}, \texcommand{myline}}^^A [[[
+% \doublequotes{\mypage{***}}の表記は『MAINTOP総合英語』\<\cite{maintop}に倣った．
+% \doublequotes{\myline{}}の形式は＊＊＊を参考にした．
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls>
+\newcommand*{\myline}[1]{l.\,#1}
+\newcommand*{\mypage}[1]{p.\,#1}
+%</mydocument.cls|mydtxfile.cls|myslides.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `\mypage, \myline'.
+%
+% \subsection{\texcommand{mycite}}^^A [[[
+% \doublequotes{keyword}の由来は，\mycite[keyword=keyword]{oxford-learners}，
+% \mycite[keyword=keyword]{longman}．
+%
+% \href{https://www.lua.org/pil/3.4.html}{文字の連結}
+% \href{https://www.lua.org/pil/20.1.html}{文字の置き換え}
+%
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls>
+\tl_new:N \l_mycite_keyword_tl
+\tl_new:N \l_mycite_line_tl
+\tl_new:N \l_mycite_page_tl
+\tl_new:N \l_mycite_section_tl
+%
+\keys_define:nn { mycite } {
+  keyword .code:n = \tl_set:Nn \l_mycite_keyword_tl {{\sffamily\gtfamily #1 }},
+  line    .code:n = \tl_set:Nn \l_mycite_line_tl {, \myline{ #1 }},
+  page    .code:n = \tl_set:Nn \l_mycite_page_tl {\mypage{ #1 }},
+  section .code:n = \tl_set:Nn \l_mycite_section_tl {{,~\small\doublequotes{ #1 }}},
+}
+%
+\NewDocumentCommand \mycite { o m } {
+  \group_begin:
+  \IfNoValueTF{#1}{
+    \cite{#2}
+  }{
+    \keys_set:nn { mycite } { #1 }
+    \cite[
+      \l_mycite_keyword_tl
+      \l_mycite_section_tl
+      \l_mycite_page_tl
+      \l_mycite_line_tl
+    ]{#2}
+  }
+  \group_end:
+}
+%</mydocument.cls|mydtxfile.cls|myslides.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `\mycite'.
+%
+% \subsection{\texcommand{urlref}}^^A [[[
+% 本当は\verb|\mycite[url=https://...]{title of website}|としたかったが，
+% オプション引数をverbatimにすることができなかった．
+%
+% オプションurl実装に当たり参考にしたサイト：
+% \url{https://latex.org/forum/viewtopic.php?t=15896}
+% \url{http://wiki.luatex.org/index.php/Writing_Lua_in_TeX}
+%
+% 改行\verb|\string\n|は\texdoc{luacode}より．
+%
+% \subsubsection{Defining Temporary Filename}^^A [[[
+% 一時的なbibファイルの名前
+% \begin{latexcode}
+%<mydocument.cls|mydtxfile.cls|myslides.cls>\directlua{filename = 'temp.bib'}
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `Defining Temporary Filename'.
+%
+% \subsubsection{Removing Temporary bib File}^^A [[[
+% \verb|temp.bib|が既に存在すれば，削除しておく．
+%
+% \href{https://stackoverflow.com/questions/4990990/check-if-a-file-exists-with-lua}{ファイルが存在するか？}
+%
+% \href{https://www.gammon.com.au/scripts/doc.php?lua=os.remove}{ファイルの削除}
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls>
+\ExplSyntaxOff
+\directlua{
+  require "lfs"
+  if lfs.attributes(filename) then
+    os.remove(filename)
+  end
+  urlrefnum = 0
+}
+\ExplSyntaxOn
+%</mydocument.cls|mydtxfile.cls|myslides.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `Removing Temporary bib File'.
+%
+% \subsubsection{Defining \texcommand{urlref}}^^A [[[
+% \verb|\asluastring|については\urlref{https://nymphium.github.io/2015/05/19/lualatex_asluastring.html}{texluaとtex.print}
+%
+% 引数\latexinline{v}はverbatim\texdoc{xparse}
+%
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls>
+\ExplSyntaxOff
+\NewDocumentCommand \urlref { v m } {
+  \directlua{
+    urlrefnum = urlrefnum + 1
+    % temp = '#2'
+    % temp = temp:gsub(' ', '')
+    % temp = temp:gsub('\_', '')
+    % temp = temp:gsub('"', '')
+    % temp = temp:gsub('\'', '')
+    f = io.open(filename, "a")
+    f:write('@misc{' .. urlrefnum .. ',\string\n')
+    f:write('\string\ttitle = "#2",\string\n')
+    f:write('\string\thowpublished = "URL: \noexpand\\url{#1}", }\string\n')
+    f:close()
+    tex.print(\asluastring{\cite} .. '{' .. urlrefnum .. '}')
+  }
+}
+\ExplSyntaxOn
+%</mydocument.cls|mydtxfile.cls|myslides.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsubsection `Defining \urlref'.
+%
+% ^^A ]]] End of subsection `\urlref'.
+%
+% \subsection{\texcommand{mybibliography}}^^A [[[
+% bibliography：参考文献一覧\mycite[keyword=bibliography]{genius}
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls>
+% \newcommand{\mybibliography}{
+\def\mybibliography{
+    \newpage
+    \bibliographystyle{unsrt}
+    % \bibliography{myreferences,temp}% Error occured
+    \bibliography{myreferences}
+}
+%</mydocument.cls|mydtxfile.cls|myslides.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `\mybibliography'.
+%
+% \subsection{\texcommand{myterm}}^^A [[[
+% \doublequotes{technical}を付けない理由は\myemph{専門}用語以外の用語にも適用するため．
+% \begin{myitemize}
+% \1 \doublequotes{term}
+%   \2 特定の分野で特に使われる語句．専門用語，学術用語とほぼ同義
+%   \mycite[keyword=用語]{wikipedia}．
+%   \2 \mycite[keyword=用語]{weblio}
+%   \2 \mycite[keyword=term]{weblio}
+%   \2 \mycite[page=1]{linux-in-a-nutshell}
+%   \2 a word or phrase used as the name of something,
+%   especially one connected with a particular type of language
+%   \mycite[keyword=term]{oxford-learners-dictionaries}
+%     \3 a technical/legal/generic term
+%   \2 a word or phrase that is used to mean a particular thing
+%   \mycite[keyword=term]{cambridge-dictionary}
+%     \3 a legal/scientific/medical term
+%   \2  a word or expression with a particular meaning,
+%   especially one that is used for a specific subject or type of language
+%   \mycite[keyword=term]{longman}
+%     \3 ‘Multimedia’ is the term for any technique combining sounds and images.
+%   \2 The term \doublequotes{adjoint matrix} is also used \mycite[keyword=2-15.9]{ISO80000-2}
+% \1 \doublequotes{technical term}
+%   \2 \mycite[page=9]{introducting-python}にも\doublequotes{technical term}がある．
+% \1 \latexinline{position}
+%   \2 If you specify an entry of the form \latexinline{σ@τ},
+%   the string \latexinline{σ} determines the alphabetical position of the entry,
+%   while the string \latexinline{τ} produces the text of the entry
+%   \texdoc[section=2.2 The Basics]{makeindex}.
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls>
+\bool_new:N \l_term_position_bool
+\tl_new:N \l_term_english_tl
+%
+\keys_define:nn { term }
+  {
+    english   .code:n = \tl_set:Nn \l_term_english_tl { ( #1 ) },
+    position  .code:n = \tl_set:Nn \l_term_position_tl { #1 } \bool_set_true:N \l_term_position_bool,
+  }
+%
+\NewDocumentCommand \myterm { o m }
+  {
+    \group_begin:
+    \IfValueTF{ #1 }
+      {
+        \keys_set:nn { term } { #1 }
+        {\bfseries\gtfamily#2 \l_term_english_tl}
+        \index{\l_term_position_tl@#2\l_term_english_tl}
+      } {
+        {\bfseries\gtfamily#2}
+        \index{#2}%
+      }
+    \group_end:
+  }
+%</mydocument.cls|mydtxfile.cls|myslides.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `\myterm'.
+%
+% \subsection{\texcommand{texcommand}}^^A [[[
+% \verb|\symbol|については『独習\LaTeXe』\<\mycite[page=195]{teach-yourself-latex2e}を参照．
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>
+\NewDocumentCommand \texcommand { m } {%
+    \texttt{\symbol{"5C}#1}
+}
+%
+% \def\texcommand{\@ifstar{\@texcommand\@firstofone}{\@texcommand{\symbol{"5C}}}}
+% \def\@texcommand#1#2{\texttt{#1#2}}
+%</mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `\texcommand'.
+%
+% \subsection{\texcommand{myverb}}^^A [[[
+% このコマンドを定義する理由は
+% 「\latexinline{\textbf}や\latexinline{\bm}などの見た目系コマンドがないかを確認してみましょう．」
+% \urlref{https://qiita.com/enukasu/items/a0e2516f2263ab6d5b36#%E3%81%BE%E3%81%A8%E3%82%81}{どうしてLaTeXを使うのか、もう一度考えてみる}
+%
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>
+\NewDocumentCommand \myverb { m } {
+    \texttt{#1}
+}
+%</mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `***'.
+%
+% \subsection{括弧類}^^A [[[
+% \doublequotes{doublequotes}の由来は\mycite[keyword=double]{genius}．
+%
+% \doublequotes{anglebrackets}の由来は\mycite[keyword=angle]{genius}．
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>
+\newcommand*{\doublequotes}[1]{\textquotedblleft#1\textquotedblright}
+\newcommand*{\anglebrackets}[1]{
+  \ifmmode
+    \left\langle#1\right\rangle
+  \else
+    \textlangle#1\textrangle
+  \fi
+}
+%</mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `括弧類'.
+%
+% \subsection{\texcommand{temporarycommand}}^^A [[[
+% \texdoc{minted}の"breaksymbolindentleft"に"temporarydimen"があり，それに倣った．
+%
+% 適宜，再定義して用いよ．
+% \begin{latexcode}
+%<mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>\NewDocumentCommand \temporarycommand {} {}
+% \end{latexcode}
+% ^^A ]]] End of subsection `\temporarycommand'.
+%
+% \subsection{\texcommand{myemph}}^^A [[[
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>
+\newcommand*{\myemph}[1]{\textbf{\textsf{#1}}}
+%</mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `\myemph'.
+%
+% \subsection{\texcommand{descriptionentry}}^^A [[[
+% \begin{myitemize}
+% \1 \verb|\group_begin: ... \group_end:|で囲むとエラーになる
+% \1 
+% \1
+% \end{myitemize}
+%
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls>
+\bool_new:N \l_descriptionentry_english_bool
+\bool_new:N \l_descriptionentry_updated_bool
+\tl_new:N \l_descriptionentry_english_tl
+\tl_new:N \l_descriptionentry_updated_tl
+%
+\keys_define:nn { descriptionentry }
+  {
+    english .code:n = \tl_set:Nn \l_descriptionentry_english_tl { #1 } \bool_set_true:N \l_descriptionentry_english_bool,
+    updated .code:n = \tl_set:Nn \l_descriptionentry_updated_tl { #1 } \bool_set_true:N \l_descriptionentry_updated_bool,
+  }
+%
+\NewDocumentCommand \descriptionentry { m o m m }
+  {
+    \IfValueT { #2 } { \keys_set:nn { descriptionentry } { #2 } }
+    \1[ #1 \bool_if:NT \l_descriptionentry_english_bool {（\l_descriptionentry_english_tl）} ]
+    \bool_if:NT \g_@@_show_notes_bool
+      {
+        \bool_if:NT \l_descriptionentry_updated_bool
+          { \marginpar{\vspace{5pt} \tiny\sffamily Updated:~\l_descriptionentry_updated_tl} }
+      }
+    #3 #4
+  }
+%</mydocument.cls|mydtxfile.cls|myslides.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `\descriptionentry'.
+%
+% \subsection{\texcommand{insertimage}}^^A [[[
+%
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls>
+\bool_new:N \g_tmp_insertimage_bool
+\NewDocumentCommand \mainfile { } { \bool_gset_true:N \g_tmp_insertimage_bool }
+\dim_new:N \l_@@_insertimage_width_dim
+\dim_set:Nn \l_@@_insertimage_width_dim { 400pt }
+%
+\keys_define:nn { insertimage }
+  {
+    width .code:n = \dim_set:Nn \l_@@_insertimage_width_dim { #1 },
+  }
+%
+% \ExplSyntaxOff
+\NewDocumentCommand \insertimage { O{} m m }
+  {
+    \keys_set:nn { insertimage } { #1 }
+    % \write18{
+      % if [ ! -d "src" ]; then mkdir src; fi
+      % &&
+      % if [ ! -f "src/#3" ]; then wget #2 -O src/#3; fi
+    % }
+    % \directlua{
+      % require 'lfs'
+      % function dir_exists(path)
+        % if (lfs.attributes(path, 'mode') == 'directory') then
+          % return true
+        % end
+        % return false
+      % end
+      % if (not dir_exists('src')) then
+        % lfs.mkdir('src')
+      % end
+    % }
+    % \directlua{
+      % os.execute('if [ ! -d src ]; then mkdir src; fi')
+      % os.execute('if [ ! -f "src/#3" ]; then wget #2 -O src/#3; fi')
+    % }
+    \bool_if:NTF \g_tmp_insertimage_bool {
+      \includegraphics[width=\l_@@_insertimage_width_dim]{ subfiles/src/#3 }
+    } {
+      \directlua{
+        os.execute('if~[~!~-d~src~];~then~mkdir~src;~fi')
+        os.execute('if~[~!~-f~"src/#3"~];~then~wget~#2~-O~src/#3;~fi')
+      }
+      \includegraphics[width=\l_@@_insertimage_width_dim]{ src/#3 }
+    }
+  }
+% \ExplSyntaxOn
+%</mydocument.cls|mydtxfile.cls|myslides.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `\insertimage'.
+%
+% \subsection{test***}^^A [[[
+%
+% \begin{latexcode}
+%<*mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>
+
+
+
+
+%</mydocument.cls|mydtxfile.cls|myslides.cls|mywallpaper.cls>
+% \end{latexcode}
+% ^^A ]]] End of subsection `***'.
+%
+%
+%
+%
+%
+%
+% ^^A ]]] End of section `自作Commands'.
+%
+% ^^A ]]] End of part `Implementation'.
+%
+% ^^A End of file `classes.dtx'.
