@@ -13,6 +13,8 @@
 
 ## To-do list
 
+- [ ] research zoxide
+  - [cdコマンドを強化する zoxide でターミナル操作を快適にする](https://zenn.dev/h_ymt/articles/e4a07ca71fd1cb)
 - [ ] @chatgpt[prompt: bash であるディレクトリにすぐに移動するような設定はある？（zsh の hash -d のような）]
 - [ ] `evince` なら `.pdf` のみ補完．のようにコマンドごとに補完する拡張子を指定したい
 - [ ] `config_desktop.sh`

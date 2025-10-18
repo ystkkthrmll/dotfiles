@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 #
 # - Purpose: for Linux
+# - Usage: `$ bash setup.sh`
 #
 readonly COMPUTER_NAME=home
 
