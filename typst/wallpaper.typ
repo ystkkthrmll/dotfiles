@@ -111,7 +111,7 @@
     #let data = (
       (cmd: [`Ctrl`+`B`], desc: [hide explorer]), // https://superuser.com/questions/1569067/how-to-close-explorer-via-shortcut-in-vs-code     % https://stackoverflow.com/questions/37815472/vscode-keybinding-to-hide-explorer
       (cmd: [`Ctrl`+`Enter`], desc: [Open to the side]), // https://code.visualstudio.com/docs/getstarted/userinterface#_side-by-side-editing
-      (cmd: [`Ctrl+Tab`], desc: [Change tabs]), // https://stackoverflow.com/questions/38957302/is-there-a-quick-change-tabs-function-in-visual-studio-code
+      (cmd: [`Ctrl`+`Tab`], desc: [Change tabs]), // https://stackoverflow.com/questions/38957302/is-there-a-quick-change-tabs-function-in-visual-studio-code
       (cmd: [`F12`], desc: [Go to definition]), // https://code.visualstudio.com/docs/editing/editingevolved#_go-to-definition
       (cmd: [`Ctrl`+`F12`], desc: [Go to implementation]), // https://code.visualstudio.com/docs/editing/editingevolved#_go-to-implementation
       (cmd: [`Ctrl`+`M`], desc: [Move (custom)]),
@@ -143,19 +143,19 @@
       (cmd: [`G`], desc: [cursor to the last line]),
       (cmd: [`A`], desc: [append text after the end of the line]),
       (cmd: [`x`], desc: [delete character]),
-      (cmd: [`Ctrl+F`], desc: [scroll `N` screens Forward]),
-      (cmd: [`Ctrl+B`], desc: [scroll `N` screens Backwards]),
+      (cmd: [`Ctrl`+`F`], desc: [scroll `N` screens Forward]),
+      (cmd: [`Ctrl`+`B`], desc: [scroll `N` screens Backwards]),
       (cmd: [`%`], desc: [find the next bracket and go to its match]),
       (cmd: [`Ctrl+Shift+V`], desc: [start blockwide Visual mode]),
       (cmd: [`cc`], desc: [delete line and start insert]),
       // (cmd: [`R`], desc: [enter replace mode]),
       (cmd: [`u`], desc: [undo changes]),
-      (cmd: [`Ctrl+R`], desc: [redo changes which were undone with '`u`']),
+      (cmd: [`Ctrl`+`R`], desc: [redo changes which were undone with '`u`']),
       (cmd: [`:sp[lit]`], desc: [split current window]),
-      (cmd: [`Shift+Insert`], desc: [paste clipboard]),
+      (cmd: [`Shift`+`Insert`], desc: [paste clipboard]),
       (cmd: [`/xxx<CR>`], desc: [search forward for `xxx`]),
-      (cmd: [`:\%s/X/Y/gc`], desc: [all X $\to$ Y]), // cf. http://qiita.com/shirochan/items/a16487d0739f455b5e8a
-      (cmd: [`:4,9s/X/Y/gc`], desc: [4-9 line X $\to$ Y]), // cf. http://qiita.com/shirochan/items/a16487d0739f455b5e8a
+      (cmd: [`:%s/X/Y/gc`], desc: [all X $->$ Y]), // cf. http://qiita.com/shirochan/items/a16487d0739f455b5e8a
+      (cmd: [`:4,9s/X/Y/gc`], desc: [4-9 line X $->$ Y]), // cf. http://qiita.com/shirochan/items/a16487d0739f455b5e8a
       // (cmd: [`Ctrl+X Ctrl+K`], desc: []),
       (cmd: [`Ctrl`+`]`], desc: [jump to the subject]),
       (cmd: [`Ctrl`+`O`], desc: [jump back]),

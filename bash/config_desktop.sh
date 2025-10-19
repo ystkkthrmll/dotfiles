@@ -2,7 +2,7 @@
 #
 # #region Outline
 # - Purpose: Configure desktop
-#
+# - Usage: `$ bash config_desktop.sh`
 # - Notes
 #
 #   - キーワードの見つけ方：
@@ -25,6 +25,7 @@
 #
 #   - The origin of filename
 #     - [CHAPTER 9. CONFIGURING DESKTOP WITH GSETTINGS AND DCONF](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/desktop_migration_and_administration_guide/configuration-overview-gsettings-dconf)
+#
 # #endregion Outline
 #
 # #region Defining variables
@@ -44,7 +45,8 @@ fi
 #       Note that the backend only supports local (file://) URIs.
 #       `$ gsettings describe org.gnome.desktop.background picture-uri`
 #
-filename="file:///home/yasutaka/Dropbox/config-files/misc/output-files/shell/wallpaper-${extension}.png"
+# filename="file:///home/yasutaka/Dropbox/dotfiles/typst/wallpaper-${extension}.png"
+filename="file:///home/yasutaka/Dropbox/dotfiles/typst/wallpaper.png"
 gsettings set org.gnome.desktop.background picture-uri ${filename}
 # #endregion org.gnome.desktop.background
 #
@@ -191,10 +193,11 @@ gsettings set ${schema}:${path} paste '<Ctrl>v'
 # #region Sound and Media
 # - Notes
 #   - The origin of "Sound and Media"
-#       Settings > Keyboard Shortcuts > Sound and Media
+#     - Settings > Keyboard Shortcuts > Sound and Media
 #   - `gsettings` で設定することができなかったので，`dconf` を用いた
-#     \urlref{https://tutorialmore.com/questions-83182.htm}{sound - Ubuntuは一部のメディアキーに対して正しいキーコードを提供しません}
-#   - `key` の由来は\verb|man dconf|の\verb|dconf write KEY VALUE|より
+#     - \urlref{https://tutorialmore.com/questions-83182.htm}{sound - Ubuntuは一部のメディアキーに対して正しいキーコードを提供しません}
+#   - The origin of "key"
+#     - ` man dconf` の `dconf write KEY VALUE` より
 #
 key=/org/gnome/settings-daemon/plugins/media-keys
 
@@ -222,9 +225,8 @@ key=/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings
 # #region org.gnome.Terminal.Legacy.Profile
 #
 # #region Profile IDの取得
-# - The origin of `profile id'
-#   - Terminal \myarrow\ Preferences \myarrow\ Profilesの内の一つを選択\myarrow
-#     Textタブ\myarrow\ 右下の文字列\doublequotes{Profile ID: ...}
+# - The origin of "profile id"
+#   - Terminal > Preferences > Profiles の内の一つを選択 > Textタブ > 右下の文字列 "Profile ID: ..."
 #   - 以下でProfile IDを取得
 #     - \href{https://zv-louis.hatenablog.com/entry/2018/05/28/120000}{参照先}
 #

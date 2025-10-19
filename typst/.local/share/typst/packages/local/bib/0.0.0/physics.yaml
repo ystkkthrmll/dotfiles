@@ -1,31 +1,36 @@
-
-
 classical-mechanics:
-    type: Book
-    title: Classical Mechanics
-    author: Herbert Goldstein
-    publisher: Addison-Wesley
-    # edition: 3
-    misc:
-      - |
-        Classical Mechanics is a textbook about that subject written by Herbert Goldstein,
-        a professor at Columbia University.
-        Intended for advanced undergraduate and beginning graduate students,
-        it has been one of the standard references in its subject around the world
-        since its first publication in 1951
-        \mycite[keyword=Classical Mechanics (Goldstein)]{wikipedia}.
-    updated: 2025-10-18T23:18:54
+  type: Book
+  title: Classical Mechanics
+  author: Herbert Goldstein
+  publisher: Addison-Wesley
+  # edition: 3
+  misc:
+    - |
+      Classical Mechanics is a textbook about that subject written by Herbert Goldstein,
+      a professor at Columbia University.
+      Intended for advanced undergraduate and beginning graduate students,
+      it has been one of the standard references in its subject around the world
+      since its first publication in 1951
+      \mycite[keyword=Classical Mechanics (Goldstein)]{wikipedia}.
+  updated: 2025-10-18T23:18:54
 
 quantum-computation-and-quantum-information:
-    type: Book
-    author: Michael A. Nielsen \& Isaac L. Chuang
-    title: Quantum Computation and Quantum Information
-    publisher: Cambridge University Press
-    # edition: 10
-    misc:
-      - |
-        Quantum Computation and Quantum Information  is a textbook about quantum information science
-        written by Michael Nielsen and Isaac Chuang, regarded as a standard text on the subject
-        \mycite[keyword=Quantum Computation and Quantum Information]{wikipedia}
-    updated: 2025-10-18T23:18:48
+  type: Book
+  title: Quantum Computation and Quantum Information
+  author: Michael A. Nielsen & Isaac L. Chuang
+  publisher: Cambridge University Press
+  # edition: 10
+  misc:
+    - |
+      Quantum Computation and Quantum Information  is a textbook about quantum information science
+      written by Michael Nielsen and Isaac Chuang, regarded as a standard text on the subject
+      \mycite[keyword=Quantum Computation and Quantum Information]{wikipedia}
+  updated: 2025-10-18T23:18:48
 
+mechanics-of-materials:
+  type: Book
+  title: 材料力学
+  author: 日本機械学会
+  publisher: 日本機械学会
+  date: 2016
+  updated: 2025-10-19T11:27:30

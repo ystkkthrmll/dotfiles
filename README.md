@@ -26,9 +26,16 @@
 
 ## Usage
 
+### Linux
+
 ```bash
 $ bash setup.sh
 ```
+
+### Windows
+
+1.  Run PowerShell as an administrator
+1.  `> .\xxx.ps1`
 
 ## Directory structure
 

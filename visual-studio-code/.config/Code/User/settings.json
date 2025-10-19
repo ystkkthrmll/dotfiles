@@ -181,7 +181,8 @@
     // "previewTheme": "one-dark.css",
   // },
   "markdown-preview-enhanced.codeBlockTheme": "atom-dark.css",
-  "markdown-preview-enhanced.previewTheme": "atom-dark.css",
+  // "markdown-preview-enhanced.previewTheme": "atom-dark.css",
+  "markdown-preview-enhanced.previewTheme": "atom-light.css",
 
   "[notebook]": {
     // - Refs
