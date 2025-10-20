@@ -139,6 +139,7 @@ hash -d set-theory=~math/foundations/set-theory/srcs
 hash -d topological-space=~math/foundations/topological-space/srcs
 # #endregion foundations
 
+hash -d notation=~math/misc/notation
 
 
 

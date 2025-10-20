@@ -11,6 +11,7 @@ if [[ $(uname -n) == ${COMPUTER_NAME} ]]; then
     # bash
     git
     gnome-files
+    pandoc
     tex
     typst
     vim
