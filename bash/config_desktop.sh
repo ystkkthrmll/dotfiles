@@ -104,6 +104,9 @@ gsettings set org.gnome.nautilus.preferences default-folder-viewer "'list-view'"
 # #region org.gnome.settings-daemon.plugins.power
 # - Notes
 #   - `sleep-inactive-ac-timeout`
+#       `$ gsettings describe org.gnome.desktop.settings-daemon.plugins.power sleep-inactive-ac-timeout`
+#   - 1800 [sec] = 60 * 30 [sec] = 30 [min]
+#
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 1800
 # #endregion org.gnome.settings-daemon.plugins.power
 #

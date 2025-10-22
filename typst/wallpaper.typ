@@ -109,7 +109,7 @@
     = Visual Studio Code
 
     #let data = (
-      (cmd: [`Ctrl`+`B`], desc: [hide explorer]), // https://superuser.com/questions/1569067/how-to-close-explorer-via-shortcut-in-vs-code     % https://stackoverflow.com/questions/37815472/vscode-keybinding-to-hide-explorer
+      (cmd: [`Ctrl`+`B`], desc: [Toggle sidebar visibility]), // [keyboard-shortcuts-linux.pdf](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)
       (cmd: [`Ctrl`+`Enter`], desc: [Open to the side]), // https://code.visualstudio.com/docs/getstarted/userinterface#_side-by-side-editing
       (cmd: [`Ctrl`+`Tab`], desc: [Change tabs]), // https://stackoverflow.com/questions/38957302/is-there-a-quick-change-tabs-function-in-visual-studio-code
       (cmd: [`F12`], desc: [Go to definition]), // https://code.visualstudio.com/docs/editing/editingevolved#_go-to-definition
@@ -134,7 +134,6 @@
     = Vim
 
     #let data = (
-      (cmd: [`Ctrl`+`B`], desc: [hide explorer]),
       (cmd: [`vim -d file1 file2`], desc: [view the differeces]), // http://vimdoc.sourceforge.net/htmldoc/diff.html
       (cmd: [`zA`], desc: [open fold recursivly]),
       // (cmd: [`zf`], desc: [create fold]),

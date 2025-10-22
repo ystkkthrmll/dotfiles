@@ -13,7 +13,6 @@
 
 ## To-do list
 
-- [ ] research fish
 - [ ] research fzf
   - [zshでfzfを使ってコマンドと移動履歴を検索する](https://zenn.dev/nokogiri/articles/ec99e40df54555)
 - [ ] research zoxide

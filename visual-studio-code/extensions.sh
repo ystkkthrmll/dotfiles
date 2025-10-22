@@ -1,36 +1,43 @@
 #!/usr/bin/bash
 
-# - Purpose
-#   - グローバルで使用する拡張機能をインストールするためのスクリプト．
+# - Purpose: グローバルで使用する拡張機能をインストールするためのスクリプト．
 # - Notes
 #   - Gemini によると，グローバルな extensions.json ファイルは存在しないらしい．
 #     そのため，コマンドで拡張機能をインストールする．
 
-# D2
-code --install-extension terrastruct.d2
+extensions=(
+  # D2
+  terrastruct.d2
 
-# JavaScript, HTML, Markdown, etc.
-code --install-extension esbenp.prettier-vscode
+  # JavaScript, HTML, Markdown, etc.
+  esbenp.prettier-vscode
 
-# LaTeX
-# code --install-extension James-Yu.latex-workshop  # 一旦使用をやめる
+  # LaTeX
+  # James-Yu.latex-workshop  # 一旦使用をやめる
 
-# Markdown
-code --install-extension shd101wyy.markdown-preview-enhanced
+  # Markdown
+  shd101wyy.markdown-preview-enhanced
 
-# PDF
-code --install-extension tomoki1207.pdf
+  # PDF
+  tomoki1207.pdf
 
-# Python
-code --install-extension charliermarsh.ruff
-code --install-extension ms-python.black-formatter
-code --install-extension njqdev.vscode-python-typehint
-code --install-extension samuelcolvin.jinjahtml
+  # Python
+  charliermarsh.ruff
+  ms-python.black-formatter
+  njqdev.vscode-python-typehint
+  samuelcolvin.jinjahtml
 
-# Vim
-code --install-extension vscodevim.vim
+  # TOML
+  tamasfe.even-better-toml
 
-# Misc
-code --install-extension ms-vscode-remote.remote-containers
-code --install-extension eamodio.gitlens
+  # Vim
+  vscodevim.vim
 
+  # Misc
+  ms-vscode-remote.remote-containers
+  eamodio.gitlens
+)
+
+for extension in "${extensions[@]}"; do
+  code --install-extension ${extension}
+done
