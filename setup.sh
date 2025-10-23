@@ -5,13 +5,15 @@
 #
 readonly COMPUTER_NAME=home
 
+# Define target softwares
 if [[ $(uname -n) == ${COMPUTER_NAME} ]]; then
+  # For personal PC
   targets=(
     # autostart
     # bash
     git
     gnome-files
-    pandoc
+    # pandoc
     tex
     typst
     vim
@@ -19,6 +21,7 @@ if [[ $(uname -n) == ${COMPUTER_NAME} ]]; then
     zsh
   )
 else
+  # For work PC
   targets=(
     git
     typst
@@ -27,6 +30,7 @@ else
   )
 fi
 
+# Run stow
 for target in "${targets[@]}"; do
   echo "Target: ${target}"
   stow -v --target=$HOME ${target}

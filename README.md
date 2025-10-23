@@ -129,7 +129,7 @@ dotfiles
   - directory名が `tex` でなければならない理由は
     恐らく \href{run:/usr/share/texlive/texmf-dist/web2c/texmf.cnf}{texmf.cnf} の149行目
 - `texmf/bibtex/bib`
-  - directory名が\verb|bibtex/bib|でなければならない理由は
+  - directory名が `bibtex/bib` でなければならない理由は
     恐らく\href{run:/usr/share/texlive/texmf-dist/web2c/texmf.cnf}{texmf.cnf}の234,314行目
 
 
