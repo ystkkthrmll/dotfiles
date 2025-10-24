@@ -11,6 +11,7 @@ if [[ $(uname -n) == ${COMPUTER_NAME} ]]; then
   targets=(
     # autostart
     # bash
+    fish
     git
     gnome-files
     # pandoc
@@ -18,15 +19,16 @@ if [[ $(uname -n) == ${COMPUTER_NAME} ]]; then
     typst
     vim
     visual-studio-code
-    zsh
+    # zsh
   )
 else
   # For work PC
   targets=(
+    fish
     git
     typst
     vim
-    zsh
+    # zsh
   )
 fi
 

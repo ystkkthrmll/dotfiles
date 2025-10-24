@@ -118,110 +118,6 @@ docstrip() {
 }
 # #endregion docstrip
 
-# #region config-latex
-# \url{https://qiita.com/petitviolet/items/b1e8b5139169dd530919}
-config-latex() {
-    # -h, --helpしたら呼ぶ
-    help() {
-        echo 'Usage: config-latex [option] filename'
-        return
-    }
-
-    for arg in $*
-    do
-        case $arg in
-            -h|--help)
-                help
-                return
-                ;;
-            -pv|--preview)
-                evince ~config-latex/$*[$#].pdf &
-                ;;
-            *)
-        esac
-    done
-    cd ~config-latex
-    vi ~config-latex/$*[$#].dtx
-    return 1;
-}
-
-# https://blog.freedom-man.com/zsh-completions
-_config-latex() {
-    _values '' 'classes' 'misc' 'notes' 'packages'
-}
-
-compdef _config-latex config-latex
-# #endregion config-latex
-
-
-
-
-
-
-config-misc() {
-    # -h, --helpしたら呼ぶ
-    help() {
-        echo 'Usage: config-misc [option] filename'
-        return
-    }
-
-    for arg in $*
-    do
-        case $arg in
-            -h|--help)
-                help
-                return
-                ;;
-            -pv|--preview)
-                evince ~configuration-etc/$*[$#].pdf &
-                ;;
-            *)
-        esac
-    done
-    cd ~config-misc
-    vi ~config-misc/$*[$#].dtx
-    return 1;
-}
-
-# https://blog.freedom-man.com/zsh-completions
-_config-misc() {
-    _values '' 'miscellaneous' 'python' 'shell' 'visual-studio-code'
-}
-
-compdef _config-misc config-misc
-
-config-vim() {
-    # -h, --helpしたら呼ぶ
-    help() {
-        echo 'Usage: config-vim [option] filename'
-        return
-    }
-
-    for arg in $*
-    do
-        case $arg in
-            -h|--help)
-                help
-                return
-                ;;
-            -pv|--preview)
-                evince ~config-vim/$*[$#].pdf &
-                ;;
-            *)
-        esac
-    done
-    cd ~config-vim
-    vi ~config-vim/$*[$#].dtx
-    return 1;
-}
-
-# https://blog.freedom-man.com/zsh-completions
-_config-vim() {
-    _values '' 'configuration-files' 'ftplugin' 'snippets' 'syntax'
-}
-
-compdef _config-vim config-vim
-
 bgm() {
   # -h, --helpしたら呼ぶ
   help() {
@@ -268,13 +164,6 @@ _show() {
 }
 
 compdef _show show
-
-
-
-
-
-
-
 
 
 

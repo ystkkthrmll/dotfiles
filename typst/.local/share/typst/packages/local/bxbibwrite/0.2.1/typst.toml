@@ -1,0 +1,5 @@
+[package]
+name = "bxbibwrite"
+version = "0.2.1"
+entrypoint = "bxbibwrite.typ"
+description = "My package"
