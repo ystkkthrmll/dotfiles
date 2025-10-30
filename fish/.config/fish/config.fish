@@ -7,8 +7,14 @@ set -g theme_powerline_fonts no  # 文字化け解消のため
 # Ref: https://github.com/ajeetdsouza/zoxide?tab=readme-ov-file#installation
 zoxide init fish | source
 
+# #region dotfiles
 zoxide add ~/Dropbox/dotfiles
+zoxide add ~/Dropbox/dotfiles/fish/.config/fish
+zoxide add ~/Dropbox/dotfiles/typst/.local/share/typst/packages/local
+zoxide add ~/Dropbox/dotfiles/visual-studio-code/.config/Code/User
+# #endregion dotfiles
 
+# #region computer
 zoxide add ~/my-docs/computer
 zoxide add ~/my-docs/computer/data-science
 zoxide add ~/my-docs/computer/programming-languages
@@ -16,7 +22,16 @@ zoxide add ~/my-docs/computer/programming-languages/python
 zoxide add ~/my-docs/computer/programming-languages/shell
 zoxide add ~/my-docs/computer/software
 zoxide add ~/my-docs/computer/software/typesetting-sofrware/typst
+# #endregion computer
 
+# #region english
+zoxide add ~/my-docs/english
+zoxide add ~/my-docs/english/expressions
+zoxide add ~/my-docs/english/grammar
+zoxide add ~/my-docs/english/vocabulary
+# #endregion english
+
+# #region math
 zoxide add ~/my-docs/math
 zoxide add ~/my-docs/math/algebra
 zoxide add ~/my-docs/math/algebra/linear-algebra
@@ -26,6 +41,14 @@ zoxide add ~/my-docs/math/foundations
 zoxide add ~/my-docs/math/foundations/set-theory
 zoxide add ~/my-docs/math/foundations/topological-space
 zoxide add ~/my-docs/math/misc/notation
+# #endregion math
+
+# #region misc
+zoxide add ~/my-docs/misc
+zoxide add ~/my-docs/misc/data
+zoxide add ~/my-docs/misc/rules
+zoxide add ~/my-docs/misc/shopping
+# #endregion misc
 
 function z
     if test (count $argv) -eq 0
@@ -35,5 +58,13 @@ function z
         __zoxide_z $argv
         # and ls
     end
+    pwd
     ls
 end
+
+function notes
+    vi ~/Dropbox/notes.md
+end
+
+fcitx5 &
+

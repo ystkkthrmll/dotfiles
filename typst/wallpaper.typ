@@ -18,6 +18,11 @@
   font: "Noto Sans Osmanya",
 )
 
+#show heading: set block(
+  above: 5pt,
+  below: 1pt,
+)
+
 #let ROW-GUTTER = -5pt
 
 #grid(
@@ -97,6 +102,7 @@
       columns: (auto, auto),
       // align: horizon,
       row-gutter: ROW-GUTTER,
+      stroke: none,
 
       ..for datum in data {
         (datum.at("cmd"), datum.at("desc"))
@@ -160,7 +166,6 @@
       (cmd: [`Ctrl`+`O`], desc: [jump back]),
       (cmd: [`gx`], desc: [open URL in browser]), //  https://stackoverflow.com/questions/9458294/open-url-under-cursor-in-vim-with-browser
       (cmd: [`visual mode + <>`], desc: [indentの深さ変更]), // https://linuxhint.com/tab-multiple-lines-vim/
-      (cmd: [`:!texdoc`], desc: []),
       (cmd: [`:map`], desc: [list all key mappings]), // cf. map.txt 1.1 MAP COMMANDS
     )
 
@@ -185,10 +190,10 @@
     //   - #link("https://eikaiwa.dmm.com/uknow/questions/72040/")[初回って英語でなんて言うの？]
 
     #let data = (
-      (cmd: [`git init`/`git clone <repository>`], desc: [xxxxx]),
-      (cmd: [`git add <pathspec>`], desc: [xxxxx]),
-      (cmd: [`git commit -m "msg"`], desc: [xxxxx]),
-      (cmd: [`git remote add origin <url>`], desc: [xxxxx]),
+      (cmd: [`git init`/`git clone <repository>`], desc: [xxx]),
+      (cmd: [`git add <pathspec>`], desc: [xxx]),
+      (cmd: [`git commit -m "msg"`], desc: [xxx]),
+      (cmd: [`git remote add origin <url>`], desc: [xxx]),
       (cmd: [`git push -u origin master`], desc: []),
     )
 
@@ -205,9 +210,9 @@
     == After that
 
     #let data = (
-      (cmd: [(`git pull origin master`)], desc: [xxxxx]),
-      (cmd: [`git commit <pathspec>`], desc: [xxxxx]),
-      (cmd: [`git push`], desc: [xxxxx]),
+      (cmd: [(`git pull origin master`)], desc: [xxx]),
+      (cmd: [`git commit <pathspec>`], desc: [xxx]),
+      (cmd: [`git push`], desc: [xxx]),
     )
 
     #table(
@@ -223,8 +228,8 @@
     == Switch branch
 
     #let data = (
-      (cmd: [(`git branch -a`)], desc: [xxxxx]),
-      (cmd: [`git checkout <branch>`], desc: [xxxxx]),
+      (cmd: [(`git branch -a`)], desc: [xxx]),
+      (cmd: [`git checkout <branch>`], desc: [xxx]),
     )
 
     #table(
@@ -240,15 +245,16 @@
     == Merge
 
     #let data = (
-      (cmd: [`git checkout <(main) branch>`], desc: [xxxxx]),
-      (cmd: [`git merge <(sub) branch>`], desc: [xxxxx]),
-      (cmd: [`git push origin <(main) branch>`], desc: [xxxxx]),
+      (cmd: [`git checkout <(main) branch>`], desc: [xxx]),
+      (cmd: [`git merge <(sub) branch>`], desc: [xxx]),
+      (cmd: [`git push origin <(main) branch>`], desc: [xxx]),
     )
 
     #table(
       columns: (auto, auto),
       // align: horizon,
       row-gutter: ROW-GUTTER,
+      stroke: none,
 
       ..for datum in data {
         (datum.at("cmd"), datum.at("desc"))
@@ -258,14 +264,15 @@
     == Tagging
 
     #let data = (
-      (cmd: [`git tag -a <tagname>`], desc: [xxxxx]), // ref: `$ git help tag`
-      (cmd: [`git push origin <tagname>`], desc: [xxxxx]), // https://qiita.com/growsic/items/ed67e03fda5ab7ef9d08#tag%E3%81%AE%E5%85%B1%E6%9C%89
+      (cmd: [`git tag -a <tagname>`], desc: [xxx]), // ref: `$ git help tag`
+      (cmd: [`git push origin <tagname>`], desc: [xxx]), // https://qiita.com/growsic/items/ed67e03fda5ab7ef9d08#tag%E3%81%AE%E5%85%B1%E6%9C%89
     )
 
     #table(
       columns: (auto, auto),
       // align: horizon,
       row-gutter: ROW-GUTTER,
+      stroke: none,
 
       ..for datum in data {
         (datum.at("cmd"), datum.at("desc"))
