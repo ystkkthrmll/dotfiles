@@ -1,0 +1,25 @@
+businessdou-life:
+  type: Book
+  title: 新社会人基本 Newビジネス道PLUS「体」
+  author: 内山 早苗
+  publisher: 株式会社 日本能率協会マネジメントセンター
+  date: 2016
+
+businessdou-mind:
+  type: Book
+  title: 新社会人基本 Newビジネス道PLUS「心」
+  author: 内山 早苗
+  publisher: 株式会社 日本能率協会マネジメントセンター
+  date: 2016
+
+businessdou-skill:
+  type: Book
+  title: 新社会人基本 Newビジネス道PLUS「技」
+  author: 内山 早苗
+  publisher: 株式会社 日本能率協会マネジメントセンター
+  date: 2016
+
+中堅社員研修:
+  type: Book
+  title: 中堅社員研修
+  publisher: 日本能率協会マネジメントセンター

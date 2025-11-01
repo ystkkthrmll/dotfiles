@@ -36,20 +36,20 @@
   "editor.suggestSelection": "recentlyUsed",
 
   // - Notes
-  //   - vscodeで例えば，\verb|start_time| という文字列が存在するファイルを編集しようとしている．
-  //     今，\verb|time| という文字列に対して，その先頭に \verb|start_| と追記したいとする．
-  //     \verb|time| という文字列の先頭にカーソルを合わせ，\verb|sta| とタイプすると，
-  //     補完候補として \verb|start_time| が表示される．
-  //     そのとき補完候補内の \verb|start_time| を選択すると，結果的に \verb|start_timetime| という文字列になってしまう．
-  //     これを回避するための設定が \verb|"replace"|．
+  //   - vscodeで例えば，`start_time` という文字列が存在するファイルを編集しようとしている．
+  //     今，`time` という文字列に対して，その先頭に `start_` と追記したいとする．
+  //     `time` という文字列の先頭にカーソルを合わせ，`sta` とタイプすると，
+  //     補完候補として `start_time` が表示される．
+  //     そのとき補完候補内の `start_time` を選択すると，結果的に `start_timetime` という文字列になってしまう．
+  //     これを回避するための設定が `"replace"`．
   // - Refs
-  //   - \href{https://code.visualstudio.com/docs/reference/default-settings}{Default settings reference}
+  //   - [Default settings reference](https://code.visualstudio.com/docs/reference/default-settings)
   "editor.suggest.insertMode": "replace",
 
   // #region tab
   // - Refs
-  //   - \href{https://code.visualstudio.com/docs/editor/codebasics#_indentation}{Indentation}
-  //   - \href{https://stackoverflow.com/questions/29972396/how-can-i-customize-the-tab-to-space-conversion-factor-in-vs-code}{How can I customize the tab-to-space conversion factor in VS Code?}
+  //   - [Indentation](https://code.visualstudio.com/docs/editor/codebasics#_indentation)
+  //   - [How can I customize the tab-to-space conversion factor in VS Code?](https://stackoverflow.com/questions/29972396/how-can-i-customize-the-tab-to-space-conversion-factor-in-vs-code)
   "editor.tabSize": 4,
   "editor.insertSpaces": true,
   "editor.detectIndentation": false,
@@ -59,20 +59,21 @@
 
   // #region files
   //
+  // - Notes
+  //  - Hide files
   // - Refs
-  //   - \href{https://www.w3schools.io/editor/vscode-hide-files-folder/}{VScode - Hide Files}
+  //   - [VScode - Hide Files](https://www.w3schools.io/editor/vscode-hide-files-folder/)
   "files.exclude": {
     // "**/.*": true,
     // "**/.devcontainer": false,
-    "**/.git": true,
-    "**/.gitignore": true,
-    "**/.pytest_cached": true,
-    "**/.python-version": true,
-    "**/__pycache__": true,
-    "**/uv.lock": true,
-    "**/.venv": true,
+    "**/.git": true,  // Git
+    "**/.gitignore": true,  // Git
+    "**/.pytest_cached": true,  // Python
+    "**/.python-version": true,  // Python uv
+    "**/__pycache__": true,  // Python
+    "**/uv.lock": true,  // Python uv
+    "**/.venv": true,  // Python
   },
-
   // #endregion files
 
   // #region github
@@ -90,7 +91,7 @@
   // - Notes
   //   - 折りたたみ上をカーソル移動しても開かないようにするための設定
   // - Refs
-  //   - \href{https://stackoverflow.com/questions/50888475/code-folds-are-automatically-opened-when-cursor-moves-over-them-in-vs-code-vim}{Code folds are automatically opened when cursor moves over them in VS Code Vim. How can I prevent this?}
+  //   - [Code folds are automatically opened when cursor moves over them in VS Code Vim. How can I prevent this?](https://stackoverflow.com/questions/50888475/code-folds-are-automatically-opened-when-cursor-moves-over-them-in-vs-code-vim)
   "vim.foldfix": true,
 
   // #region vim.insertModeKeyBindings
@@ -118,15 +119,12 @@
   // "vim.vimrc.enable": true,
   // "vim.vimrc.path": "$HOME/Dropbox/configuration-files/vim/output-files/configuration-files/init.vim",
 
-  // #endregion
+  // #endregion vim
 
   // #region workbench
   //
   // - Refs
-  //   - \href{https://stackoverflow.com/questions/10166903/changing-the-color-of-the-whitespace-indicator-in-visual-studio}{Changing the color of the whitespace indicator in Visual Studio?}
-//   "[workbench]": {
-//     "colorCustomizations.editorWhitespace.foreground": "#ff0000"
-//   },
+  //   - [Changing the color of the whitespace indicator in Visual Studio?](https://stackoverflow.com/questions/10166903/changing-the-color-of-the-whitespace-indicator-in-visual-studio)
   "workbench.colorCustomizations": {
     "editorWhitespace.foreground": "#ff0000"
   },
@@ -225,7 +223,6 @@
     "editor.formatOnSave": true,
   },
 
-  // yaml
   "[yaml]": {
     "editor.folding": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
