@@ -178,7 +178,8 @@
     // "previewTheme": "monokai.css",
     // "previewTheme": "one-dark.css",
   // },
-  "markdown-preview-enhanced.codeBlockTheme": "atom-dark.css",
+  // "markdown-preview-enhanced.codeBlockTheme": "github.css",
+  "markdown-preview-enhanced.codeBlockTheme": "one-light.css",
   // "markdown-preview-enhanced.previewTheme": "atom-dark.css",
   "markdown-preview-enhanced.previewTheme": "atom-light.css",
 

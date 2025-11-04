@@ -66,5 +66,9 @@ function notes
     vi ~/Dropbox/notes.md
 end
 
+function to-do-list
+    vi ~/Dropbox/notes/data/to-do-list-home.yaml
+end
+
 fcitx5 &
 

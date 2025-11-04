@@ -22,4 +22,5 @@ foreach ($package in $packages) {
 $dst = "$env:APPDATA\Code\User"
 ls $dst
 # cp settings.json $dst
+# cp keybindings.json $dst
 # #endregion Visual Studio Code

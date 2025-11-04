@@ -3,7 +3,7 @@
     "prefix": "template_main",
     "body": [
       "\"\"\"",
-      "* Purpose: $1",
+      "- Purpose: $1",
       "\"\"\"",
       "",
       "def main() -> ${2:None}:",
@@ -14,5 +14,13 @@
       "",
     ],
     "description": "template main"
+  },
+  "autoreload": {
+    "prefix": "autoreload",
+    "body": [
+        "%load_ext autoreload",
+        "%autoreload 2",
+    ],
+    "description": "autoreload"
   }
 }
