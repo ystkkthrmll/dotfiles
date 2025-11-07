@@ -61,12 +61,6 @@ dotfiles
 │   └── .config/gtk-3.0
 │       └── bookmarks
 ├── pandoc
-│   ├── defaults
-│   │   ├── common.yaml
-│   │   ├── report-from-markdown-to-html.yaml
-│   │   ├── report-from-markdown-to-latex.yaml
-│   ├── refs
-│   │   ├── misc.yaml
 ├── tex
 ├── typst
 │   ├── bib

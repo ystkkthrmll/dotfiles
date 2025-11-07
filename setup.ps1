@@ -20,7 +20,14 @@ foreach ($package in $packages) {
 
 # #region Visual Studio Code
 $dst = "$env:APPDATA\Code\User"
-ls $dst
-# cp settings.json $dst
-# cp keybindings.json $dst
+$src = "."
+$target_files = @(
+    "keybindings.json"
+    "settings.json"
+)
+
+foreach ($file in $target_files) {
+    "Copy $src/$file to $dst"
+    # cp "$src/$file" $dst
+}
 # #endregion Visual Studio Code
