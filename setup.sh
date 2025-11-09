@@ -11,6 +11,7 @@ if [[ $(uname -n) == ${COMPUTER_NAME} ]]; then
   targets=(
     # autostart
     # bash
+    fcitx
     fish
     git
     gnome-files
@@ -28,7 +29,6 @@ else
     git
     typst
     vim
-    # zsh
   )
 fi
 

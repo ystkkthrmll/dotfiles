@@ -19,6 +19,7 @@ zoxide add ~/my-docs/computer
 zoxide add ~/my-docs/computer/data-science
 zoxide add ~/my-docs/computer/programming-languages
 zoxide add ~/my-docs/computer/programming-languages/python
+zoxide add ~/my-docs/computer/programming-languages/rust
 zoxide add ~/my-docs/computer/programming-languages/shell
 zoxide add ~/my-docs/computer/software
 zoxide add ~/my-docs/computer/software/typesetting-sofrware/typst
@@ -50,6 +51,11 @@ zoxide add ~/my-docs/misc/rules
 zoxide add ~/my-docs/misc/shopping
 # #endregion misc
 
+# #region projects
+zoxide add ~/projects
+zoxide add ~/projects/0000-00-00-data-science-tool
+# #endregion projects
+
 function z
     if test (count $argv) -eq 0
         # 引数なしでzを呼んだときは通常の挙動（候補一覧など）
@@ -69,6 +75,8 @@ end
 function to-do-list
     vi ~/Dropbox/notes/data/to-do-list-home.yaml
 end
+
+alias la="eza -la"
 
 fcitx5 &
 
