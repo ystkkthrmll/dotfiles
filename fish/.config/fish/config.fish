@@ -14,6 +14,8 @@ zoxide add ~/Dropbox/dotfiles/typst/.local/share/typst/packages/local
 zoxide add ~/Dropbox/dotfiles/visual-studio-code/.config/Code/User
 # #endregion dotfiles
 
+if test (uname -n) = $COMPUTER_NAME
+
 # #region computer
 zoxide add ~/my-docs/computer
 zoxide add ~/my-docs/computer/data-science
@@ -51,6 +53,8 @@ zoxide add ~/my-docs/misc/rules
 zoxide add ~/my-docs/misc/shopping
 # #endregion misc
 
+end
+
 # #region projects
 zoxide add ~/projects
 zoxide add ~/projects/0000-00-00-data-science-tool
@@ -78,5 +82,9 @@ end
 
 alias la="eza -la"
 
-fcitx5 &
+set -g COMPUTER_NAME home
+
+if test (uname -n) = $COMPUTER_NAME
+    fcitx5 &
+end
 
