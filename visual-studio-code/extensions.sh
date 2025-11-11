@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 
 # - Purpose: グローバルで使用する拡張機能をインストールするためのスクリプト
+# - Usage: `$ bash extensions.sh`
 # - Notes
 #   - Gemini によると，グローバルな `extensions.json` ファイルは存在しないらしい．
 #     そのため，コマンドで拡張機能をインストールする．

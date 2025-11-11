@@ -2,6 +2,9 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+alias la="eza -la"
+alias vi="nvim"
+
 set -g theme_powerline_fonts no  # 文字化け解消のため
 
 # Ref: https://github.com/ajeetdsouza/zoxide?tab=readme-ov-file#installation
@@ -13,6 +16,13 @@ zoxide add ~/Dropbox/dotfiles/fish/.config/fish
 zoxide add ~/Dropbox/dotfiles/typst/.local/share/typst/packages/local
 zoxide add ~/Dropbox/dotfiles/visual-studio-code/.config/Code/User
 # #endregion dotfiles
+
+# #region projects
+zoxide add ~/projects
+zoxide add ~/projects/0000-00-00-data-science-tool
+# #endregion projects
+
+set -g COMPUTER_NAME home
 
 if test (uname -n) = $COMPUTER_NAME
 
@@ -53,12 +63,9 @@ zoxide add ~/my-docs/misc/rules
 zoxide add ~/my-docs/misc/shopping
 # #endregion misc
 
-end
+fcitx5 &
 
-# #region projects
-zoxide add ~/projects
-zoxide add ~/projects/0000-00-00-data-science-tool
-# #endregion projects
+end
 
 function z
     if test (count $argv) -eq 0
@@ -78,13 +85,5 @@ end
 
 function to-do-list
     vi ~/Dropbox/notes/data/to-do-list-home.yaml
-end
-
-alias la="eza -la"
-
-set -g COMPUTER_NAME home
-
-if test (uname -n) = $COMPUTER_NAME
-    fcitx5 &
 end
 

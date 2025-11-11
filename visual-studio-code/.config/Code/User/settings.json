@@ -216,19 +216,25 @@
 
   "[python]": {
     // - Refs
+    //   - [Black Formatter](https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter)
+    // "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.ruff": "never",
+      "source.organizeImports.ruff": "always",
+    }
+    // - Refs
     //   - [collapse or folding "import" statements in vscode (for java code)](https://stackoverflow.com/questions/54656661/collapse-or-folding-import-statements-in-vscode-for-java-code)
     "editor.foldingImportsByDefault": true,
-    // - Refs
-    //   - \href{https://code.visualstudio.com/docs/editor/codebasics#_how-do-i-turn-on-word-wrap}{How do I turn on word wrap?}
-    //   - \href{https://stackoverflow.com/questions/29968499/how-can-i-have-multiple-vertical-rulers-in-vs-code}{How can I have multiple vertical rulers in VS Code?}
-    "editor.rulers": [80],
-    // - Refs
-    //   - \href{https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter}{Black Formatter}
-    "editor.defaultFormatter": "ms-python.black-formatter",
+
     "editor.formatOnSave": true,
     // - Refs
     //   - \href{https://github.com/microsoft/pylance-release?tab=readme-ov-file#settings-and-customization}{python.analysis.autoImportCompletions}
     // "python.analysis.autoImportCompletions": true,
+    // - Refs
+    //   - \href{https://code.visualstudio.com/docs/editor/codebasics#_how-do-i-turn-on-word-wrap}{How do I turn on word wrap?}
+    //   - \href{https://stackoverflow.com/questions/29968499/how-can-i-have-multiple-vertical-rulers-in-vs-code}{How can I have multiple vertical rulers in VS Code?}
+    "editor.rulers": [80],
     "editor.quickSuggestions": {
       "other": true,
       "comments": true,
