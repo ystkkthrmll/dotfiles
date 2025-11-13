@@ -37,9 +37,11 @@
 *.zip
 
 # File
+Cargo.lock      # Rust
 uv.lock
 .ipynb_checkpoints
 .python-version
 __init__.py
 
+# Directory
 output-files

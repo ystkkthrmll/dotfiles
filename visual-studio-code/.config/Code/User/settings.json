@@ -25,6 +25,8 @@
   "editor.showFoldingControls": "always",
   // #endregion
 
+  // "editor.fontSize": 13.5,
+  // "editor.fontSize": 13,
   // "editor.fontSize": 14,
   // "editor.fontSize": 14.5,
   // "editor.fontSize": 15,
@@ -95,6 +97,7 @@
     "**/.pytest_cached": true,  // Python
     "**/.python-version": true,  // Python uv
     "**/__pycache__": true,  // Python
+    "**/Cargo.lock": true,  // Rust
     "**/uv.lock": true,  // Python uv
     "**/.venv": true,  // Python
   },
@@ -222,7 +225,7 @@
     "editor.codeActionsOnSave": {
       "source.fixAll.ruff": "never",
       "source.organizeImports.ruff": "always",
-    }
+    },
     // - Refs
     //   - [collapse or folding "import" statements in vscode (for java code)](https://stackoverflow.com/questions/54656661/collapse-or-folding-import-statements-in-vscode-for-java-code)
     "editor.foldingImportsByDefault": true,

@@ -33,7 +33,7 @@ else
 fi
 
 # Run stow
-for target in "${targets[@]}"; do
+for target in ${targets[@]}; do
   echo "Target: ${target}"
   stow -v --target=$HOME ${target}
 done
