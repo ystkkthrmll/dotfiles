@@ -97,7 +97,7 @@
     "**/.pytest_cached": true,  // Python
     "**/.python-version": true,  // Python uv
     "**/__pycache__": true,  // Python
-    "**/Cargo.lock": true,  // Rust
+    "**/Cargo.lock": true,  // Rust Cargo
     "**/uv.lock": true,  // Python uv
     "**/.venv": true,  // Python
   },
