@@ -1,6 +1,6 @@
 
 // - Notes
-//   - \href{https://code.visualstudio.com/docs/getstarted/settings#_default-settings}{Default settings}
+//   - [Default settings](https://code.visualstudio.com/docs/getstarted/settings#_default-settings)
 
 {
   // #region editor
@@ -15,7 +15,7 @@
   },
 
   // - Refs
-  //   - \href{https://stackoverflow.com/questions/41082702/how-to-center-the-editor-window-back-on-the-cursor-in-vscode}{How to center the editor window back on the cursor in VSCode?}
+  //   - [How to center the editor window back on the cursor in VSCode?](https://stackoverflow.com/questions/41082702/how-to-center-the-editor-window-back-on-the-cursor-in-vscode)
   "editor.cursorSurroundingLines": 100,
 
   // #region folding
@@ -25,11 +25,12 @@
   "editor.showFoldingControls": "always",
   // #endregion
 
-  // "editor.fontSize": 13.5,
   // "editor.fontSize": 13,
+  // "editor.fontSize": 13.5,
   // "editor.fontSize": 14,
   // "editor.fontSize": 14.5,
   // "editor.fontSize": 15,
+  // "editor.fontSize": 15.5,
   // "editor.fontSize": 16,
   "editor.fontSize": 16.5,
   // "editor.fontSize": 17,
