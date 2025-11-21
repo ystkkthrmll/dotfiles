@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "prefix": "meta",
+    "body": [
+      "---",
+      "title: \"$1\"",
+      "format:",
+      "  html:",
+      "    code-fold: true",
+      "    number-section: true",
+      "    page-layout: full",
+      "    toc: true",
+      "    toc-depth: 2",
+      "---"
+    ],
+    "description": "code"
+  },
+  "code": {
+    "prefix": "```",
+    "body": [
+      "```{$1}",
+      "```"
+    ],
+    "description": "code"
+  }
+}
