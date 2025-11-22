@@ -11,14 +11,16 @@
       "    page-layout: full",
       "    toc: true",
       "    toc-depth: 2",
-      "---"
+      "---",
+      "$0"
     ],
     "description": "code"
   },
   "code": {
     "prefix": "```",
     "body": [
-      "```{$1}",
+      "```{$1:python}",
+      "$0",
       "```"
     ],
     "description": "code"

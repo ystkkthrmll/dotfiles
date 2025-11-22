@@ -13,6 +13,7 @@ ls $dst
 
 foreach ($package in $packages) {
   $dst = "$dst_base\$package\0.0.0"
+  "Copy $package to $dst"
   # mkdir $dst
   # cp $src $dst
 }
@@ -29,5 +30,16 @@ $target_files = @(
 foreach ($file in $target_files) {
     "Copy $src/$file to $dst"
     # cp "$src/$file" $dst
+}
+
+$src = "."
+$target_files = @(
+    "all.code-snippets"
+    "python.json"
+    "quarto.json"
+)
+foreach ($file in $target_files) {
+    "Copy $src/$file to $dst\snippets"
+    # cp "$src/$file" $dst\snippets
 }
 # #endregion Visual Studio Code

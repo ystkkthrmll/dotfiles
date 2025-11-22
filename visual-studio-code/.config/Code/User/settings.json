@@ -28,11 +28,11 @@
   // "editor.fontSize": 13,
   // "editor.fontSize": 13.5,
   // "editor.fontSize": 14,
-  // "editor.fontSize": 14.5,
+  // "editor.fontSize": 14.5,  // Accenture laptop
   // "editor.fontSize": 15,
   // "editor.fontSize": 15.5,
-  // "editor.fontSize": 16,
-  "editor.fontSize": 16.5,
+  "editor.fontSize": 16,  // Home desktop
+  // "editor.fontSize": 16.5,
   // "editor.fontSize": 17,
 
   // - Notes
