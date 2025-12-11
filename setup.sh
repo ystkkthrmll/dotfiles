@@ -15,7 +15,7 @@ if [[ $(uname -n) == ${COMPUTER_NAME} ]]; then
     fish
     git
     gnome-files
-    # pandoc
+    pandoc
     tex
     typst
     vim

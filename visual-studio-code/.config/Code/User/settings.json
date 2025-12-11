@@ -95,6 +95,7 @@
     // "**/.devcontainer": false,
     "**/.git": true,  // Git
     "**/.gitignore": true,  // Git
+    "**/.pytest_cache": true,  // Python
     "**/.pytest_cached": true,  // Python
     "**/.python-version": true,  // Python uv
     "**/__pycache__": true,  // Python
