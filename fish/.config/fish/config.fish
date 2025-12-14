@@ -32,12 +32,24 @@ if test (uname -n) = $COMPUTER_NAME
 # #region computer
 zoxide add ~/my-docs/computer
 zoxide add ~/my-docs/computer/data-science
+zoxide add ~/my-docs/computer/data-science/deep-learning
+zoxide add ~/my-docs/computer/data-science/machine-learning
+zoxide add ~/my-docs/computer/data-science/predictive-maintenance
+zoxide add ~/my-docs/computer/operating-systems/linux
+zoxide add ~/my-docs/computer/operating-systems/windows
 zoxide add ~/my-docs/computer/programming-languages
+zoxide add ~/my-docs/computer/programming-languages/html
+zoxide add ~/my-docs/computer/programming-languages/javascript
 zoxide add ~/my-docs/computer/programming-languages/python
 zoxide add ~/my-docs/computer/programming-languages/rust
 zoxide add ~/my-docs/computer/programming-languages/shell
+zoxide add ~/my-docs/computer/programming-languages/sql
 zoxide add ~/my-docs/computer/software
+zoxide add ~/my-docs/computer/software/text-editor/visual-studio-code
 zoxide add ~/my-docs/computer/software/typesetting-sofrware/typst
+zoxide add ~/my-docs/computer/software/typesetting-sofrware/pandoc
+zoxide add ~/my-docs/computer/software/version-control-system
+zoxide add ~/my-docs/computer/software/virtualization
 # #endregion computer
 
 # #region english
