@@ -1,0 +1,130 @@
+- section: Ubuntu
+  cmds:
+    - cmd: "`Super`+`Tab`"
+      desc: Quickly switch between windows
+      refs:
+        - title: Useful keyboard shortcuts
+          url: https://help.ubuntu.com/stable/ubuntu-help/shell-keyboard-shortcuts.html.en
+          updated: 2025-12-20T22:27:29
+    - cmd: "`Shift`+`Super`+$arrow.l$"
+      desc: Move the current window one monitor to the left
+      refs:
+        - title: Useful keyboard shortcuts
+          url: https://help.ubuntu.com/stable/ubuntu-help/shell-keyboard-shortcuts.html.en
+          updated: 2025-12-20T22:15:45
+    - cmd: "`Shift`+`Super`+$arrow.r$"
+      desc: Move the current window one monitor to the right
+      refs:
+        - title: Useful keyboard shortcuts
+          url: https://help.ubuntu.com/stable/ubuntu-help/shell-keyboard-shortcuts.html.en
+          updated: 2025-12-20T22:16:47
+    - cmd: "`Alt`+`Print`"
+      desc: Take a screenshot of a window
+      refs:
+        - title: Useful keyboard shortcuts
+          url: https://help.ubuntu.com/stable/ubuntu-help/shell-keyboard-shortcuts.html.en
+          updated: 2025-12-20T22:19:50
+    - cmd: "`Shift`+`Print`"
+      desc: Take a screenshot of the entire screen
+      refs:
+        - title: Useful keyboard shortcuts
+          url: https://help.ubuntu.com/stable/ubuntu-help/shell-keyboard-shortcuts.html.en
+          updated: 2025-12-20T22:21:00
+    - cmd: "`Ctrl`+`Alt`+`Delete`"
+      desc: Show the Power Off dialog
+      refs:
+        - title: Useful keyboard shortcuts
+          url: https://help.ubuntu.com/stable/ubuntu-help/shell-keyboard-shortcuts.html.en
+          updated: 2025-12-20T22:22:45
+    - cmd: "`Ctrl`+`Super`+`D`"
+      desc: Minimise all windows
+      refs:
+        - title: How do I minimize all the windows using a keyboard shortcut?
+          url: https://askubuntu.com/questions/27775/how-do-i-minimize-all-the-windows-using-a-keyboard-shortcut
+          updated: 2025-12-20T22:33:09
+- section: Terminal
+  cmds:
+    - cmd: "`grep -nr <patterns>`"
+      desc: print lines that match patterns
+      refs:
+        - cmd: "`$ man grep`"
+          updated: 2025-12-20T23:05:29
+    - cmd: "`cd -`"
+      desc: Go back to previous directory
+      refs:
+        - title: Go back to previous directory in shell
+          url: https://superuser.com/questions/113219/go-back-to-previous-directory-in-shell
+          updated: 2025-12-20T23:10:02
+    - cmd: "`Ctrl`+`T`"
+      desc: New Terminal in New Tab
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`Ctrl`+`→`"
+      desc: Switch to Next Terminal
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`Ctrl`+`←`"
+      desc: Switch to Previous Terminal
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`Ctrl`+`W`"
+      desc: Close Terminal
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`Ctrl`+`Q`"
+      desc: Close All Terminals
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`Ctrl`+`C`"
+      desc: Copy
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`Ctrl`+`V`"
+      desc: Paste
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`Ctrl`+`L`"
+      desc: Clear screen
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`Ctrl`+`Z`"
+      desc: Suspend/stop current foreground process
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`Ctrl`+`C`"
+      desc: Terminate/kill current foreground process
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`F11`"
+      desc: Full Screen
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: ""
+      desc:
+      refs:
+        - title:
+          url:
+          updated:
+- section: Google Chrome
