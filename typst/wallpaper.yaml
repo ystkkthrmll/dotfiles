@@ -128,3 +128,133 @@
           url:
           updated:
 - section: Google Chrome
+  cmds:
+    - cmd: "`Ctrl`+`t`"
+      desc: Open a new tab, and jump to it
+      refs:
+        - title: Chrome keyboard shortcuts - Computer - Google Chrome Help
+          url: https://support.google.com/chrome/answer/157179?hl=en-GB
+          updated: 2025-12-20T23:28:30
+    - cmd: "`Ctrl`+`Tab`"
+      desc: Jump to the next open tab
+      refs:
+        - title: Chrome keyboard shortcuts - Computer - Google Chrome Help
+          url: https://support.google.com/chrome/answer/157179?hl=en-GB
+          updated: 2025-12-20T23:32:14
+    - cmd: "`Ctrl`+`Shift`+`Tab`"
+      desc: Jump to the previous open tab
+      refs:
+        - title: Chrome keyboard shortcuts - Computer - Google Chrome Help
+          url: https://support.google.com/chrome/answer/157179?hl=en-GB
+          updated: 2025-12-20T23:32:54
+    - cmd: "`Alt`+`Home`"
+      desc: Open your home page in the current tab
+      refs:
+        - title: Chrome keyboard shortcuts - Computer - Google Chrome Help
+          url: https://support.google.com/chrome/answer/157179?hl=en-GB
+          updated: 2025-12-20T23:36:44
+    - cmd: "`Alt`+`←`"
+      desc: Open the previous page from your browsing history in the current tab
+      refs:
+        - title: Chrome keyboard shortcuts - Computer - Google Chrome Help
+          url: https://support.google.com/chrome/answer/157179?hl=en-GB
+          updated: 2025-12-20T23:37:24
+    - cmd: "`Ctrl`+`w`"
+      desc: Close the current tab
+      refs:
+        - title: Chrome keyboard shortcuts - Computer - Google Chrome Help
+          url: https://support.google.com/chrome/answer/157179?hl=en-GB
+          updated: 2025-12-20T23:37:39
+    - cmd: ""
+      desc:
+      refs:
+        - title:
+          url:
+          updated:
+- section: Visual Studio Code
+  cmds:
+    - cmd: "`Ctrl`+`B`"
+      desc: Toggle sidebar visibility
+      refs:
+        - title: keyboard-shortcuts-linux.pdf
+          url: https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf
+          updated: 2025-12-20T23:43:41
+    - cmd: "`Ctrl`+`Enter`"
+      desc: Open to the side
+      refs:
+        - title: User interface
+          url: https://code.visualstudio.com/docs/getstarted/userinterface#_side-by-side-editing
+          updated: 2025-12-20T23:47:50
+    - cmd: "`Ctrl`+`Tab`"
+      desc: Change tabs
+      refs:
+        - title: Is there a quick change tabs function in Visual Studio Code?
+          url: https://stackoverflow.com/questions/38957302/is-there-a-quick-change-tabs-function-in-visual-studio-code
+          updated: 2025-12-20T23:49:45
+    - cmd: "`F12`"
+      desc: Go to definition
+      refs:
+        - title: Code Navigation
+          url: https://code.visualstudio.com/docs/editing/editingevolved#_go-to-definition
+          updated: 2025-12-20T23:50:36
+    - cmd: "`Ctrl`+`F12`"
+      desc: Go to implementation
+      refs:
+        - title: Code Navigation
+          url: https://code.visualstudio.com/docs/editing/editingevolved#_go-to-implementation
+          updated: 2025-12-20T23:51:41
+    - cmd: "`Ctrl`+`M`"
+      desc: Move (custom)
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`Ctrl`+`E`"
+      desc: Explorer (custom)
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`Ctrl`+`C`"
+      desc: Collapse (custom)
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`Ctrl`+`O`"
+      desc: Outline (custom)
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`Ctrl`+`T`"
+      desc: Terminal (custom)
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: ""
+      desc:
+      refs:
+        - title:
+          url:
+          updated:
+- section: Vim
+  cmds:
+    - cmd: "`vim -d file1 file2`"
+      desc: Start in diff mode
+      refs:
+        - cmd: "`$ man vim`"
+          updated: 2025-12-21T00:00:46
+    - cmd: "`zA`"
+      desc: open fold recursivly
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: ""
+      desc:
+      refs:
+        - title:
+          url:
+          updated:
