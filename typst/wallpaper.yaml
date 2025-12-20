@@ -233,12 +233,6 @@
         - title:
           url:
           updated:
-    - cmd: ""
-      desc:
-      refs:
-        - title:
-          url:
-          updated:
 - section: Vim
   cmds:
     - cmd: "`vim -d src1 src2`"
@@ -300,18 +294,48 @@
         - title:
           url:
           updated:
-    - cmd: ""
-      desc:
+    - cmd: "`%`"
+      desc: find the next bracket and go to its match
       refs:
         - title:
           url:
           updated:
-    - cmd: ""
-      desc:
+    - cmd: "`Ctrl+Shift+V`"
+      desc: start blockwide Visual mode
       refs:
         - title:
           url:
           updated:
+    - cmd: "`cc`"
+      desc: delete line and start insert
+      refs:
+        - title:
+          url:
+          updated:
+    # - cmd: "`R`"
+    #   desc: enter replace mode
+    #   refs:
+    #     - title:
+    #       url:
+    #       updated:
+    - cmd: "`u`"
+      desc: undo changes
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`Ctrl`+`R`"
+      desc: redo changes which were undone with '`u`'
+      refs:
+        - title:
+          url:
+          updated:
+    # - cmd: ""
+    #   desc:
+    #   refs:
+    #     - title:
+    #       url:
+    #       updated:
 - section: Git
   subsections:
     - subsection: First time

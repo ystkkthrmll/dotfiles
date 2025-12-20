@@ -33,87 +33,41 @@
   gutter: -3pt,
 
   // First column
-  rect[
-    // Ubuntu
-    = #data.at(0).section
+  rect(
+    for i in range(3) {
+      [= #data.at(i).section]
 
-    #table(
-      columns: (auto, auto),
-      // align: horizon,
-      row-gutter: ROW-GUTTER,
+      table(
+        columns: (auto, auto),
+        // align: horizon,
+        row-gutter: ROW-GUTTER,
 
-      ..for datum in data.at(0).cmds {
-        (eval(datum.cmd, mode: "markup"), datum.desc)
-      }
-    )
-
-    // Terminal
-    = #data.at(1).section
-
-    #table(
-      columns: (auto, auto),
-      // align: horizon,
-      row-gutter: ROW-GUTTER,
-
-      ..for datum in data.at(1).cmds {
-        (eval(datum.cmd, mode: "markup"), datum.desc)
-      }
-    )
-
-    // Google Chrome
-    = #data.at(2).section
-
-    #table(
-      columns: (auto, auto),
-      // align: horizon,
-      row-gutter: ROW-GUTTER,
-      stroke: none,
-
-      ..for datum in data.at(2).cmds {
-        (eval(datum.cmd, mode: "markup"), datum.desc)
-      }
-    )
-  ],
+        ..for datum in data.at(i).cmds {
+          (eval(datum.cmd, mode: "markup"), datum.desc)
+        }
+      )
+    },
+  ),
 
   // Second column
-  rect[
-    // Visual Studio Code
-    = #data.at(3).section
+  rect(
+    for i in range(3, 5) {
+      [= #data.at(i).section]
 
-    #table(
-      columns: (auto, auto),
-      // align: horizon,
-      row-gutter: ROW-GUTTER,
-      // stroke: none,
+      table(
+        columns: (auto, auto),
+        // align: horizon,
+        row-gutter: ROW-GUTTER,
 
-      ..for datum in data.at(3).cmds {
-        (eval(datum.cmd, mode: "markup"), datum.desc)
-      }
-    )
-
-    // Vim
-    = #data.at(4).section
-
-    #table(
-      columns: (auto, auto),
-      // align: horizon,
-      row-gutter: ROW-GUTTER,
-      // stroke: none,
-
-      ..for datum in data.at(4).cmds {
-        (eval(datum.cmd, mode: "markup"), datum.desc)
-      }
-    )
-  ],
+        ..for datum in data.at(i).cmds {
+          (eval(datum.cmd, mode: "markup"), eval(datum.desc, mode: "markup"))
+        }
+      )
+    },
+  ),
 
   /*
     #let data = (
-      (cmd: [`%`], desc: [find the next bracket and go to its match]),
-      (cmd: [`Ctrl+Shift+V`], desc: [start blockwide Visual mode]),
-      (cmd: [`cc`], desc: [delete line and start insert]),
-      // (cmd: [`R`], desc: [enter replace mode]),
-      (cmd: [`u`], desc: [undo changes]),
-      (cmd: [`Ctrl`+`R`], desc: [redo changes which were undone with '`u`']),
       (cmd: [`:sp[lit]`], desc: [split current window]),
       (cmd: [`Shift`+`Insert`], desc: [paste clipboard]),
       (cmd: [`/xxx<CR>`], desc: [search forward for `xxx`]),
