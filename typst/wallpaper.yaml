@@ -330,6 +330,30 @@
         - title:
           url:
           updated:
+    - cmd: "`:sp[lit]`"
+      desc: split current window
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`Shift`+`Insert`"
+      desc: paste clipboard
+      refs:
+        - title:
+          url:
+          updated:
+    # - cmd: ""
+    #   desc:
+    #   refs:
+    #     - title:
+    #       url:
+    #       updated:
+    # - cmd: ""
+    #   desc:
+    #   refs:
+    #     - title:
+    #       url:
+    #       updated:
     # - cmd: ""
     #   desc:
     #   refs:
@@ -338,6 +362,8 @@
     #       updated:
 - section: Git
   subsections:
+    # - The origin of "first time", "after that"
+    #   - #link("https://eikaiwa.dmm.com/uknow/questions/72040/")[初回って英語でなんて言うの？]
     - subsection: First time
       cmds:
         - cmd: "`git init`/`git clone <repository>`"

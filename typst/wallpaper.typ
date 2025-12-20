@@ -41,6 +41,7 @@
         columns: (auto, auto),
         // align: horizon,
         row-gutter: ROW-GUTTER,
+        stroke: none,
 
         ..for datum in data.at(i).cmds {
           (eval(datum.cmd, mode: "markup"), datum.desc)
@@ -68,8 +69,6 @@
 
   /*
     #let data = (
-      (cmd: [`:sp[lit]`], desc: [split current window]),
-      (cmd: [`Shift`+`Insert`], desc: [paste clipboard]),
       (cmd: [`/xxx<CR>`], desc: [search forward for `xxx`]),
       (cmd: [`:%s/X/Y/gc`], desc: [all X $->$ Y]), // cf. http://qiita.com/shirochan/items/a16487d0739f455b5e8a
       (cmd: [`:4,9s/X/Y/gc`], desc: [4-9 line X $->$ Y]), // cf. http://qiita.com/shirochan/items/a16487d0739f455b5e8a
@@ -87,74 +86,20 @@
     // Git
     = #data.at(5).section
 
-    // First time
-    // - The origin of "first time", "after that"
-    //   - #link("https://eikaiwa.dmm.com/uknow/questions/72040/")[初回って英語でなんて言うの？]
-    == #data.at(5).subsections.at(0).subsection
+    #for i in range(5) {
+      [== #data.at(5).subsections.at(i).subsection]
 
-    #table(
-      columns: (auto, auto),
-      // align: horizon,
-      row-gutter: ROW-GUTTER,
+      table(
+        columns: (auto, auto),
+        // align: horizon,
+        row-gutter: ROW-GUTTER,
+        stroke: none,
 
-      ..for datum in data.at(5).subsections.at(0).cmds {
-        (eval(datum.cmd, mode: "markup"), datum.desc)
-      }
-    )
-
-    // After that
-    == #data.at(5).subsections.at(1).subsection
-
-    #table(
-      columns: (auto, auto),
-      // align: horizon,
-      row-gutter: ROW-GUTTER,
-
-      ..for datum in data.at(5).subsections.at(1).cmds {
-        (eval(datum.cmd, mode: "markup"), datum.desc)
-      }
-    )
-
-    // Switch branch
-    == #data.at(5).subsections.at(2).subsection
-
-    #table(
-      columns: (auto, auto),
-      // align: horizon,
-      row-gutter: ROW-GUTTER,
-
-      ..for datum in data.at(5).subsections.at(2).cmds {
-        (eval(datum.cmd, mode: "markup"), datum.desc)
-      }
-    )
-
-    // Merge
-    == #data.at(5).subsections.at(3).subsection
-
-    #table(
-      columns: (auto, auto),
-      // align: horizon,
-      row-gutter: ROW-GUTTER,
-      stroke: none,
-
-      ..for datum in data.at(5).subsections.at(3).cmds {
-        (eval(datum.cmd, mode: "markup"), datum.desc)
-      }
-    )
-
-    // Tagging
-    == #data.at(5).subsections.at(4).subsection
-
-    #table(
-      columns: (auto, auto),
-      // align: horizon,
-      row-gutter: ROW-GUTTER,
-      stroke: none,
-
-      ..for datum in data.at(5).subsections.at(4).cmds {
-        (eval(datum.cmd, mode: "markup"), datum.desc)
-      }
-    )
+        ..for datum in data.at(5).subsections.at(i).cmds {
+          (eval(datum.cmd, mode: "markup"), datum.desc)
+        }
+      )
+    }
 
     // Misc
     = #data.at(6).section
@@ -168,5 +113,5 @@
     == #data.at(6).subsections.at(1).subsection
 
     #eval(data.at(6).subsections.at(1).content, mode: "markup")
-  ],
+  ]
 )
