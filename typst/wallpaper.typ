@@ -142,68 +142,63 @@
 
   ],
 
+  */
+
   // Third column
   rect[
-    = Git
+    // Git
 
-    == First time
+    = #data.at(5).section
 
+    // First time
     // - The origin of "first time", "after that"
     //   - #link("https://eikaiwa.dmm.com/uknow/questions/72040/")[初回って英語でなんて言うの？]
-
-    #let data = (
-      (cmd: [`git init`/`git clone <repository>`], desc: [xxx]),
-      (cmd: [`git add <pathspec>`], desc: [xxx]),
-      (cmd: [`git commit -m "msg"`], desc: [xxx]),
-      (cmd: [`git remote add origin <url>`], desc: [xxx]),
-      (cmd: [`git push -u origin master`], desc: []),
-    )
+    == #data.at(5).subsections.at(0).subsection
 
     #table(
       columns: (auto, auto),
       // align: horizon,
       row-gutter: ROW-GUTTER,
 
-      ..for datum in data {
-        (datum.at("cmd"), datum.at("desc"))
+      ..for datum in data.at(5).subsections.at(0).cmds {
+        (eval(datum.cmd, mode: "markup"), datum.desc)
       }
     )
 
-    == After that
-
-    #let data = (
-      (cmd: [(`git pull origin master`)], desc: [xxx]),
-      (cmd: [`git commit <pathspec>`], desc: [xxx]),
-      (cmd: [`git push`], desc: [xxx]),
-    )
+    // After that
+    == #data.at(5).subsections.at(1).subsection
 
     #table(
       columns: (auto, auto),
       // align: horizon,
       row-gutter: ROW-GUTTER,
 
-      ..for datum in data {
-        (datum.at("cmd"), datum.at("desc"))
+      ..for datum in data.at(5).subsections.at(1).cmds {
+        (eval(datum.cmd, mode: "markup"), datum.desc)
       }
     )
 
-    == Switch branch
-
-    #let data = (
-      (cmd: [(`git branch -a`)], desc: [xxx]),
-      (cmd: [`git checkout <branch>`], desc: [xxx]),
-    )
+    // Switch branch
+    == #data.at(5).subsections.at(2).subsection
 
     #table(
       columns: (auto, auto),
       // align: horizon,
       row-gutter: ROW-GUTTER,
 
-      ..for datum in data {
-        (datum.at("cmd"), datum.at("desc"))
+      ..for datum in data.at(5).subsections.at(2).cmds {
+        (eval(datum.cmd, mode: "markup"), datum.desc)
       }
     )
 
+    // Merge
+
+  ],
+
+
+  /*
+
+  rect[
     == Merge
 
     #let data = (

@@ -258,3 +258,89 @@
         - title:
           url:
           updated:
+- section: Git
+  subsections:
+    - subsection: First time
+      cmds:
+        - cmd: "`git init`/`git clone <repository>`"
+          desc:
+          refs:
+            - title:
+              url:
+              updated:
+        - cmd: "`git add <pathspec>`"
+          desc:
+          refs:
+            - title:
+              url:
+              updated:
+        - cmd: '`git commit -m "msg"`'
+          desc:
+          refs:
+            - title:
+              url:
+              updated:
+        - cmd: "`git remote add origin <url>`"
+          desc:
+          refs:
+            - title:
+              url:
+              updated:
+        - cmd: "`git push -u origin master`"
+          desc:
+          refs:
+            - title:
+              url:
+              updated:
+        - cmd: ""
+          desc:
+          refs:
+            - title:
+              url:
+              updated:
+    - subsection: After that
+      cmds:
+        - cmd: "`(git pull origin master)`"
+          desc:
+          refs:
+            - title:
+              url:
+              updated:
+        - cmd: "`git commit <pathspec>`"
+          desc:
+          refs:
+            - title:
+              url:
+              updated:
+        - cmd: "`git push`"
+          desc:
+          refs:
+            - title:
+              url:
+              updated:
+        - cmd: ""
+          desc:
+          refs:
+            - title:
+              url:
+              updated:
+    - subsection: Switch branch
+      cmds:
+        - cmd: "(`git branch -a`)"
+          desc:
+          refs:
+            - title:
+              url:
+              updated:
+        - cmd: "`git checkout <branch>`"
+          desc:
+          refs:
+            - title:
+              url:
+              updated:
+        - cmd: ""
+          desc:
+          refs:
+            - title:
+              url:
+              updated:
