@@ -344,3 +344,59 @@
             - title:
               url:
               updated:
+    - subsection: Merge
+      cmds:
+        - cmd: "`git checkout <(main) branch>`"
+          desc:
+          refs:
+            - title:
+              url:
+              updated:
+        - cmd: "`git merge <(sub) branch>`"
+          desc:
+          refs:
+            - title:
+              url:
+              updated:
+        - cmd: "`git push origin <(main) branch>`"
+          desc:
+          refs:
+            - title:
+              url:
+              updated:
+    - subsection: Tagging
+      cmds:
+        - cmd: "`git tag -a <tagname>`"
+          desc:
+          refs:
+            - cmd: "`$ git help tag`"
+              updated:
+        - cmd: "`git push origin <tagname>`"
+          desc:
+          refs:
+            - title:
+              url: https://qiita.com/growsic/items/ed67e03fda5ab7ef9d08#tag%E3%81%AE%E5%85%B1%E6%9C%89
+              updated:
+- section: Misc
+  subsections:
+    - subsection: Notes
+      content: |
+        - 注意事項/意識すべき点
+          - 予定確認（時間意識）
+          - 目的意識（Flow 5W1H）
+          - 後工程はお客様
+          - 付加価値
+        - 改善点・不満点など，気づいた点ないか？
+        - 改善点など自己分析
+    - subsection: Tips
+      content: |
+        - Document Viewer Keyboard Shortcuts
+          - Open PDF file > File options > Keyboard Shortcuts
+        - Screenshot
+          - Show Applications → Screenshot
+        - `https://******/#:~:text=***`
+          - Space: `%20`
+        - Space > `%20`
+          - Visual modeで置換範囲を選択
+          - `:` を押下
+          - `:'<,'>s/ /%20/gc`

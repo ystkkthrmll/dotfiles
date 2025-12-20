@@ -192,72 +192,44 @@
     )
 
     // Merge
+    == #data.at(5).subsections.at(3).subsection
 
+    #table(
+      columns: (auto, auto),
+      // align: horizon,
+      row-gutter: ROW-GUTTER,
+      stroke: none,
+
+      ..for datum in data.at(5).subsections.at(3).cmds {
+        (eval(datum.cmd, mode: "markup"), datum.desc)
+      }
+    )
+
+    // Tagging
+    == #data.at(5).subsections.at(4).subsection
+
+    #table(
+      columns: (auto, auto),
+      // align: horizon,
+      row-gutter: ROW-GUTTER,
+      stroke: none,
+
+      ..for datum in data.at(5).subsections.at(4).cmds {
+        (eval(datum.cmd, mode: "markup"), datum.desc)
+      }
+    )
+
+    // Misc
+    = #data.at(6).section
+
+    // Notes
+    == #data.at(6).subsections.at(0).subsection
+
+    #eval(data.at(6).subsections.at(0).content, mode: "markup")
+
+    // Tips
+    == #data.at(6).subsections.at(1).subsection
+
+    #eval(data.at(6).subsections.at(1).content, mode: "markup")
   ],
-
-
-  /*
-
-  rect[
-    == Merge
-
-    #let data = (
-      (cmd: [`git checkout <(main) branch>`], desc: [xxx]),
-      (cmd: [`git merge <(sub) branch>`], desc: [xxx]),
-      (cmd: [`git push origin <(main) branch>`], desc: [xxx]),
-    )
-
-    #table(
-      columns: (auto, auto),
-      // align: horizon,
-      row-gutter: ROW-GUTTER,
-      stroke: none,
-
-      ..for datum in data {
-        (datum.at("cmd"), datum.at("desc"))
-      }
-    )
-
-    == Tagging
-
-    #let data = (
-      (cmd: [`git tag -a <tagname>`], desc: [xxx]), // ref: `$ git help tag`
-      (cmd: [`git push origin <tagname>`], desc: [xxx]), // https://qiita.com/growsic/items/ed67e03fda5ab7ef9d08#tag%E3%81%AE%E5%85%B1%E6%9C%89
-    )
-
-    #table(
-      columns: (auto, auto),
-      // align: horizon,
-      row-gutter: ROW-GUTTER,
-      stroke: none,
-
-      ..for datum in data {
-        (datum.at("cmd"), datum.at("desc"))
-      }
-    )
-
-    = Misc
-
-    - Notes
-      - 注意事項/意識すべき点
-        - 予定確認（時間意識）
-        - 目的意識（Flow 5W1H）
-        - 後工程はお客様
-        - 付加価値
-      - 改善点・不満点など，気づいた点ないか？
-      - 改善点など自己分析
-    - Tips
-      - Document Viewer Keyboard Shortcuts
-        - Open PDF file > File options > Keyboard Shortcuts
-      - Screenshot
-        - Show Applications → Screenshot
-      - `https://******/#:~:text=***`
-        - Space: `%20`
-      - Space > `%20`
-        - Visual modeで置換範囲を選択
-        - `:` を押下
-        - `:'<,'>s/ /%20/gc`
-
-
-    */
 )
