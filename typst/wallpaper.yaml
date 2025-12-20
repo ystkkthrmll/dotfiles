@@ -241,13 +241,67 @@
           updated:
 - section: Vim
   cmds:
-    - cmd: "`vim -d file1 file2`"
+    - cmd: "`vim -d src1 src2`"
       desc: Start in diff mode
       refs:
         - cmd: "`$ man vim`"
           updated: 2025-12-21T00:00:46
     - cmd: "`zA`"
       desc: open fold recursivly
+      refs:
+        - title:
+          url:
+          updated:
+    # - cmd: "`zf`"
+    #   desc: create fold
+    #   refs:
+    #     - title:
+    #       url:
+    #       updated:
+    - cmd: "`$`"
+      desc: cursor to the end of `N` lines next line
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`gg`"
+      desc: cursor to the first line
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`G`"
+      desc: cursor to the last line
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`A`"
+      desc: append text after the end of the line
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`x`"
+      desc: delete character
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`Ctrl`+`F`"
+      desc: scroll `N` screens Forward
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`Ctrl`+`B`"
+      desc: scroll `N` screens Backwards
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: ""
+      desc:
       refs:
         - title:
           url:
@@ -292,12 +346,6 @@
             - title:
               url:
               updated:
-        - cmd: ""
-          desc:
-          refs:
-            - title:
-              url:
-              updated:
     - subsection: After that
       cmds:
         - cmd: "`(git pull origin master)`"
@@ -318,12 +366,6 @@
             - title:
               url:
               updated:
-        - cmd: ""
-          desc:
-          refs:
-            - title:
-              url:
-              updated:
     - subsection: Switch branch
       cmds:
         - cmd: "(`git branch -a`)"
@@ -333,12 +375,6 @@
               url:
               updated:
         - cmd: "`git checkout <branch>`"
-          desc:
-          refs:
-            - title:
-              url:
-              updated:
-        - cmd: ""
           desc:
           refs:
             - title:
@@ -392,9 +428,8 @@
       content: |
         - Document Viewer Keyboard Shortcuts
           - Open PDF file > File options > Keyboard Shortcuts
-        - Screenshot
-          - Show Applications → Screenshot
-        - `https://******/#:~:text=***`
+        - URL
+          - `https://******/#:~:text=***`
           - Space: `%20`
         - Space > `%20`
           - Visual modeで置換範囲を選択

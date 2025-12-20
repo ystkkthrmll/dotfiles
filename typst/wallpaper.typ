@@ -104,23 +104,10 @@
         (eval(datum.cmd, mode: "markup"), datum.desc)
       }
     )
-
-
-
   ],
 
   /*
-  rect[
-
     #let data = (
-      // (cmd: [`zf`], desc: [create fold]),
-      (cmd: [`$`], desc: [cursor to the end of `N` lines next line]),
-      (cmd: [`gg`], desc: [cursor to the first line]),
-      (cmd: [`G`], desc: [cursor to the last line]),
-      (cmd: [`A`], desc: [append text after the end of the line]),
-      (cmd: [`x`], desc: [delete character]),
-      (cmd: [`Ctrl`+`F`], desc: [scroll `N` screens Forward]),
-      (cmd: [`Ctrl`+`B`], desc: [scroll `N` screens Backwards]),
       (cmd: [`%`], desc: [find the next bracket and go to its match]),
       (cmd: [`Ctrl+Shift+V`], desc: [start blockwide Visual mode]),
       (cmd: [`cc`], desc: [delete line and start insert]),
@@ -139,15 +126,11 @@
       (cmd: [`visual mode + <>`], desc: [indentの深さ変更]), // https://linuxhint.com/tab-multiple-lines-vim/
       (cmd: [`:map`], desc: [list all key mappings]), // cf. map.txt 1.1 MAP COMMANDS
     )
-
-  ],
-
   */
 
   // Third column
   rect[
     // Git
-
     = #data.at(5).section
 
     // First time
