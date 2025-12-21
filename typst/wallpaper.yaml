@@ -191,6 +191,12 @@
         - title: Is there a quick change tabs function in Visual Studio Code?
           url: https://stackoverflow.com/questions/38957302/is-there-a-quick-change-tabs-function-in-visual-studio-code
           updated: 2025-12-20T23:49:45
+    - cmd: "`Ctrl`+`\\`"
+      desc: Split the active editor into two
+      refs:
+        - title: User interface
+          url: https://code.visualstudio.com/docs/getstarted/userinterface#_side-by-side-editing
+          updated: 2025-12-21T10:17:11
     - cmd: "`F12`"
       desc: Go to definition
       refs:
@@ -342,18 +348,60 @@
         - title:
           url:
           updated:
-    # - cmd: ""
+    - cmd: "`/xxx<CR>`"
+      desc: search forward for `xxx`
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`:%s/X/Y/gc`"
+      desc: all X $->$ Y
+      refs:
+        - title:
+          url: http://qiita.com/shirochan/items/a16487d0739f455b5e8a
+          updated:
+    - cmd: "`:4,9s/X/Y/gc`"
+      desc: 4-9 line X $->$ Y
+      refs:
+        - title:
+          url: http://qiita.com/shirochan/items/a16487d0739f455b5e8a
+          updated:
+    # - cmd: "`Ctrl+X Ctrl+K`"
     #   desc:
     #   refs:
     #     - title:
     #       url:
     #       updated:
-    # - cmd: ""
-    #   desc:
-    #   refs:
-    #     - title:
-    #       url:
-    #       updated:
+    - cmd: "`Ctrl`+`]`"
+      desc: jump to the subject
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`Ctrl`+`O`"
+      desc: jump back
+      refs:
+        - title:
+          url:
+          updated:
+    - cmd: "`gx`"
+      desc: open URL in browser
+      refs:
+        - title:
+          url: https://stackoverflow.com/questions/9458294/open-url-under-cursor-in-vim-with-browser
+          updated:
+    - cmd: "`visual mode + </>`"
+      desc: indentの深さ変更
+      refs:
+        - title:
+          url: https://linuxhint.com/tab-multiple-lines-vim/
+          updated:
+    - cmd: "`:map`"
+      desc: list all key mappings
+      refs:
+        - title:
+          url: map.txt 1.1 MAP COMMANDS
+          updated:
     # - cmd: ""
     #   desc:
     #   refs:

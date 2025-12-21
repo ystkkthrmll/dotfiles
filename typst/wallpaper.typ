@@ -28,7 +28,7 @@
 #let data = yaml("wallpaper.yaml")
 
 #grid(
-  columns: (250pt, 250pt, 250pt),
+  columns: (250pt, 230pt, 250pt),
   rows: auto,
   gutter: -3pt,
 
@@ -67,20 +67,6 @@
     },
   ),
 
-  /*
-    #let data = (
-      (cmd: [`/xxx<CR>`], desc: [search forward for `xxx`]),
-      (cmd: [`:%s/X/Y/gc`], desc: [all X $->$ Y]), // cf. http://qiita.com/shirochan/items/a16487d0739f455b5e8a
-      (cmd: [`:4,9s/X/Y/gc`], desc: [4-9 line X $->$ Y]), // cf. http://qiita.com/shirochan/items/a16487d0739f455b5e8a
-      // (cmd: [`Ctrl+X Ctrl+K`], desc: []),
-      (cmd: [`Ctrl`+`]`], desc: [jump to the subject]),
-      (cmd: [`Ctrl`+`O`], desc: [jump back]),
-      (cmd: [`gx`], desc: [open URL in browser]), //  https://stackoverflow.com/questions/9458294/open-url-under-cursor-in-vim-with-browser
-      (cmd: [`visual mode + <>`], desc: [indentの深さ変更]), // https://linuxhint.com/tab-multiple-lines-vim/
-      (cmd: [`:map`], desc: [list all key mappings]), // cf. map.txt 1.1 MAP COMMANDS
-    )
-  */
-
   // Third column
   rect[
     // Git
@@ -96,7 +82,7 @@
         stroke: none,
 
         ..for datum in data.at(5).subsections.at(i).cmds {
-          (eval(datum.cmd, mode: "markup"), datum.desc)
+          ([`$ `] + eval(datum.cmd, mode: "markup"), datum.desc)
         }
       )
     }
@@ -113,5 +99,5 @@
     == #data.at(6).subsections.at(1).subsection
 
     #eval(data.at(6).subsections.at(1).content, mode: "markup")
-  ]
+  ],
 )
