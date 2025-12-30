@@ -36,67 +36,32 @@
 ///
 /// -> content
 
-#let axiom = content => {
-  axiom[
-    #set text(font: "IPAexMincho")
-    #content
-  ]
-}
-
-#let definition = content => {
-  definition(color: black)[
-    #set text(font: "IPAexMincho")
-    #content
-  ]
-}
-
-/*
-#let definition = definition.with(
-  body: it => {
-    set text(font: "IPAexMincho")
-    it
-  },
-  color: black,
+#let axiom = axiom.with(
+  sans-fonts: "IPAexMincho",
 )
 
-#let definition(
-  font: "IPAexMincho",
-  title: "",
-  body,
-) = {
-  definition(title: title)[
-    #set text(font: font)
-    #body
-  ]
-}
-*/
+#let definition = definition.with(
+  color: black,
+  sans-fonts: "IPAexMincho",
+)
 
-#let example = content => {
-  example(color: gray)[
-    #set text(font: "IPAexMincho")
-    #content
-  ]
+#let example = example.with(
+  color: gray,
+  sans-fonts: "IPAexMincho",
 }
 
-#let proposition = content => {
-  proposition[
-    #set text(font: "IPAexMincho")
-    #content
-  ]
+#let proposition = proposition.with(
+  sans-fonts: "IPAexMincho",
 }
 
-#let remark = content => {
-  remark(color: red)[
-    #set text(font: "IPAexMincho")
-    #content
-  ]
+#let remark = remark.with(
+  color: red,
+  sans-fonts: "IPAexMincho",
 }
 
-#let theorem = content => {
-  theorem[
-    #set text(font: "IPAexMincho")
-    #content
-  ]
+#let theorem = theorem.with(
+  color: red,
+  sans-fonts: "IPAexMincho",
 }
 
 #let proof(

@@ -1,3 +1,4 @@
+/// = `config()`
 ///
 /// Set the title, authors, and abstract.
 ///
@@ -68,15 +69,16 @@
   show link: underline
 
   // Main document
-  set align(left)
+  // set align(left)
   doc
 }
 
-/// = hideable note
+/// = `hideable-note()`
+///
 /// - Notes:
 ///   - The origin of "hideable note"
 ///     - @chatgpt[prompt: "次を英訳して：非表示可能なメモ"]
-///     - @chatgpt[prompt: "hideableとconcealableの違いは？"]
+///     - @chatgpt[prompt: "hideable と concealable の違いは？"]
 
 // #let hide-note = state("flag", false)
 #let hide-note = state("flag", true)
@@ -95,8 +97,7 @@
   }
 }
 
-
-/// term
+/// = `term()`
 ///
 /// ```example
 /// #term(english: [sample])[サンプル]
@@ -112,13 +113,9 @@
   position: none,
 ) = {
   if english == none {
-    [* #term * ]
+    [* #term *]
   } else {
-    [* #term (#english) * ]
+    [* #term (#english) *]
   }
 }
-
-
-
-
 
