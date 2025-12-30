@@ -9,6 +9,7 @@
   title: none,
   authors: (),
   abstract: [],
+  lang: "ja",
   font: (
     normal: "IPAexMincho",
     // normal: "IPAMincho",
@@ -26,15 +27,18 @@
   // ...
 
   set text(
-    lang: "ja",
-    font: font.at("normal"),
-    size: font.at("size"),
+    lang: lang,
+    font: font.normal,
+    size: font.size,
   )
-  show strong: set text(font: font.at("strong"))
+  show strong: set text(font: font.strong)
+
+  // Set heading
+  set heading(numbering: "1.1")
 
   // Set title
-  set align(center)
-  text(17pt, title)
+  set document(title: title)
+  align(center, text(size: 17pt, title))
 
   // Set authors
   let count = authors.len()
@@ -50,13 +54,13 @@
   )
 
   // Set abstract
-  par(justify: false)[
-    *Abstract* \
-    #abstract
-  ]
-
-  //
-  set heading(numbering: "1.1")
+  align(
+    center,
+    par(justify: false)[
+      *Abstract* \
+      #abstract
+    ]
+  )
 
   // Configure link
   show link: set text(blue)
@@ -68,12 +72,11 @@
   doc
 }
 
-// = hideable note
-// - Notes:
-//   - The origin of "hideable note"
-//     - @chatgpt[prompt: "次を英訳して：非表示可能なメモ"]
-//     - @chatgpt[prompt: "hideableとconcealableの違いは？"]
-
+/// = hideable note
+/// - Notes:
+///   - The origin of "hideable note"
+///     - @chatgpt[prompt: "次を英訳して：非表示可能なメモ"]
+///     - @chatgpt[prompt: "hideableとconcealableの違いは？"]
 
 // #let hide-note = state("flag", false)
 #let hide-note = state("flag", true)

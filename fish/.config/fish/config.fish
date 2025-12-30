@@ -65,6 +65,7 @@ zoxide add ~/my-docs/math/algebra
 zoxide add ~/my-docs/math/algebra/linear-algebra
 zoxide add ~/my-docs/math/analysis
 zoxide add ~/my-docs/math/analysis/real-analysis
+zoxide add ~/my-docs/math/applied-math
 zoxide add ~/my-docs/math/foundations
 zoxide add ~/my-docs/math/foundations/set-theory
 zoxide add ~/my-docs/math/foundations/topological-space
