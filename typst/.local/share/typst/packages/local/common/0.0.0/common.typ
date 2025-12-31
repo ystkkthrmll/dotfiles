@@ -10,7 +10,8 @@
   title: none,
   authors: (),
   abstract: [],
-  lang: "ja",
+  // lang: "ja",
+  lang: "en",
   font: (
     normal: "IPAexMincho",
     // normal: "IPAMincho",
@@ -25,8 +26,6 @@
   doc,
 ) = {
   // Set and show rules from before.
-  // ...
-
   set text(
     lang: lang,
     font: font.normal,
@@ -79,17 +78,23 @@
 ///   - The origin of "hideable note"
 ///     - @chatgpt[prompt: "次を英訳して：非表示可能なメモ"]
 ///     - @chatgpt[prompt: "hideable と concealable の違いは？"]
+///
+/// ```example
+/// #hideable-note[foo]
+/// ```
 
 // #let hide-note = state("flag", false)
 #let hide-note = state("flag", true)
 
 #let hideable-note(
   body,
+  fill-color: gray,
   fontsize: 8.5pt,
+  radius: 5pt
 ) = {
   context {
     if hide-note.get() {
-      rect(fill: gray, radius: 5pt)[
+      rect(fill: fill-color, radius: radius)[
         #set text(fontsize)
         #body
       ]

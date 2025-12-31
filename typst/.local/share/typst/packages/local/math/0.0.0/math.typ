@@ -1,4 +1,4 @@
-
+/// = Import packages
 #import "@preview/equate:0.3.2": equate
 #import "@preview/thmbox:0.3.0": *
 
@@ -6,7 +6,8 @@
 ///
 #let config(
   equation-numbering: "(1.1.1)",
-  supplement: "式",
+  supplement: "Eq.",
+  // supplement: "式",
   number-mode: "label",
   doc,
 ) = {
@@ -35,7 +36,6 @@
 /// // ```
 ///
 /// -> content
-
 #let axiom = axiom.with(
   sans-fonts: "IPAexMincho",
 )
@@ -48,21 +48,21 @@
 #let example = example.with(
   color: gray,
   sans-fonts: "IPAexMincho",
-}
+)
 
 #let proposition = proposition.with(
   sans-fonts: "IPAexMincho",
-}
+)
 
 #let remark = remark.with(
   color: red,
   sans-fonts: "IPAexMincho",
-}
+)
 
 #let theorem = theorem.with(
   color: red,
   sans-fonts: "IPAexMincho",
-}
+)
 
 #let proof(
   name: "Proof",
@@ -109,7 +109,7 @@
   $ op("dom") (#f) $
 )
 
-/// Empty set
+/// == Empty set
 ///
 /// Ref: https://www.reddit.com/r/typst/comments/17mxm4h/how_do_i_change_what_emptyset_looks_like/
 ///
@@ -120,7 +120,7 @@
 /// -> content
 #let emptyset = $text(font: "Fira Sans", nothing)$
 
-/// Open ball
+/// == Open ball
 ///
 /// ```example
 /// $openball(p, r)$
@@ -136,7 +136,7 @@
   $ op("B")_(#radius) (#point) $
 )
 
-/// Power set
+/// == Power set
 ///
 /// ```example
 /// $powerset(x)$
@@ -152,7 +152,7 @@
   $ cal(P) (#set_) $
 )
 
-/// Range of a function
+/// == Range of a function
 ///
 /// ```example
 /// $range(f)$
@@ -166,7 +166,7 @@
   $ op("ran") (#f) $
 )
 
-/// Successor function
+/// == Successor function
 ///
 /// ```example
 /// $successor(x)$
@@ -180,7 +180,7 @@
   $ op("S") (#x) $
 )
 
-/// = Standard number sets
+/// == Standard number sets
 ///
 /// The set of complex numbers
 ///
@@ -193,7 +193,7 @@
   $ bold(upright(C)) $
 )
 
-/// The set of integers
+/// == The set of integers
 ///
 /// ```example
 /// $integers$
@@ -204,7 +204,7 @@
   $ bold(upright(Z)) $
 )
 
-/// The set of natural numbers
+/// == The set of natural numbers
 ///
 /// ```example
 /// $naturalnumbers$
@@ -215,7 +215,7 @@
   $ bold(upright(N)) $
 )
 
-/// The set of rational numbers
+/// == The set of rational numbers
 ///
 /// ```example
 /// $rationalnumbers$
@@ -226,7 +226,7 @@
   $ bold(upright(Q)) $
 )
 
-/// The set of real numbers
+/// == The set of real numbers
 ///
 /// ```example
 /// $realnumbers$
@@ -239,7 +239,7 @@
 
 /// = Statistics
 ///
-/// Covariance
+/// == Covariance
 ///
 /// ```example
 /// $covariance(X, Y)$
@@ -256,7 +256,7 @@
   $ op("Cov") (#x, thin #y) $
 )
 
-/// Expectation
+/// == Expectation
 ///
 /// ```example
 /// $expectation(X)$
@@ -270,7 +270,7 @@
   $ op("Ex") (#x) $
 )
 
-/// Normal distribution
+/// == Normal distribution
 ///
 /// ```example
 /// $normaldistribution(mu, sigma^2)$
@@ -287,7 +287,7 @@
   $ cal(N) (#mean, thin #std) $
 )
 
-/// Variance
+/// == Variance
 ///
 /// ```example
 /// $variance(X)$
@@ -303,7 +303,7 @@
 
 /// = Topological space
 ///
-/// Closure
+/// == Closure
 ///
 /// ```example
 /// $closure(A)$
@@ -314,7 +314,7 @@
   $ op("cl") $
 )
 
-/// Interior
+/// == Interior
 ///
 /// ```example
 /// $interior(A)$
@@ -325,7 +325,7 @@
   $ op("int") $
 )
 
-/// Topology
+/// == Topology
 ///
 /// ```example
 /// $topology$
