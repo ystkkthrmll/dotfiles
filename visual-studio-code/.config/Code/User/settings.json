@@ -259,6 +259,11 @@
     "editor.wordBasedSuggestions": "currentDocument",
   },
 
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer",
+    "editor.formatOnSave": true,
+  },
+
   "[sh]": {
 //   "[bash]": {
     "editor.tabSize": 2, // 機能せず
@@ -272,9 +277,9 @@
   },
 
   "[yaml]": {
-    "editor.folding": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
+    "editor.folding": true,
     // "editor.tabSize": 2,
     "editor.wordBasedSuggestions": "currentDocument",
   },

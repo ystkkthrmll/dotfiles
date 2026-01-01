@@ -1,13 +1,15 @@
-/// = Import packages
+/// Import packages
 #import "@preview/equate:0.3.2": equate
 #import "@preview/thmbox:0.3.0": *
 
 /// Configure
 ///
+/// - Updated: 2026-01-01T20:04:17
+///
 #let config(
   equation-numbering: "(1.1.1)",
   supplement: "Eq.",
-  // supplement: "式",
+  /// supplement: "式",
   number-mode: "label",
   doc,
 ) = {
@@ -31,11 +33,12 @@
 
 /// Definition
 ///
-/// // ```example
-/// // #definition[サンプル]
-/// // ```
+/// ```example
+/// #definition[サンプル]
+/// ```
 ///
 /// -> content
+//
 #let axiom = axiom.with(
   sans-fonts: "IPAexMincho",
 )
@@ -60,23 +63,30 @@
 )
 
 #let theorem = theorem.with(
-  color: red,
   sans-fonts: "IPAexMincho",
 )
 
+/// Proof
+///
+/// ```example
+/// #proof[サンプル]
+/// ```
+///
+/// -> content
+//
 #let proof(
   name: "Proof",
   prefix: none,
   fontsize: 8pt,
   /// The number of columns.
-  num_cols: 1,
+  num-cols: 1,
   body,
 ) = {
   rect[
     #set text(fontsize)
     #set math.equation(numbering: "[1.1]")
     #columns(
-      num_cols,
+      num-cols,
     )[
       #strong[#prefix #name]:
       #body
@@ -146,7 +156,7 @@
 // #let power-set(
 #let powerset(
   /// Set. -> content
-  // set,  // Error occurred
+  /// set,  // Error occurred
   set_,
 ) = (
   $ cal(P) (#set_) $

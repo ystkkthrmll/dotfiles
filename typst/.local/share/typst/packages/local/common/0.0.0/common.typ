@@ -1,16 +1,18 @@
-/// = `config()`
-///
 /// Set the title, authors, and abstract.
 ///
-/// config
-/// - Ref: #link("https://typst.app/docs/tutorial/making-a-template/#named-arguments")[Templates with named arguments]
-/// - Ref: #link("https://kumaroot.readthedocs.io/ja/latest/typst/typst-text.html")[本文したい（#text）]
+/// - Code refs:
+///   - #link("https://typst.app/docs/tutorial/making-a-template/#named-arguments")[Templates with named arguments]
+///   - #link("https://kumaroot.readthedocs.io/ja/latest/typst/typst-text.html")[本文したい（#text）]
+/// - Updated: 2026-01-01T18:00:22
 ///
 #let config(
+  /// Title. -> content
   title: none,
   authors: (),
+  /// Abstract. -> content
   abstract: [],
-  // lang: "ja",
+  /// Language. -> content
+  /// lang: "ja",
   lang: "en",
   font: (
     normal: "IPAexMincho",
@@ -23,6 +25,7 @@
     // strong: "IPAGothic",
     size: 10pt,
   ),
+  heading-numbering: "1.1",
   doc,
 ) = {
   // Set and show rules from before.
@@ -34,7 +37,7 @@
   show strong: set text(font: font.strong)
 
   // Set heading
-  set heading(numbering: "1.1")
+  set heading(numbering: heading-numbering)
 
   // Set title
   set document(title: title)
@@ -59,7 +62,7 @@
     par(justify: false)[
       *Abstract* \
       #abstract
-    ]
+    ],
   )
 
   // Configure link
@@ -68,21 +71,21 @@
   show link: underline
 
   // Main document
-  // set align(left)
   doc
 }
 
-/// = `hideable-note()`
+/// Hideable note
 ///
 /// - Notes:
 ///   - The origin of "hideable note"
 ///     - @chatgpt[prompt: "次を英訳して：非表示可能なメモ"]
 ///     - @chatgpt[prompt: "hideable と concealable の違いは？"]
+/// - Updated: 2026-01-01T18:01:23
 ///
 /// ```example
 /// #hideable-note[foo]
 /// ```
-
+///
 // #let hide-note = state("flag", false)
 #let hide-note = state("flag", true)
 
@@ -90,7 +93,7 @@
   body,
   fill-color: gray,
   fontsize: 8.5pt,
-  radius: 5pt
+  radius: 5pt,
 ) = {
   context {
     if hide-note.get() {
@@ -102,7 +105,9 @@
   }
 }
 
-/// = `term()`
+/// Term
+///
+/// - Updated: 2026-01-01T18:01:44
 ///
 /// ```example
 /// #term(english: [sample])[サンプル]

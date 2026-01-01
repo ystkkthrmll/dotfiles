@@ -1,5 +1,3 @@
-// #import "/src/tidy.typ": *
-
 #import "@preview/tidy:0.4.3"
 
 #import "common.typ"
@@ -14,4 +12,5 @@
 #tidy.show-module(
   docs,
   // style: styles.minimal,
+  style: tidy.styles.default,
 )
