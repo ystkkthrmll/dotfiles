@@ -45,6 +45,7 @@ zoxide add ~/my-docs/computer/programming-languages/rust
 zoxide add ~/my-docs/computer/programming-languages/shell
 zoxide add ~/my-docs/computer/programming-languages/sql
 zoxide add ~/my-docs/computer/software
+zoxide add ~/my-docs/computer/software/text-editor
 zoxide add ~/my-docs/computer/software/text-editor/visual-studio-code
 zoxide add ~/my-docs/computer/software/typesetting-sofrware/typst
 zoxide add ~/my-docs/computer/software/typesetting-sofrware/pandoc

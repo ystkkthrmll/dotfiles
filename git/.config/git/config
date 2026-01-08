@@ -2,14 +2,14 @@
     [includeIf "gitdir:~/Dropbox/dotfiles/"]
         path = ~/.config/git/config.personal
 
+    [includeIf "gitdir:~/Dropbox/notes/"]
+        path = ~/.config/git/config.personal
+
     [includeIf "gitdir:~/my-docs/"]
         path = ~/.config/git/config.personal
 
     [includeIf "gitdir:~/projects/"]
         path = ~/.config/git/config.work
-
-    [includeIf "gitdir:~/Dropbox/config-files/"]
-        path = ~/.config/git/config.personal
 
 [alias]
     # - Refs

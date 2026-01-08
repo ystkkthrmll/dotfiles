@@ -41,7 +41,7 @@
 
   // Set title
   set document(title: title)
-  align(center, text(size: 17pt, title))
+  align(center, text(size: 17pt, [*#title*]))
 
   // Set authors
   let count = authors.len()
