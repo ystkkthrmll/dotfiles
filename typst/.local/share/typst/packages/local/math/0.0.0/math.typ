@@ -1,5 +1,6 @@
 /// Import packages
 #import "@preview/equate:0.3.2": equate
+#import "@preview/showybox:2.0.4": showybox
 #import "@preview/thmbox:0.3.0": *
 
 /// Configure
@@ -77,22 +78,32 @@
 #let proof(
   name: "Proof",
   prefix: none,
-  fontsize: 8pt,
+  fontsize: 7.5pt,
   /// The number of columns.
   num-cols: 1,
   body,
 ) = {
-  rect[
-    #set text(fontsize)
-    #set math.equation(numbering: "[1.1]")
-    #columns(
-      num-cols,
-    )[
-      #strong[#prefix #name]:
-      #body
-    ]
-  ]
+  showybox(
+    breakable: true,
+    frame: (
+      radius: 0pt,
+      // thickness: (left: 1pt),
+    ),
+    [
+      #set text(fontsize)
+      #set math.equation(numbering: "[1.1]")
+      #columns(
+        num-cols,
+      )[
+        #strong[#prefix #name]:
+        #body
+      ]
+    ],
+  )
 }
+
+/*
+*/
 
 #let because-of(
   /// Random variable. -> content
