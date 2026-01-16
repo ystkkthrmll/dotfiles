@@ -107,8 +107,9 @@
 
   // #region github
   "github.copilot.enable": {
-    "quarto": false,
-    "*": false
+    "*": false,
+    "python": true,
+    "quarto": true,
   },
   // #endregion github
 
