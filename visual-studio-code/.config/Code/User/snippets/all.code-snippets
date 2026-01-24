@@ -1,6 +1,6 @@
 {
   "datetime ISO": {
-    "scope": "markdown,python,tex,typst,yaml",
+    "scope": "markdown,markwhen,python,tex,typst,yaml",
     "prefix": "dt",
     "body": [
       // ref: https://stackoverflow.com/questions/38780057/how-to-insert-current-date-time-in-vscode

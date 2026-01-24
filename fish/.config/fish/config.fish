@@ -60,6 +60,10 @@ zoxide add ~/my-docs/english/grammar
 zoxide add ~/my-docs/english/vocabulary
 # #endregion english
 
+# #region job
+zoxide add ~/my-docs/job
+# #endregion job
+
 # #region math
 zoxide add ~/my-docs/math
 zoxide add ~/my-docs/math/algebra
@@ -101,6 +105,6 @@ function notes
 end
 
 function to-do-list
-    vi ~/Dropbox/notes/data/to-do-list-home.yaml
+    vi ~/Dropbox/notes/data/to-do-list-home.mw
 end
 

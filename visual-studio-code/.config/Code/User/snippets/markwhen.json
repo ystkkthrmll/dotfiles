@@ -1,0 +1,13 @@
+{
+  // - The origin of "event"
+  //   - [Events | Markwhen Documentation](https://docs.markwhen.com/syntax/events.html)
+  "event": {
+    "prefix": "event",
+    "body": [
+      "202${1:6}-$2-$3${4:}: ${5:event} #${6:tag}",
+      "- [ ] $7",
+      "updated: $0"
+    ],
+    "description": "event"
+  }
+}
